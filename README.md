@@ -143,13 +143,13 @@ Por último, el objetivo principal del jugador es derruir la fortificación enem
 
 A continuación, se añadirán una serie de videojuegos similares a Dishonored factions:
 
-<img src="./readMeMedia/videojuegoReferencia1.png" alt="Stickman War Legacy" width="120" align="center"/>
+<img src="./readMeMedia/videojuegoReferencia1.PNG" alt="Stickman War Legacy" width="120" align="center"/>
 _Fuente: "Stickman War Legacy"_
 
-<img src="./readMeMedia/videojuegoReferencia2.png" alt="Plantas Vs Zombies" width="120" align="center"/>
+<img src="./readMeMedia/videojuegoReferencia2.PNG" alt="Plantas Vs Zombies" width="120" align="center"/>
 _Fuente: "Plantas Vs Zombies"_
 
-<img src="./readMeMedia/videojuegoReferencia3.png" alt="Empire Defense" width="120" align="center"/>
+<img src="./readMeMedia/videojuegoReferencia3.PNG" alt="Empire Defense" width="120" align="center"/>
 _Fuente: "Empire Defense"_
 
 Buscar "sintaxis markdown"
