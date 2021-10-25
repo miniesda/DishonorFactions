@@ -49,6 +49,21 @@ El sistema de controles para el movimiento se basa en el sistema típico de todo
 
 ### INTERFAZ:
 ### ARTE:
+El arte del videojuego tendrá un estilo Cartoon.
+A continuación se presentará un boceto de los campeones de las tres facciones:
+
+<img src="./readMeMedia/noveny.png" alt="Noveny" width="120" align="left"/>
+<img src="./readMeMedia/thomas.png" alt="Thomas" width="120" align="left"/>
+<img src="./readMeMedia/kalapax.png" alt="Kalapax" width="120"/>
+
+Se han tomado referencias del videojuego _"Brawlhalla"_ en la estética de los personajes además referencias culturales de los juegos de rol y películas de fantasía como _"War of Warcraft"_ o _"El Señor de los Anillos"_ al incorporar civilizaciones no humanas como en este caso los orcos y los elfos.
+
+Ejemplos de referencias:
+
+<img src="./readMeMedia/referenciaNoveny.png" alt="Referenca Noveny" width="120" align="left"/>
+<img src="./readMeMedia/referenciaThomas.png" alt="Referenca Thomas" width="120" align="left"/>
+<img src="./readMeMedia/referenciaKalapax.png" alt="Referenca Kalapax" width="120"/>
+
 ### PERSONAJES:
 
 En los personajes, el jugador podrá elegir entre tres facciones bien diferenciadas: Los __orcos__, los __elfos__ y los __humanos__.
@@ -125,4 +140,16 @@ Por último, el objetivo principal del jugador es derruir la fortificación enem
 
 
 ### JUEGOS SIMILARES:
+
+A continuación, se añadirán una serie de videojuegos similares a Dishonored factions:
+
+<img src="./readMeMedia/videojuegoReferencia1.png" alt="Stickman War Legacy" width="120" align="center"/>
+_Fuente: "Stickman War Legacy"_
+
+<img src="./readMeMedia/videojuegoReferencia2.png" alt="Plantas Vs Zombies" width="120" align="center"/>
+_Fuente: "Plantas Vs Zombies"_
+
+<img src="./readMeMedia/videojuegoReferencia3.png" alt="Empire Defense" width="120" align="center"/>
+_Fuente: "Empire Defense"_
+
 Buscar "sintaxis markdown"
