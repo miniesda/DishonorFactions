@@ -4,9 +4,10 @@
 - Características del videojuego.
     - Género.
     - Público objetivo.
-    - Jugabilidad y mecánicas.
+    - Características principales.
     - Flujo del juego.
     - Controles.
+    - Controladores soportados.
     - Interfaz.
     - Arte.
     - Personajes.
@@ -14,6 +15,7 @@
         - Orcos.
         - Humanos.
     - Escenarios.
+    - Historia
     - Audio.
         - Música.
         - Efectos de sonido.
@@ -35,7 +37,15 @@ El videojuego será del género __Tower Defense Competitivo__ . Se trata de un s
 
 El juego irá destinado sobre todo a jóvenes de entre 10 y 25 años que jueguen en ordenador.
 
-### JUGABILIDAD Y MECÁNICAS:
+### CARACTERÍSTICAS PRINCIPALES:
+
+1. **Planteamiento sencillo:** _“Dishonor Factions”_ no posee gran carga histórica, sino que se utiliza un simple argumento para el desarrollo del juego y que los jugadores tengan el objetivo del juego claro.
+
+2. **Dinamismo:** _“Dishonor Factions”_ debe ser dinámico y crear una sensación de tensión y satisfacción al jugador.
+
+3. **Juego táctico:** En _“Dishonor Factions”_, los jugadores no tendrán  tropas infinitas, sino que deberán organizarse de forma inteligente para poder aguantar los ataques del enemigo y controlar su personaje como crean conveniente para ganar.
+
+
 ### FLUJO DEL JUEGO:
 
 En una partida ambas facciones comenzarán con la vida al máximo. Las tropas saldrán cada x tiempo de ambas bases dirección el bando contrario hasta que lleguen a la base enemiga o se encuentren con otras tropas enemigas y deban luchar. Mientras tanto, los jugadores controlarán a su campeón el cuál puede decidir entre atacar a las tropas enemigas, a la base enemiga o al campeón enemigo. Cuando un campeón muera, deberá esperar un tiempo de 10 segundos. Gana el primero que derribe la torre al contrario.
@@ -43,11 +53,20 @@ En una partida ambas facciones comenzarán con la vida al máximo. Las tropas sa
 ### CONTROLES:
 
 El sistema de controles para el movimiento se basa en el sistema típico de todos los juegos: 
-- __WASD:__ Movimiento horizontal y vertical.
+- __W A S D:__ Movimiento horizontal y vertical.
 - __Click izquierdo:__ Ataque básico.
 - __E:__ Habilidad especial del campeón.
 
+### CONTROLADORES SOPORTADOS:
+
+1. Teclado y ratón.
+
 ### INTERFAZ:
+
+La interfaz que se realizará será sencilla y sin muchos elementos para no entorpecer la experiencia del usuario. Además, el estilo visual que se emplea para la interfaz será cartoon, en cuanto a la disposición de los elementos en las interfaces será la siguiente:
+- Menú principal: En el menú principal estará el nombre del videojuego en la parte central arriba del todo, más abajo, también en la parte central vendrán tres botones uno debajo de otro, con forma de pergamino (acorde a la temática medieval) con las opciones de jugar, ajustes y salir del juego.
+- Pantalla del juego: En cuanto a la pantalla del juego cada jugador verá la disponibilidad de su habilidad en la parte inferior donde esté colocada su base, dicha habilidad será visible en un círculo con una imagen dentro que vaya acorde a la habilidad, arriba a la derecha habrá un botón que permita al jugador cambiar los ajustes como el sonido, y también poder salir del juego, dicho botón tendrá también una forma circular.
+
 ### ARTE:
 El arte del videojuego tendrá un estilo Cartoon.
 A continuación se presentará un boceto de los campeones de las tres facciones:
@@ -60,9 +79,14 @@ Se han tomado referencias del videojuego _"Brawlhalla"_ en la estética de los p
 
 Ejemplos de referencias:
 
-<img src="./readMeMedia/referenciaNoveny.png" alt="Referenca Noveny" width="120" align="left"/>
-<img src="./readMeMedia/referenciaThomas.png" alt="Referenca Thomas" width="120" align="left"/>
-<img src="./readMeMedia/referenciaKalapax.png" alt="Referenca Kalapax" width="120"/>
+<img src="./readMeMedia/referenciaNoveny.png" alt="Referenca Noveny" height="150" align="left"/>
+<img src="./readMeMedia/referenciaThomas.png" alt="Referenca Thomas" height="150" align="left"/>
+<img src="./readMeMedia/referenciaKalapax.png" alt="Referenca Kalapax" height="150"/>
+
+En cuanto a la elección de las distintas facciones es una clara referencia al videojuego _"For Honor"_:
+
+<img src="./readMeMedia/videojuegoReferencia4.PNG" alt="For Honor" width="400" align="center"/>
+_Fuente: "For Honor"_
 
 ### PERSONAJES:
 
@@ -113,7 +137,13 @@ A continuación, se detallarán las características principales de cada una de 
 
 ### ESCENARIOS:
 
-El escenario será una zona rectangular con una estética correspondiente a la temática del juego, como por ejemplo un bosque. En la parte izquierda está la base de un jugador, y en la parte derecha la base del jugador contrario. Las bases del escenario no ocuparán mucha zona física. Por último, cabe destacar que los personajes principales se podrán mover por todo el mapa.
+El escenario será una zona rectangular con una estética correspondiente a la temática del juego, como por ejemplo un bosque. En la parte izquierda está la base de un jugador, y en la parte derecha la base del jugador contrario. Las bases del escenario no ocuparán mucha zona física. Por último, cabe destacar que los personajes principales se podrán mover por todo el mapa. A continuación, vamos a presentar unas imágenes en las que el escenario de nuestro videojuego se podría parecer a estos.
+
+La cámara que se utilizará a lo largo de la partida será una cámara inclinada con un plano picado.
+
+### HISTORIA:
+
+El juego no posee una historia como tal, sino que simplemente son tres facciones que se enfrentarán entre ellos por recuperar el honor.
 
 ### AUDIO:
 
@@ -132,12 +162,11 @@ El juego tendrá distintos audios, en primer lugar habrá un audio para la inter
 
 ### FUNCIONAMIENTO DE LA RED EN EL JUEGO:
 
-La comunicación en este juego debe ser fluida. Los jugadores pueden moverse y atacar, por lo que esta información debe traspasarse en todo momento dentro del juego. Además, en las partidas hay unos pequeños jugadores controlados por la IA que también poseen la característica de atacar.
+La comunicación en este juego debe ser fluida. Los jugadores pueden moverse y atacar, por lo que esta información debe traspasarse en todo momento dentro del juego. Además, en las partidas hay unos pequeños jugadores controlados por la IA que también poseen la característica de atacar. 
 
 Los jugadores tienen habilidades especiales que el enemigo debe poder observar en el momento de su ejecución.
 
 Por último, el objetivo principal del jugador es derruir la fortificación enemiga, por lo que habrá que informar de la vida que posee la misma en todo momento.
-
 
 ### JUEGOS SIMILARES:
 
@@ -151,5 +180,3 @@ _Fuente: "Plantas Vs Zombies"_
 
 <img src="./readMeMedia/videojuegoReferencia3.PNG" alt="Empire Defense" width="400" align="center"/>
 _Fuente: "Empire Defense"_
-
-Buscar "sintaxis markdown"
