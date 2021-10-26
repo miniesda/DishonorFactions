@@ -1,4 +1,4 @@
-# DishonorFactions
+# DishonorFactions : Game Design Document
 ## ÍNDICE:
 - Introducción.
 - Características del videojuego.
