@@ -1,5 +1,4 @@
 import { Tower } from './tower.js';
-import { HealthBar } from './healthBar.js';
 
 export class Game extends Phaser.Scene
 {
@@ -8,39 +7,47 @@ export class Game extends Phaser.Scene
 		super({ key: 'game' });
 		this.leftTower;
 		this.rightTower;
-		this.leftHealthBar;
-		this.rightHealthBar;
+		this.cursors;
 	}
 
 	loadResources()
 	{
-		//this.load.image('c++', './Images/c++.png')
+		this.load.image('tower', './Art/tower.png');
+		this.load.image('healthBar', './Art/healthBar.png');
 	}
 
 	preload()
 	{
-		//this.loadResources();
-		this.leftHealthBar = new HealthBar(this);
-		this.leftHealthBar.preload();
+		this.loadResources();
 	}
 
 	initializeTowers()
 	{
-		this.leftTower = new Tower(100);
-		this.rightTower = new Tower(100);
-		this.leftTower.damageTower(55);
-		console.log(this.leftTower.getCurrentLife());
+		this.leftTower = new Tower(100, this, 75, 350, 50, 320);
+		this.leftTower.create();
+
+		this.rightTower = new Tower(100, this, 1205, 350, -35, 320);
+		this.rightTower.create();
+		this.rightTower.flipTowerSprite();
+
+        this.cursors = this.input.keyboard.createCursorKeys();
 	}
 
 	create()
 	{
 		//this.add.image(400, 400, 'c++');
 		this.initializeTowers();
-		this.leftHealthBar.create();
 	}
 
 	update()
 	{
-
+		if(this.cursors.left.isDown)
+		{			
+			this.leftTower.damageTower(2);
+		}
+		else if(this.cursors.right.isDown)
+		{
+			this.rightTower.damageTower(2);
+		}
 	}
 }

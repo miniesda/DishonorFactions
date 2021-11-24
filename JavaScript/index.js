@@ -5,8 +5,8 @@ const config =
 	type: Phaser.AUTO,
 	scale:
 	{
-		parent: 'game',
-		mode: Phaser.Scale.FIT,
+		parent: 'gameScreen',
+		mode: Phaser.Scale.RESIZE,
 		autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
 		min:
 		{
@@ -15,7 +15,7 @@ const config =
 		},
 		max:
 		{
-			width: 1270,
+			width: 1280,
 			height: 720
 		}
 	},
