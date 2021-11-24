@@ -2,26 +2,27 @@ import { HealthBar } from './healthBar.js';
 
 export class Tower
 {
-	constructor(initialLife, gameScene, x, y, healthBarDisplacementX, healthBarDisplacementY)
+	constructor(initialLife, gameScene, x, y, healthBarDisplacementX, healthBarDisplacementY, textDisplacementX, textDisplacementY)
 	{
 		this.scene = gameScene;
 		this.lifePoints = initialLife;
 		this.positionX = x;
 		this.positionY = y;
-		this.healthBar = new HealthBar(this.scene, this.lifePoints, this.positionX - healthBarDisplacementX, this.positionY - healthBarDisplacementY);
+		this.healthBarPositionX = this.positionX - healthBarDisplacementX;
+		this.healthBarPositionY = this.positionY - healthBarDisplacementY;
+		this.healthBar = new HealthBar(this.scene, this.lifePoints, this.healthBarPositionX, this.healthBarPositionY);
+		this.textPositionX = this.positionX - textDisplacementX;
+		this.textPositionY = this.positionY - textDisplacementY;
+		this.lifeTextGraphics;
 		this.towerGraphics;
 	}
 
 	create()
 	{
 		this.towerGraphics = this.scene.add.image(this.positionX, this.positionY, 'tower');
-		//this.towerGraphics = this.scene.add.graphics();
-		//this.towerGraphics.fillStyle(0x2ecc71, 1);
-		//this.towerGraphics.fillRect(0, 0, 150, 550);
-		//this.towerGraphics.x = this.positionX;
-		//this.towerGraphics.y = this.positionY;
 
 		this.healthBar.create();
+		this.lifeTextGraphics = this.scene.add.text(this.textPositionX, this.textPositionY, this.lifePoints, {fontSize: 25, strokeThickness: 2});
 	}
 
 	flipTowerSprite()
@@ -44,6 +45,17 @@ export class Tower
 			this.lifePoints = 0;
 		}
 
-		this.healthBar.setValue(this.lifePoints);
+		this.updateHealthBar(this.lifePoints);
+		this.updateLifeText(this.lifePoints);
+	}
+
+	updateHealthBar(newValue)
+	{
+		this.healthBar.setValue(newValue);
+	}
+
+	updateLifeText(newValue)
+	{
+		this.lifeTextGraphics.setText(newValue);
 	}
 }

@@ -14,6 +14,7 @@ export class Game extends Phaser.Scene
 	{
 		this.load.image('tower', './Art/tower.png');
 		this.load.image('healthBar', './Art/healthBar.png');
+		this.load.image('background', './Art/fondo2.png');
 	}
 
 	preload()
@@ -23,10 +24,10 @@ export class Game extends Phaser.Scene
 
 	initializeTowers()
 	{
-		this.leftTower = new Tower(100, this, 75, 350, 50, 320);
+		this.leftTower = new Tower(100, this, 75, 350, 10, 320, 70, 320);
 		this.leftTower.create();
 
-		this.rightTower = new Tower(100, this, 1205, 350, -35, 320);
+		this.rightTower = new Tower(100, this, 1205, 350, 10, 320, 0, 320);
 		this.rightTower.create();
 		this.rightTower.flipTowerSprite();
 
@@ -35,6 +36,7 @@ export class Game extends Phaser.Scene
 
 	create()
 	{
+		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		//this.add.image(400, 400, 'c++');
 		this.initializeTowers();
 	}
