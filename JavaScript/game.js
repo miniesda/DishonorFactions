@@ -1,4 +1,5 @@
 import { Tower } from './tower.js';
+import { EnemySpawner } from './enemySpawner.js';
 
 export class Game extends Phaser.Scene
 {
@@ -8,6 +9,7 @@ export class Game extends Phaser.Scene
 		this.leftTower;
 		this.rightTower;
 		this.cursors;
+		this.enemySpawner;
 	}
 
 	loadResources()
@@ -24,6 +26,9 @@ export class Game extends Phaser.Scene
 
 	initializeTowers()
 	{
+		this.enemySpawner = new EnemySpawner(1, 300, 300, 'jj', this);
+		this.enemySpawner.create();
+		
 		this.leftTower = new Tower(100, this, 75, 350, 10, 320, 70, 320);
 		this.leftTower.create();
 
