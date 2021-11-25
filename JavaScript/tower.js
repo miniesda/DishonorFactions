@@ -2,7 +2,7 @@ import { HealthBar } from './healthBar.js';
 
 export class Tower
 {
-	constructor(initialLife, gameScene, x, y, healthBarDisplacementX, healthBarDisplacementY, textDisplacementX, textDisplacementY)
+	constructor(initialLife, gameScene, x, y, healthBarDisplacementX, healthBarDisplacementY, textDisplacementX, textDisplacementY, name)
 	{
 		this.scene = gameScene;
 		this.lifePoints = initialLife;
@@ -14,6 +14,7 @@ export class Tower
 		this.textPositionX = this.positionX - textDisplacementX;
 		this.textPositionY = this.positionY - textDisplacementY;
 		this.lifeTextGraphics;
+		this.spriteName = name;
 		this.towerGraphics;
 	}
 
@@ -25,26 +26,26 @@ export class Tower
 	createAnimations()
 	{
 		this.scene.anims.create({
-            key: 'fullHealthTower',
-            frames: [ { key: 'tower', frame: 0 } ],
+            key: 'fullHealth' + this.spriteName,
+            frames: [ { key: this.spriteName, frame: 0 } ],
             frameRate: 20
         });
 
         this.scene.anims.create({
-            key: 'upperHealthTower',
-            frames: [ { key: 'tower', frame: 1 } ],
+            key: 'upperHealth' + this.spriteName,
+            frames: [ { key: this.spriteName, frame: 1 } ],
             frameRate: 20
         });
 
         this.scene.anims.create({
-            key: 'middleHealthTower',
-            frames: [ { key: 'tower', frame: 2 } ],
+            key: 'middleHealth' + this.spriteName,
+            frames: [ { key: this.spriteName, frame: 2 } ],
             frameRate: 20
         });
 
         this.scene.anims.create({
-            key: 'almostDestroyedHealthTower',
-            frames: [ { key: 'tower', frame: 3 } ],
+            key: 'almostDestroyedHealth' + this.spriteName,
+            frames: [ { key: this.spriteName, frame: 3 } ],
             frameRate: 20
         });
 	}
@@ -52,7 +53,7 @@ export class Tower
 	create()
 	{
 		this.towerGraphics = this.scene.physics.add.staticGroup();
-		this.towerGraphics.create(this.positionX, this.positionY, 'tower');
+		this.towerGraphics.create(this.positionX, this.positionY, this.spriteName);
 		this.createAnimations();
 		this.handleAnimations();
 
@@ -74,19 +75,19 @@ export class Tower
 	{
 		if(this.lifePoints > 80)
 		{
-			this.towerGraphics.playAnimation('fullHealthTower');
+			this.towerGraphics.playAnimation('fullHealth' + this.spriteName);
 		}
 		else if(this.lifePoints > 40)
 		{
-			this.towerGraphics.playAnimation('upperHealthTower');
+			this.towerGraphics.playAnimation('upperHealth' + this.spriteName);
 		}
 		else if(this.lifePoints > 20)
 		{
-			this.towerGraphics.playAnimation('middleHealthTower');
+			this.towerGraphics.playAnimation('middleHealth' + this.spriteName);
 		}
 		else
 		{
-			this.towerGraphics.playAnimation('almostDestroyedHealthTower');
+			this.towerGraphics.playAnimation('almostDestroyedHealth' + this.spriteName);
 		}
 	}
 

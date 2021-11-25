@@ -17,11 +17,20 @@ export class Game extends Phaser.Scene
 
 	loadResources()
 	{
-		//this.load.image('tower', './Art/assetsPrueba/torreSinRoca.png');
-		this.load.spritesheet('tower', './Art/torreSinRoca.png', { frameWidth: 150, frameHeight: 550 });
-		this.load.image('healthBar', './Art/healthBar.png');
+		//Background		
 		this.load.image('background', './Art/fondo2.png');
+
+		//Towers
+		this.load.spritesheet('leftTower', './Art/leftTower.png', { frameWidth: 150, frameHeight: 550 });
+		this.load.spritesheet('rightTower', './Art/rightTower.png', { frameWidth: 150, frameHeight: 550 });
+		this.load.image('healthBar', './Art/healthBar.png');
+
+		//Players
 		this.load.spritesheet('humanPlayer', './Art/assetsPrueba/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+
+		//NPC
+		//this.load.spritesheet('orcNPC', './Art/minion orco andando.png', { frameWidth: 32, frameHeight: 48 });
+		this.load.image('orcNPC', './Art/minion.png');
 	}
 
 	preload()
@@ -29,25 +38,34 @@ export class Game extends Phaser.Scene
 		this.loadResources();
 	}
 
+	initializeEnemySpawner()
+	{		
+		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1);
+		this.leftEnemySpawner.create();
+
+		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'orcNPC', this, 125, -1);
+		this.rightEnemySpawner.create();
+	}
+
 	initializeTowers()
-	{
-		this.enemySpawner = new EnemySpawner(1, 300, 300, 'jj', this);
-		this.enemySpawner.create();
-		
-		this.leftTower = new Tower(100, this, 75, 350, 10, 320, 70, 320);
+	{		
+		this.leftTower = new Tower(100, this, 65, 350, 0, 320, 60, 320, 'leftTower');
 		this.leftTower.create();
 
-		this.rightTower = new Tower(100, this, 1205, 350, 10, 320, 0, 320);
+		this.rightTower = new Tower(100, this, 1205, 350, 10, 320, 0, 320, 'rightTower');
 		this.rightTower.create();
 		this.rightTower.flipTowerSprite();
+	}
 
-        this.cursors = this.input.keyboard.createCursorKeys();
-
-        this.leftPlayer = new Player(this, 'humanPlayer', 300, 450, 100, 100, true);
+	initializePlayers()
+	{
+		this.leftPlayer = new Player(this, 'humanPlayer', 300, 450, 100, 100, true);
         this.leftPlayer.create();
 
         this.rightPlayer = new Player(this, 'humanPlayer', 600, 450, 100, 100, false);
         this.rightPlayer.create();
+
+        this.cursors = this.input.keyboard.createCursorKeys();
 	}
 
 	handleCollisions()
@@ -62,7 +80,9 @@ export class Game extends Phaser.Scene
 	create()
 	{
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
+		this.initializeEnemySpawner();
 		this.initializeTowers();
+		this.initializePlayers();
 		this.handleCollisions();
 	}
 
