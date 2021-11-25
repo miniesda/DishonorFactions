@@ -1,0 +1,5 @@
+Minion humano:
+	4 primeros andar izq
+	6 siguientes atacar izq
+	4 siguientes andar der
+	6 siguiuentes atacar der
