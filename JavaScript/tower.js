@@ -17,9 +17,15 @@ export class Tower
 		this.towerGraphics;
 	}
 
+	getTowerGraphics()
+	{
+		return this.towerGraphics;
+	}
+
 	create()
 	{
-		this.towerGraphics = this.scene.add.image(this.positionX, this.positionY, 'tower');
+		this.towerGraphics = this.scene.physics.add.staticGroup();
+		this.towerGraphics.create(this.positionX, this.positionY, 'tower');
 
 		this.healthBar.create();
 		this.lifeTextGraphics = this.scene.add.text(this.textPositionX, this.textPositionY, this.lifePoints, {fontSize: 25, strokeThickness: 2});
@@ -27,7 +33,6 @@ export class Tower
 
 	flipTowerSprite()
 	{
-		this.towerGraphics.flipX = true;
 		this.healthBar.flipHealthBarSprite();
 	}
 

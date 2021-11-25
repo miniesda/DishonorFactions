@@ -1,5 +1,6 @@
 import { Tower } from './tower.js';
 import { EnemySpawner } from './enemySpawner.js';
+import { Player } from './player.js';
 
 export class Game extends Phaser.Scene
 {
@@ -10,6 +11,8 @@ export class Game extends Phaser.Scene
 		this.rightTower;
 		this.cursors;
 		this.enemySpawner;
+		this.playerLeft;
+		this.playerRight;
 	}
 
 	loadResources()
@@ -17,6 +20,7 @@ export class Game extends Phaser.Scene
 		this.load.image('tower', './Art/tower.png');
 		this.load.image('healthBar', './Art/healthBar.png');
 		this.load.image('background', './Art/fondo2.png');
+		this.load.spritesheet('humanPlayer', './Art/assetsPrueba/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 	}
 
 	preload()
@@ -37,6 +41,21 @@ export class Game extends Phaser.Scene
 		this.rightTower.flipTowerSprite();
 
         this.cursors = this.input.keyboard.createCursorKeys();
+
+        this.leftPlayer = new Player(this, 'humanPlayer', 300, 450, 100, 100, true);
+        this.leftPlayer.create();
+
+        this.rightPlayer = new Player(this, 'humanPlayer', 600, 450, 100, 100, false);
+        this.rightPlayer.create();
+	}
+
+	handleCollisions()
+	{
+		//Players con Towers
+		this.physics.add.collider(this.leftPlayer.getPlayerGraphics(), this.leftTower.getTowerGraphics());
+		this.physics.add.collider(this.leftPlayer.getPlayerGraphics(), this.rightTower.getTowerGraphics());
+		this.physics.add.collider(this.rightPlayer.getPlayerGraphics(), this.leftTower.getTowerGraphics());
+		this.physics.add.collider(this.rightPlayer.getPlayerGraphics(), this.rightTower.getTowerGraphics());
 	}
 
 	create()
@@ -44,17 +63,22 @@ export class Game extends Phaser.Scene
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		//this.add.image(400, 400, 'c++');
 		this.initializeTowers();
+		this.handleCollisions();
 	}
 
 	update()
 	{
-		if(this.cursors.left.isDown)
-		{			
-			this.leftTower.damageTower(2);
-		}
-		else if(this.cursors.right.isDown)
-		{
-			this.rightTower.damageTower(2);
-		}
+		this.leftPlayer.update();
+
+		this.rightPlayer.update();
+
+		//if(this.cursors.left.isDown)
+		//{			
+		//	this.leftTower.damageTower(2);
+		//}
+		//else if(this.cursors.right.isDown)
+		//{
+		//	this.rightTower.damageTower(2);
+		//}
 	}
 }
