@@ -12,6 +12,11 @@ export class EnemySpawner
 
 	create()
 	{
+		this.startSpawning();
+	}
+
+	startSpawning()
+	{
 		this.timer = this.scene.time.addEvent(
 			{
 				delay: this.spawningRate,
@@ -29,6 +34,6 @@ export class EnemySpawner
 
 	stopSpawning()
 	{
-
+		this.timer.remove();
 	}
 }

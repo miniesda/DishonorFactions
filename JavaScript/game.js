@@ -17,7 +17,8 @@ export class Game extends Phaser.Scene
 
 	loadResources()
 	{
-		this.load.image('tower', './Art/tower.png');
+		//this.load.image('tower', './Art/assetsPrueba/torreSinRoca.png');
+		this.load.spritesheet('tower', './Art/torreSinRoca.png', { frameWidth: 150, frameHeight: 550 });
 		this.load.image('healthBar', './Art/healthBar.png');
 		this.load.image('background', './Art/fondo2.png');
 		this.load.spritesheet('humanPlayer', './Art/assetsPrueba/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
@@ -51,7 +52,7 @@ export class Game extends Phaser.Scene
 
 	handleCollisions()
 	{
-		//Players con Towers
+		//Players vs Towers
 		this.physics.add.collider(this.leftPlayer.getPlayerGraphics(), this.leftTower.getTowerGraphics());
 		this.physics.add.collider(this.leftPlayer.getPlayerGraphics(), this.rightTower.getTowerGraphics());
 		this.physics.add.collider(this.rightPlayer.getPlayerGraphics(), this.leftTower.getTowerGraphics());
@@ -61,7 +62,6 @@ export class Game extends Phaser.Scene
 	create()
 	{
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
-		//this.add.image(400, 400, 'c++');
 		this.initializeTowers();
 		this.handleCollisions();
 	}
@@ -72,13 +72,13 @@ export class Game extends Phaser.Scene
 
 		this.rightPlayer.update();
 
-		//if(this.cursors.left.isDown)
-		//{			
-		//	this.leftTower.damageTower(2);
-		//}
-		//else if(this.cursors.right.isDown)
-		//{
-		//	this.rightTower.damageTower(2);
-		//}
+		if(this.cursors.left.isDown)
+		{			
+			this.leftTower.damageTower(2);
+		}
+		else if(this.cursors.right.isDown)
+		{
+			this.rightTower.damageTower(2);
+		}
 	}
 }
