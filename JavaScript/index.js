@@ -1,4 +1,5 @@
 import { Game } from './game.js'
+import { Menu } from './menu.js'
 
 const config = 
 {
@@ -19,7 +20,7 @@ const config =
 			height: 720
 		}
 	},
-	scene: [Game],
+	scene: [Menu, Game],
 	physics: 
 	{
 		default: 'arcade',
@@ -32,6 +33,7 @@ const config =
 			debug: false
 		}
 	}
+	
 }
 
 var game = new Phaser.Game(config);
