@@ -3,3 +3,8 @@ Minion humano:
 	6 siguientes atacar izq
 	4 siguientes andar der
 	6 siguiuentes atacar der
+Minion orco:
+	6 primeros andar izq
+	4 siguientes atacar izq
+	6 siguientes andar der
+	4 siguiuentes atacar der
