@@ -43,11 +43,11 @@ export class Game extends Phaser.Scene
 	initializeEnemySpawner()
 	{
 		this.leftNPCGroup = this.physics.add.group();
-		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1, this.leftNPCGroup);
+		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1, this.leftNPCGroup, 100);
 		this.leftEnemySpawner.create();
 
 		this.rightNPCGroup = this.physics.add.group();
-		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'orcNPC', this, 125, -1, this.rightNPCGroup);
+		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'orcNPC', this, 125, -1, this.rightNPCGroup, 100);
 		this.rightEnemySpawner.create();
 	}
 
@@ -82,6 +82,12 @@ export class Game extends Phaser.Scene
 
 		//NPC vs NPC
 		this.physics.add.overlap(this.leftNPCGroup, this.rightNPCGroup, this.onNPCsCollision, null, this);
+
+		//Left tower vs right NPC
+		this.physics.add.overlap(this.rightNPCGroup, this.leftTower.getTowerGraphics(), this.onCollisionWithLeftTower, null, this);
+
+		//Right tower vs left NPC
+		this.physics.add.overlap(this.leftNPCGroup, this.rightTower.getTowerGraphics(), this.onCollisionWithRightTower, null, this);
 	}
 
 	onNPCsCollision(leftNPC, rightNPC)
@@ -91,6 +97,22 @@ export class Game extends Phaser.Scene
 		this.rightNPCGroup.remove(rightNPC, true, true);
 		rightNPC.destroy();
 		console.log('BOOM');
+	}
+
+	onCollisionWithLeftTower(rightNPC, towerSprite)
+	{
+		this.rightNPCGroup.remove(rightNPC, true, true);
+		rightNPC.destroy();
+
+		this.leftTower.damageTower(10);
+	}
+
+	onCollisionWithRightTower(leftNPC, towerSprite)
+	{
+		this.leftNPCGroup.remove(leftNPC, true, true);
+		leftNPC.destroy();
+
+		this.rightTower.damageTower(10);
 	}
 
 	create()
@@ -107,14 +129,5 @@ export class Game extends Phaser.Scene
 		this.leftPlayer.update();
 
 		this.rightPlayer.update();
-
-		if(this.cursors.left.isDown)
-		{			
-			this.leftTower.damageTower(2);
-		}
-		else if(this.cursors.right.isDown)
-		{
-			this.rightTower.damageTower(2);
-		}
 	}
 }
