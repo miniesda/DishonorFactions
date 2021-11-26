@@ -16,6 +16,7 @@ export class Tower
 		this.lifeTextGraphics;
 		this.spriteName = name;
 		this.towerGraphics;
+		this.damageParticle;
 	}
 
 	getTowerGraphics()
@@ -55,15 +56,39 @@ export class Tower
         });
 	}
 
+	createSmokeParticles()
+	{
+		this.damageParticle = this.scene.add.particles('explosion');
+		this.damageParticle.createEmitter(
+			{
+				frame: [ 'smoke-puff', 'cloud', 'smoke-puff' ],
+				angle: { min: 200, max: 300 },
+        		speed: { min: 250, max: 350 },
+        		quantity: 6,
+        		lifespan: 2400,
+        		alpha: { start: 1, end: 0 },
+        		scale: { start: 1.5, end: 0.5 },
+        		on: false
+			});
+	}
+
 	create()
 	{
 		this.towerGraphics = this.scene.physics.add.staticGroup();
 		this.towerGraphics.create(this.positionX, this.positionY, this.spriteName);
+
+		//Initialize Animations
 		this.createAnimations();
 		this.handleAnimations();
 
+		//Initialize HealthBar
 		this.healthBar.create();
+
+		//Initialize Health text
 		this.lifeTextGraphics = this.scene.add.text(this.textPositionX, this.textPositionY, this.lifePoints, {fontSize: 25, strokeThickness: 2});
+		
+		//Initialize Particle effects
+		this.createSmokeParticles();
 	}
 
 	flipTowerSprite()
@@ -109,6 +134,7 @@ export class Tower
 		this.updateLifeText(this.lifePoints);
 
 		this.handleAnimations();
+		this.emitDamageParticles();
 	}
 
 	updateHealthBar(newValue)
@@ -119,5 +145,10 @@ export class Tower
 	updateLifeText(newValue)
 	{
 		this.lifeTextGraphics.setText(newValue);
+	}
+
+	emitDamageParticles()
+	{
+		this.damageParticle.emitParticleAt(this.positionX, this.positionY);
 	}
 }

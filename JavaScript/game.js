@@ -25,6 +25,9 @@ export class Game extends Phaser.Scene
 		//Background		
 		this.load.image('background', './Art/fondo2.png');
 
+		//Particle effects
+		this.load.atlas('explosion', './Art/Particles/explosion.png', './Art/Particles/explosion.json');
+
 		//Towers
 		this.load.spritesheet('leftTower', './Art/leftTower.png', { frameWidth: 150, frameHeight: 550 });
 		this.load.spritesheet('rightTower', './Art/rightTower.png', { frameWidth: 150, frameHeight: 550 });
@@ -105,14 +108,14 @@ export class Game extends Phaser.Scene
 	{
 		this.rightNPCGroup.remove(rightNPC, true, true);
 
-		this.leftTower.damageTower(100);
+		this.leftTower.damageTower(30);
 	}
 
 	onCollisionWithRightTower(leftNPC, towerSprite)
 	{
 		this.leftNPCGroup.remove(leftNPC, true, true);
 
-		this.rightTower.damageTower(100);
+		this.rightTower.damageTower(30);
 	}
 
 	create()
