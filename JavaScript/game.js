@@ -46,11 +46,11 @@ export class Game extends Phaser.Scene
 	initializeEnemySpawner()
 	{
 		this.leftNPCGroup = this.physics.add.group();
-		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1, this.leftNPCGroup, 100);
+		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1, this.leftNPCGroup, 200);
 		this.leftEnemySpawner.create();
 
 		this.rightNPCGroup = this.physics.add.group();
-		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'orcNPC', this, 125, -1, this.rightNPCGroup, 100);
+		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'orcNPC', this, 125, -1, this.rightNPCGroup, 200);
 		this.rightEnemySpawner.create();
 	}
 
@@ -99,21 +99,20 @@ export class Game extends Phaser.Scene
 		leftNPC.destroy();
 		this.rightNPCGroup.remove(rightNPC, true, true);
 		rightNPC.destroy();
-		console.log('BOOM');
 	}
 
 	onCollisionWithLeftTower(rightNPC, towerSprite)
 	{
 		this.rightNPCGroup.remove(rightNPC, true, true);
 
-		this.leftTower.damageTower(50);
+		this.leftTower.damageTower(100);
 	}
 
 	onCollisionWithRightTower(leftNPC, towerSprite)
 	{
 		this.leftNPCGroup.remove(leftNPC, true, true);
 
-		this.rightTower.damageTower(50);
+		this.rightTower.damageTower(100);
 	}
 
 	create()
@@ -128,7 +127,7 @@ export class Game extends Phaser.Scene
 	update()
 	{
 		if(this.gameHasAlreadyFinished) return;
-		
+
 		this.leftPlayer.update();
 
 		this.rightPlayer.update();
@@ -155,10 +154,13 @@ export class Game extends Phaser.Scene
 	{
 		this.gameHasAlreadyFinished = true;
 		console.log('El juego ha terminado');
+		//Stop spawning enemies and clear existing ones
 		this.leftEnemySpawner.stopSpawning();
 		this.leftNPCGroup.clear(true, true);
 		this.rightEnemySpawner.stopSpawning();
 		this.rightNPCGroup.clear(true, true);
+
+		//Print victory and defeat texts
 		this.showVictoryAndDefeatTexts();
 	}
 
@@ -166,13 +168,13 @@ export class Game extends Phaser.Scene
 	{
 		if(this.leftTower.getHealth() == 0)
 		{
-			this.leftPlayerVictoryOrDefeatText = this.add.text(400, 360, 'Defeat');
-			this.rightPlayerVictoryOrDefeatText = this.add.text(800, 360, 'Victory');
+			this.leftPlayerVictoryOrDefeatText = this.add.text(300, 360, 'Defeat', { fontSize: 60 });
+			this.rightPlayerVictoryOrDefeatText = this.add.text(800, 360, 'Victory', { fontSize: 60 });
 		}
 		else if(this.rightTower.getHealth() == 0)
 		{
-			this.leftPlayerVictoryOrDefeatText = this.add.text(400, 360, 'Victory');
-			this.rightPlayerVictoryOrDefeatText = this.add.text(800, 360, 'Defeat');
+			this.leftPlayerVictoryOrDefeatText = this.add.text(300, 360, 'Victory', { fontSize: 60 });
+			this.rightPlayerVictoryOrDefeatText = this.add.text(800, 360, 'Defeat', { fontSize: 60 });
 		}
 	}
 }
