@@ -15,6 +15,9 @@ export class Game extends Phaser.Scene
 		this.playerRight;
 		this.leftNPCGroup;
 		this.rightNPCGroup;
+		this.leftPlayerVictoryOrDefeatText;
+		this.rightPlayerVictoryOrDefeatText;
+		this.gameHasAlreadyFinished = false;
 	}
 
 	loadResources()
@@ -102,17 +105,15 @@ export class Game extends Phaser.Scene
 	onCollisionWithLeftTower(rightNPC, towerSprite)
 	{
 		this.rightNPCGroup.remove(rightNPC, true, true);
-		rightNPC.destroy();
 
-		this.leftTower.damageTower(10);
+		this.leftTower.damageTower(50);
 	}
 
 	onCollisionWithRightTower(leftNPC, towerSprite)
 	{
 		this.leftNPCGroup.remove(leftNPC, true, true);
-		leftNPC.destroy();
 
-		this.rightTower.damageTower(10);
+		this.rightTower.damageTower(50);
 	}
 
 	create()
@@ -126,8 +127,52 @@ export class Game extends Phaser.Scene
 
 	update()
 	{
+		if(this.gameHasAlreadyFinished) return;
+		
 		this.leftPlayer.update();
 
 		this.rightPlayer.update();
+
+		if(this.checkIfGameHasFinished())
+		{
+			this.finishGame();
+		}
+	}
+
+	checkIfGameHasFinished()
+	{
+		if(this.leftTower.getHealth() == 0 || this.rightTower.getHealth() == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	finishGame()
+	{
+		this.gameHasAlreadyFinished = true;
+		console.log('El juego ha terminado');
+		this.leftEnemySpawner.stopSpawning();
+		this.leftNPCGroup.clear(true, true);
+		this.rightEnemySpawner.stopSpawning();
+		this.rightNPCGroup.clear(true, true);
+		this.showVictoryAndDefeatTexts();
+	}
+
+	showVictoryAndDefeatTexts()
+	{
+		if(this.leftTower.getHealth() == 0)
+		{
+			this.leftPlayerVictoryOrDefeatText = this.add.text(400, 360, 'Defeat');
+			this.rightPlayerVictoryOrDefeatText = this.add.text(800, 360, 'Victory');
+		}
+		else if(this.rightTower.getHealth() == 0)
+		{
+			this.leftPlayerVictoryOrDefeatText = this.add.text(400, 360, 'Victory');
+			this.rightPlayerVictoryOrDefeatText = this.add.text(800, 360, 'Defeat');
+		}
 	}
 }

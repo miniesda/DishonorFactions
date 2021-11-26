@@ -23,6 +23,11 @@ export class Tower
 		return this.towerGraphics;
 	}
 
+	getHealth()
+	{
+		return this.lifePoints;
+	}
+
 	createAnimations()
 	{
 		this.scene.anims.create({
