@@ -20,7 +20,7 @@ const config =
 			height: 720
 		}
 	},
-	scene: [Menu, Game],
+	scene: [Game, Menu],
 	physics: 
 	{
 		default: 'arcade',
