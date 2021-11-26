@@ -135,6 +135,12 @@ export class Tower
 
 		this.handleAnimations();
 		this.emitDamageParticles();
+		this.applyCameraShake();
+	}
+
+	applyCameraShake()
+	{		
+		this.scene.cameras.main.shake(200, 0.005);
 	}
 
 	updateHealthBar(newValue)

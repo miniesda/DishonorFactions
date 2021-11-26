@@ -167,7 +167,6 @@ export class Player
 	        if(!this.isMoving)
 	        {
 	            this.playerGraphics.anims.play('turn');
-	            this.isMoving = false;
 	        }
 	    }
 	}
