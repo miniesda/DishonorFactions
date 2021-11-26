@@ -43,4 +43,15 @@ export class HealthBar
 		}
 		this.healthBarGraphics.scaleX = newValue / 100;
 	}
+
+	scaleBar(x, y)
+	{
+		this.healthBarGraphics.scaleX = x;
+		this.healthBarGraphics.scaleY = y;
+	}
+
+	setPosition(x, y)
+	{
+		this.healthBarGraphics.setPosition(x, y);
+	}
 }

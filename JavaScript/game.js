@@ -69,10 +69,10 @@ export class Game extends Phaser.Scene
 
 	initializePlayers()
 	{
-		this.leftPlayer = new Player(this, 'humanPlayer', 300, 450, 100, 100, true);
+		this.leftPlayer = new Player(this, 'humanPlayer', 300, 450, 100, 100, true, 40, 40);
         this.leftPlayer.create();
 
-        this.rightPlayer = new Player(this, 'humanPlayer', 600, 450, 100, 100, false);
+        this.rightPlayer = new Player(this, 'humanPlayer', 600, 450, 100, 100, false, 40, 40);
         this.rightPlayer.create();
 
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -157,11 +157,16 @@ export class Game extends Phaser.Scene
 	{
 		this.gameHasAlreadyFinished = true;
 		console.log('El juego ha terminado');
+
 		//Stop spawning enemies and clear existing ones
 		this.leftEnemySpawner.stopSpawning();
 		this.leftNPCGroup.clear(true, true);
 		this.rightEnemySpawner.stopSpawning();
 		this.rightNPCGroup.clear(true, true);
+
+		//Stop players movement
+		this.leftPlayer.stopPlayerMovement();
+		this.rightPlayer.stopPlayerMovement();
 
 		//Print victory and defeat texts
 		this.showVictoryAndDefeatTexts();
@@ -171,13 +176,13 @@ export class Game extends Phaser.Scene
 	{
 		if(this.leftTower.getHealth() == 0)
 		{
-			this.leftPlayerVictoryOrDefeatText = this.add.text(300, 360, 'Defeat', { fontSize: 60 });
-			this.rightPlayerVictoryOrDefeatText = this.add.text(800, 360, 'Victory', { fontSize: 60 });
+			this.leftPlayerVictoryOrDefeatText = this.add.text(250, 300, 'Defeat', { fontSize: 80 });
+			this.rightPlayerVictoryOrDefeatText = this.add.text(750, 300, 'Victory', { fontSize: 80 });
 		}
 		else if(this.rightTower.getHealth() == 0)
 		{
-			this.leftPlayerVictoryOrDefeatText = this.add.text(300, 360, 'Victory', { fontSize: 60 });
-			this.rightPlayerVictoryOrDefeatText = this.add.text(800, 360, 'Defeat', { fontSize: 60 });
+			this.leftPlayerVictoryOrDefeatText = this.add.text(250, 300, 'Victory', { fontSize: 80 });
+			this.rightPlayerVictoryOrDefeatText = this.add.text(750, 300, 'Defeat', { fontSize: 80 });
 		}
 	}
 }
