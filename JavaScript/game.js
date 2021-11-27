@@ -37,8 +37,8 @@ export class Game extends Phaser.Scene
 		this.load.spritesheet('humanPlayer', './Art/assetsPrueba/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 
 		//NPC
-		//this.load.spritesheet('orcNPC', './Art/minion orco andando.png', { frameWidth: 32, frameHeight: 48 });
-		this.load.image('orcNPC', './Art/minion.png');
+		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 48, frameHeight: 60 });
+		this.load.spritesheet('elfoNPC', './Art/Minions/minionElfo.png', { frameWidth: 48, frameHeight: 60 });
 
 		//Music in game
 		this.load.audio('music1', 'Sounds/play.mp3');
@@ -53,11 +53,11 @@ export class Game extends Phaser.Scene
 	initializeEnemySpawner()
 	{
 		this.leftNPCGroup = this.physics.add.group();
-		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1, this.leftNPCGroup, 200);
+		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'elfoNPC', this, 125, 1, this.leftNPCGroup, 200);
 		this.leftEnemySpawner.create();
 
 		this.rightNPCGroup = this.physics.add.group();
-		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'orcNPC', this, 125, -1, this.rightNPCGroup, 200);
+		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'elfoNPC', this, 125, -1, this.rightNPCGroup, 200);
 		this.rightEnemySpawner.create();
 	}
 
@@ -125,9 +125,9 @@ export class Game extends Phaser.Scene
 	create()
 	{
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
+		this.initializePlayers();
 		this.initializeEnemySpawner();
 		this.initializeTowers();
-		this.initializePlayers();
 		this.handleCollisions();
 
 		//Creamos variable audio para poder usar el play, stop, etc.

@@ -15,8 +15,33 @@ export class EnemySpawner
 		this.nPCGroup = group;
 	}
 
+	createAnimations()
+	{
+		var start;
+		var end;
+		if(this.spawningDirection == -1)
+		{
+			start = 0;
+			end = 5;
+		}
+		else if(this.spawningDirection == 1)
+		{
+			start = 10;
+			end = 13;
+		}
+
+		this.scene.anims.create(
+			{
+				key: 'movement',
+				frames: this.scene.anims.generateFrameNumbers(this.enemySpriteName, { start, end }),
+				frameRate: 10,
+				repeat: -1
+			});
+	}
+
 	create()
 	{
+		this.createAnimations();
 		this.startSpawning();
 	}
 
@@ -38,8 +63,9 @@ export class EnemySpawner
 		var randomIndex = Phaser.Math.Between(0, 2);
 
 		console.log("Spawn an enemy now!");
-		//var nPC = new NPC(enemyName, spawnPositionX, spawnPositionY[randomIndex], gameScene, dir, group);
 		var nPC = gameScene.physics.add.sprite(spawnPositionX, spawnPositionY[randomIndex], enemyName);
+
+		nPC.anims.play('movement', true);
 		group.add(nPC);
 		nPC.setVelocityX(dir * speed);
 	}
