@@ -39,6 +39,10 @@ export class Game extends Phaser.Scene
 		//NPC
 		//this.load.spritesheet('orcNPC', './Art/minion orco andando.png', { frameWidth: 32, frameHeight: 48 });
 		this.load.image('orcNPC', './Art/minion.png');
+
+		//Music in game
+		this.load.audio('music1', 'Sounds/play.mp3');
+
 	}
 
 	preload()
@@ -125,6 +129,10 @@ export class Game extends Phaser.Scene
 		this.initializeTowers();
 		this.initializePlayers();
 		this.handleCollisions();
+
+		//Creamos variable audio para poder usar el play, stop, etc.
+		var music = this.sound.add('music1');
+		music.play();
 	}
 
 	update()
