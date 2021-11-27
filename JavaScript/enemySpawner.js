@@ -13,26 +13,29 @@ export class EnemySpawner
 		this.posibleSpawnPositionY = [y - rowDisp, y, y + rowDisp];
 		this.spawningDirection = spawnDir;
 		this.nPCGroup = group;
+		this.movementAnimationKey;
 	}
 
 	createAnimations()
 	{
 		var start;
 		var end;
-		if(this.spawningDirection == -1)
+		if(this.spawningDirection > 0)
 		{
+			this.movementAnimationKey = 'leftMovement';
 			start = 0;
 			end = 5;
 		}
-		else if(this.spawningDirection == 1)
+		else if(this.spawningDirection < 0)
 		{
+			this.movementAnimationKey = 'rightMovement';
 			start = 10;
 			end = 13;
 		}
 
 		this.scene.anims.create(
 			{
-				key: 'movement',
+				key: this.movementAnimationKey,
 				frames: this.scene.anims.generateFrameNumbers(this.enemySpriteName, { start, end }),
 				frameRate: 10,
 				repeat: -1
@@ -51,21 +54,21 @@ export class EnemySpawner
 			{
 				delay: this.spawningRate,
 				callback: this.spawnAnEnemy,
-				args: [this.scene, this.enemySpriteName, this.spawningPositionX, this.posibleSpawnPositionY, this.spawningDirection, this.nPCGroup, this.nPCSpeed],
+				args: [this.scene, this.enemySpriteName, this.spawningPositionX, this.posibleSpawnPositionY, this.spawningDirection, this.nPCGroup, this.nPCSpeed, this.movementAnimationKey],
 				loop: true,
 				startAt: 0,
 				timeScale: 1
 			});
 	}
 
-	spawnAnEnemy(gameScene, enemyName, spawnPositionX, spawnPositionY, dir, group, speed)
+	spawnAnEnemy(gameScene, enemyName, spawnPositionX, spawnPositionY, dir, group, speed, movementAnimationName)
 	{
 		var randomIndex = Phaser.Math.Between(0, 2);
 
 		console.log("Spawn an enemy now!");
 		var nPC = gameScene.physics.add.sprite(spawnPositionX, spawnPositionY[randomIndex], enemyName);
 
-		nPC.anims.play('movement', true);
+		nPC.anims.play(movementAnimationName, true);
 		group.add(nPC);
 		nPC.setVelocityX(dir * speed);
 	}

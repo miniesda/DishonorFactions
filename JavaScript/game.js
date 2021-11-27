@@ -38,7 +38,7 @@ export class Game extends Phaser.Scene
 
 		//NPC
 		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 48, frameHeight: 60 });
-		this.load.spritesheet('elfoNPC', './Art/Minions/minionElfo.png', { frameWidth: 48, frameHeight: 60 });
+		this.load.spritesheet('elfoNPC', './Art/minion elfo.png', { frameWidth: 60, frameHeight: 80 });
 
 		//Music in game
 		this.load.audio('music1', 'Sounds/play.mp3');
