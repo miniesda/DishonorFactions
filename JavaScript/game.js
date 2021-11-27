@@ -23,7 +23,7 @@ export class Game extends Phaser.Scene
 	loadResources()
 	{
 		//Background		
-		this.load.image('background', './Art/fondo2.png');
+		this.load.image('background', './Art/fondo3.png');
 
 		//Particle effects
 		this.load.atlas('explosion', './Art/Particles/explosion.png', './Art/Particles/explosion.json');
@@ -34,11 +34,12 @@ export class Game extends Phaser.Scene
 		this.load.image('healthBar', './Art/healthBar.png');
 
 		//Players
-		this.load.spritesheet('humanPlayer', './Art/assetsPrueba/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+		//this.load.spritesheet('humanPlayer', './Art/Mike.png', { frameWidth: 32, frameHeight: 48 });
+		this.load.image('humanPlayer', './Art/Mike.png');
 
 		//NPC
-		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 48, frameHeight: 60 });
-		this.load.spritesheet('elfoNPC', './Art/minion elfo.png', { frameWidth: 60, frameHeight: 80 });
+		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 60, frameHeight: 80 });
+		this.load.spritesheet('elfoNPC', './Art/Minions/minionElfo.png', { frameWidth: 60, frameHeight: 80 });
 
 		//Music in game
 		this.load.audio('music1', 'Sounds/play.mp3');
@@ -53,7 +54,7 @@ export class Game extends Phaser.Scene
 	initializeEnemySpawner()
 	{
 		this.leftNPCGroup = this.physics.add.group();
-		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'elfoNPC', this, 125, 1, this.leftNPCGroup, 200);
+		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1, this.leftNPCGroup, 200);
 		this.leftEnemySpawner.create();
 
 		this.rightNPCGroup = this.physics.add.group();
@@ -73,10 +74,10 @@ export class Game extends Phaser.Scene
 
 	initializePlayers()
 	{
-		this.leftPlayer = new Player(this, 'humanPlayer', 300, 450, 100, 100, true, 40, 40);
+		this.leftPlayer = new Player(this, 'humanPlayer', 300, 450, 100, 100, true, 40, 70);
         this.leftPlayer.create();
 
-        this.rightPlayer = new Player(this, 'humanPlayer', 600, 450, 100, 100, false, 40, 40);
+        this.rightPlayer = new Player(this, 'humanPlayer', 600, 450, 100, 100, false, 40, 70);
         this.rightPlayer.create();
 
         this.cursors = this.input.keyboard.createCursorKeys();
