@@ -1,6 +1,7 @@
 import { Tower } from './tower.js';
 import { EnemySpawner } from './enemySpawner.js';
 import { Player } from './player.js';
+import { Button } from './button.js';
 
 export class Game extends Phaser.Scene
 {
@@ -18,6 +19,7 @@ export class Game extends Phaser.Scene
 		this.leftPlayerVictoryOrDefeatText;
 		this.rightPlayerVictoryOrDefeatText;
 		this.gameHasAlreadyFinished = false;
+		this.backToMenuButton;
 	}
 
 	loadResources()
@@ -40,15 +42,18 @@ export class Game extends Phaser.Scene
 		//NPC
 		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 60, frameHeight: 80 });
 		this.load.spritesheet('elfoNPC', './Art/Minions/minionElfo.png', { frameWidth: 60, frameHeight: 80 });
+	}
 
+	loadAudios()
+	{
 		//Music in game
 		this.load.audio('music1', 'Sounds/play.mp3');
-
 	}
 
 	preload()
 	{
 		this.loadResources();
+		this.loadAudios();
 	}
 
 	initializeEnemySpawner()
@@ -130,7 +135,7 @@ export class Game extends Phaser.Scene
 		this.initializeEnemySpawner();
 		this.initializeTowers();
 		this.handleCollisions();
-
+		
 		//Creamos variable audio para poder usar el play, stop, etc.
 		var music = this.sound.add('music1');
 		music.play();
@@ -179,6 +184,8 @@ export class Game extends Phaser.Scene
 
 		//Print victory and defeat texts
 		this.showVictoryAndDefeatTexts();
+		
+		this.showBackToMenuButton();
 	}
 
 	showVictoryAndDefeatTexts()
@@ -193,5 +200,10 @@ export class Game extends Phaser.Scene
 			this.leftPlayerVictoryOrDefeatText = this.add.text(250, 300, 'Victory', { fontSize: 80 });
 			this.rightPlayerVictoryOrDefeatText = this.add.text(750, 300, 'Defeat', { fontSize: 80 });
 		}
+	}
+
+	showBackToMenuButton()
+	{
+		this.backToMenuButton = new Button(630, 500, 'Back To Menu', this, () => console.log('Going to menu screen...'));
 	}
 }
