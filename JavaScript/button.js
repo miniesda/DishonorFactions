@@ -5,7 +5,7 @@ export class Button {
             .setPadding(10) 
             .setStyle({ fontSize: 60 })
             .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => callback())
+            .on('pointerdown', () => callback(scene))
             .on('pointerover', () => button.setStyle({ fill: '#000000' }))
             .on('pointerout', () => button.setStyle({ fill: '#000000' }));
     }

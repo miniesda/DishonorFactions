@@ -20,41 +20,13 @@ export class Game extends Phaser.Scene
 		this.rightPlayerVictoryOrDefeatText;
 		this.gameHasAlreadyFinished = false;
 		this.backToMenuButton;
+
+		this.backgroundMusic;
 	}
 
-	loadResources()
-	{
-		//Background		
-		this.load.image('background', './Art/fondo3.png');
-
-		//Particle effects
-		this.load.atlas('explosion', './Art/Particles/explosion.png', './Art/Particles/explosion.json');
-
-		//Towers
-		this.load.spritesheet('leftTower', './Art/leftTower.png', { frameWidth: 150, frameHeight: 550 });
-		this.load.spritesheet('rightTower', './Art/rightTower.png', { frameWidth: 150, frameHeight: 550 });
-		this.load.image('healthBar', './Art/healthBar.png');
-
-		//Players
-		//this.load.spritesheet('humanPlayer', './Art/Mike.png', { frameWidth: 32, frameHeight: 48 });
-		this.load.image('humanPlayer', './Art/Mike.png');
-
-		//NPC
-		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 60, frameHeight: 80 });
-		this.load.spritesheet('elfoNPC', './Art/Minions/minionElfo.png', { frameWidth: 60, frameHeight: 80 });
-	}
-
-	loadAudios()
-	{
-		//Music in game
-		this.load.audio('music1', 'Sounds/play.mp3');
-	}
-
-	preload()
-	{
-		this.loadResources();
-		this.loadAudios();
-	}
+	//////////////////////////////////////////////////////////////////
+	//AQUÍ NO HACER PRELOAD, HACERLO EN EL ARCHIVO PRELOADSCENE.JS!!!!
+	//////////////////////////////////////////////////////////////////
 
 	initializeEnemySpawner()
 	{
@@ -130,6 +102,8 @@ export class Game extends Phaser.Scene
 
 	create()
 	{
+		this.gameHasAlreadyFinished = false;
+
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		this.initializePlayers();
 		this.initializeEnemySpawner();
@@ -137,8 +111,8 @@ export class Game extends Phaser.Scene
 		this.handleCollisions();
 		
 		//Creamos variable audio para poder usar el play, stop, etc.
-		var music = this.sound.add('music1');
-		music.play();
+		this.backgroundMusic = this.sound.add('music1');
+		this.backgroundMusic.play();
 	}
 
 	update()
@@ -204,6 +178,12 @@ export class Game extends Phaser.Scene
 
 	showBackToMenuButton()
 	{
-		this.backToMenuButton = new Button(630, 500, 'Back To Menu', this, () => console.log('Going to menu screen...'));
+		this.backToMenuButton = new Button(630, 500, 'Back To Menu', this, this.switchToMenuScene);
+	}
+
+	switchToMenuScene(currentScene)
+	{
+		currentScene.backgroundMusic.stop();
+		currentScene.scene.start('menu');
 	}
 }
