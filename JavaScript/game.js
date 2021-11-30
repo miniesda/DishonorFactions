@@ -54,7 +54,7 @@ export class Game extends Phaser.Scene
 		this.leftPlayer = new Player(this, 300, 450, true, 40, 70, 'elfChampionData');
         this.leftPlayer.create();
 
-        this.rightPlayer = new Player(this, 600, 450, false, 40, 70, 'humanChampionData');
+        this.rightPlayer = new Player(this, 970, 450, false, 40, 70, 'humanChampionData');
         this.rightPlayer.create();
 
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -111,7 +111,7 @@ export class Game extends Phaser.Scene
 		this.handleCollisions();
 		
 		//Creamos variable audio para poder usar el play, stop, etc.
-		this.backgroundMusic = this.sound.add('music1');
+		this.backgroundMusic = this.sound.add('gameBackgroundMusic');
 		this.backgroundMusic.play();
 	}
 

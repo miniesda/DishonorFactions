@@ -36,7 +36,8 @@ export class Preload extends Phaser.Scene
 	loadAudios()
 	{
 		//Music in game
-		this.load.audio('music1', 'Sounds/play.mp3');
+		this.load.audio('gameBackgroundMusic', './Sounds/play.mp3');
+		this.load.audio('menuBackgroundMusic', './Sounds/MainMenu.wav');
 	}
 
 	preload()
@@ -49,7 +50,6 @@ export class Preload extends Phaser.Scene
 		progressBox.fillStyle(0x222222, 0.8);
 		progressBox.fillRect(400, 320, 470, 50);
 		this.load.on('progress', function (value) {
-    		console.log(value);
 		    progressBar.clear();
 		    progressBar.fillStyle(0xffffff, 1);
 		    progressBar.fillRect(410, 330, 450 * value, 30);

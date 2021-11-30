@@ -25,6 +25,7 @@ export class Player
 
 		this.isHorizontallyMoving = false;
 		this.isVerticallyMoving = false;
+		this.facingDirection; //TRUE = LEFT, FALSE = RIGHT
 	}
 
 	getPlayerGraphics()
@@ -69,10 +70,17 @@ export class Player
         });
 
         this.scene.anims.create({
-            key: this.playerData.spriteID + 'turn',
-            frames: [ { key: this.playerData.spriteID, frame: this.playerData.animations.idle.start } ],
+            key: this.playerData.spriteID + 'turnLeft',
+            frames: [ { key: this.playerData.spriteID, frame: this.playerData.animations.leftIdle.start } ],
             frameRate: 20
         });
+
+        this.scene.anims.create({
+            key: this.playerData.spriteID + 'turnRight',
+            frames: [ { key: this.playerData.spriteID, frame: this.playerData.animations.rightIdle.start } ],
+            frameRate: 20
+        });
+
         this.scene.anims.create({
             key: this.playerData.spriteID + 'left',
             frames: this.scene.anims.generateFrameNumbers(this.playerData.spriteID, { start: this.playerData.animations.left.start, end: this.playerData.animations.left.end }),
@@ -93,6 +101,7 @@ export class Player
 
 	            this.playerGraphics.anims.play(this.playerData.spriteID + 'left', true);
 	            this.isHorizontallyMoving = true;
+	            this.facingDirection = true;
 	        }
 
 	        else if (this.keyRight.D.isDown)
@@ -101,6 +110,7 @@ export class Player
 
 	            this.playerGraphics.anims.play(this.playerData.spriteID + 'right', true);
 	            this.isHorizontallyMoving = true;
+	            this.facingDirection = false;
 	        }
 	        else
 	        {	        	
@@ -135,7 +145,14 @@ export class Player
 
 	        if(!this.isHorizontallyMoving && !this.isVerticallyMoving)
 	        {
-	            this.playerGraphics.anims.play(this.playerData.spriteID + 'turn');
+	            if(this.facingDirection)
+	        	{
+	        		this.playerGraphics.anims.play(this.playerData.spriteID + 'turnLeft');
+	        	}
+	        	else
+	        	{
+	        		this.playerGraphics.anims.play(this.playerData.spriteID + 'turnRight');
+	        	}
 	        }
 	    }
 	    else
@@ -146,6 +163,7 @@ export class Player
 
 	            this.playerGraphics.anims.play(this.playerData.spriteID + 'left', true);
 	            this.isHorizontallyMoving = true;
+	            this.facingDirection = true;
 	        }
 
 	        else if (this.cursors.right.isDown)
@@ -154,6 +172,7 @@ export class Player
 
 	            this.playerGraphics.anims.play(this.playerData.spriteID + 'right', true);
 	            this.isHorizontallyMoving = true;
+	            this.facingDirection = false;
 	        }
 	        else
 	        {	        	
@@ -188,7 +207,14 @@ export class Player
 
 	        if(!this.isHorizontallyMoving && !this.isVerticallyMoving)
 	        {
-	            this.playerGraphics.anims.play(this.playerData.spriteID + 'turn');
+	        	if(this.facingDirection)
+	        	{
+	        		this.playerGraphics.anims.play(this.playerData.spriteID + 'turnLeft');
+	        	}
+	        	else
+	        	{
+	        		this.playerGraphics.anims.play(this.playerData.spriteID + 'turnRight');
+	        	}
 	        }
 	    }
 
@@ -211,6 +237,14 @@ export class Player
 	{
 		this.playerGraphics.setVelocityX(0);
 		this.playerGraphics.setVelocityY(0);
-		this.playerGraphics.anims.play(this.playerData.spriteID + 'turn');
+		
+		if(this.facingDirection)
+    	{
+    		this.playerGraphics.anims.play(this.playerData.spriteID + 'turnLeft');
+    	}
+    	else
+    	{
+    		this.playerGraphics.anims.play(this.playerData.spriteID + 'turnRight');
+    	}
 	}
 }

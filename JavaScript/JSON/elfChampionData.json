@@ -18,7 +18,11 @@
 			"start": 0,
 			"end": 4
 		},
-		"idle":
+		"leftIdle":
+		{
+			"start": 13
+		},
+		"rightIdle":
 		{
 			"start": 2
 		},
