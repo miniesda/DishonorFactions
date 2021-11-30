@@ -2,16 +2,13 @@ import { HealthBar } from './HealthBar.js';
 
 export class Player
 {
-	constructor(gameScene, name, x, y, velocityX, velocityY, usingKeys, healthBarHorizontalDisp, healthBarVerticalDisp)
+	constructor(gameScene, x, y, usingKeys, healthBarHorizontalDisp, healthBarVerticalDisp, data)
 	{
 		this.scene = gameScene;
-		this.spriteName = name;
+		this.playerData = this.scene.cache.json.get(data);
 		this.initialPositionX = x;
 		this.initialPositionY = y;
 		this.playerGraphics;
-		
-		this.horizontalVelocity = velocityX;
-		this.verticalVelocity = velocityY;
 
 		this.isUsingKeys = usingKeys;
 		this.cursors;
@@ -26,7 +23,8 @@ export class Player
 		this.healthBarPositionY = this.initialPositionY - this.healthBarVerticalDisplacement;
 		this.healthBar;
 
-		this.isMoving = false;
+		this.isHorizontallyMoving = false;
+		this.isVerticallyMoving = false;
 	}
 
 	getPlayerGraphics()
@@ -40,8 +38,8 @@ export class Player
 		this.healthBar.create();
 		this.healthBar.scaleBar(0.4, 0.7);
 
-		this.playerGraphics = this.scene.physics.add.sprite(this.initialPositionX, this.initialPositionY, this.spriteName);
-		//this.createAnimations();
+		this.playerGraphics = this.scene.physics.add.sprite(this.initialPositionX, this.initialPositionY, this.playerData.spriteID);
+		this.createAnimations();
 		this.createInputs();
 		this.playerGraphics.setCollideWorldBounds(true);
 	}
@@ -64,20 +62,20 @@ export class Player
 	createAnimations()
 	{
 		this.scene.anims.create({
-            key: 'left',
-            frames: this.scene.anims.generateFrameNumbers(this.spriteName, { start: 0, end: 3 }),
+            key: this.playerData.spriteID + 'right',
+            frames: this.scene.anims.generateFrameNumbers(this.playerData.spriteID, { start: this.playerData.animations.right.start, end: this.playerData.animations.right.end }),
             frameRate: 10,
             repeat: -1
         });
 
         this.scene.anims.create({
-            key: 'turn',
-            frames: [ { key: this.spriteName, frame: 4 } ],
+            key: this.playerData.spriteID + 'turn',
+            frames: [ { key: this.playerData.spriteID, frame: this.playerData.animations.idle.start } ],
             frameRate: 20
         });
         this.scene.anims.create({
-            key: 'right',
-            frames: this.scene.anims.generateFrameNumbers(this.spriteName, { start: 5, end: 8 }),
+            key: this.playerData.spriteID + 'left',
+            frames: this.scene.anims.generateFrameNumbers(this.playerData.spriteID, { start: this.playerData.animations.left.start, end: this.playerData.animations.left.end }),
             frameRate: 10,
             repeat: -1
         });
@@ -85,23 +83,24 @@ export class Player
 
 	update()
 	{
-		this.isMoving = false;
+		this.isHorizontallyMoving = false;
+		this.isVerticallyMoving = false;
 		if(this.isUsingKeys)
 		{
 			if (this.keyLeft.A.isDown)
 	        {
-	            this.playerGraphics.setVelocityX(-this.horizontalVelocity);
+	            this.playerGraphics.setVelocityX(-this.playerData.movementSpeed.x);
 
-	            //this.playerGraphics.anims.play('left', true);
-	            this.isMoving = true;
+	            this.playerGraphics.anims.play(this.playerData.spriteID + 'left', true);
+	            this.isHorizontallyMoving = true;
 	        }
 
 	        else if (this.keyRight.D.isDown)
 	        {
-	            this.playerGraphics.setVelocityX(this.horizontalVelocity);
+	            this.playerGraphics.setVelocityX(this.playerData.movementSpeed.x);
 
-	            //this.playerGraphics.anims.play('right', true);
-	            this.isMoving = true;
+	            this.playerGraphics.anims.play(this.playerData.spriteID + 'right', true);
+	            this.isHorizontallyMoving = true;
 	        }
 	        else
 	        {	        	
@@ -110,46 +109,51 @@ export class Player
 
 	        if (this.keyUp.W.isDown)
 	        {
-	            this.playerGraphics.setVelocityY(-this.verticalVelocity);
+	            this.playerGraphics.setVelocityY(-this.playerData.movementSpeed.y);
 
-	            //this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
-	            this.isMoving = true;
+	            if(!this.isHorizontallyMoving)
+	            {
+	            	this.playerGraphics.anims.play(this.playerData.spriteID + 'right', true); //hay que cambiar el right ese por el sprite que sea
+	            }
+	            this.isVerticallyMoving = true;
 	        }
 
 	        else if (this.keyDown.S.isDown)
 	        {
-	            this.playerGraphics.setVelocityY(this.verticalVelocity);
+	            this.playerGraphics.setVelocityY(this.playerData.movementSpeed.y);
 
-	            //this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
-	            this.isMoving = true;
+	            if(!this.isHorizontallyMoving)
+	            {
+	            	this.playerGraphics.anims.play(this.playerData.spriteID + 'right', true); //hay que cambiar el right ese por el sprite que sea
+	        	}
+	            this.isVerticallyMoving = true;
 	        }
 	        else
 	        {
 	        	this.playerGraphics.setVelocityY(0);
 	        }
 
-	        if(!this.isMoving)
+	        if(!this.isHorizontallyMoving && !this.isVerticallyMoving)
 	        {
-	            //this.playerGraphics.anims.play('turn');
-	            this.isMoving = false;
+	            this.playerGraphics.anims.play(this.playerData.spriteID + 'turn');
 	        }
 	    }
 	    else
 	    {
 	    	if (this.cursors.left.isDown)
 	        {
-	            this.playerGraphics.setVelocityX(-this.horizontalVelocity);
+	            this.playerGraphics.setVelocityX(-this.playerData.movementSpeed.x);
 
-	            //this.playerGraphics.anims.play('left', true);
-	            this.isMoving = true;
+	            this.playerGraphics.anims.play(this.playerData.spriteID + 'left', true);
+	            this.isHorizontallyMoving = true;
 	        }
 
 	        else if (this.cursors.right.isDown)
 	        {
-	            this.playerGraphics.setVelocityX(this.horizontalVelocity);
+	            this.playerGraphics.setVelocityX(this.playerData.movementSpeed.x);
 
-	            //this.playerGraphics.anims.play('right', true);
-	            this.isMoving = true;
+	            this.playerGraphics.anims.play(this.playerData.spriteID + 'right', true);
+	            this.isHorizontallyMoving = true;
 	        }
 	        else
 	        {	        	
@@ -158,27 +162,33 @@ export class Player
 
 	        if (this.cursors.up.isDown)
 	        {
-	            this.playerGraphics.setVelocityY(-this.verticalVelocity);
+	            this.playerGraphics.setVelocityY(-this.playerData.movementSpeed.y);
 
-	            //this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
-	            this.isMoving = true;
+	            if(!this.isHorizontallyMoving)
+	            {
+	            	this.playerGraphics.anims.play(this.playerData.spriteID + 'right', true); //hay que cambiar el right ese por el sprite que sea
+	            }
+	            this.isVerticallyMoving = true;
 	        }
 
 	        else if (this.cursors.down.isDown)
 	        {
-	            this.playerGraphics.setVelocityY(this.verticalVelocity);
+	            this.playerGraphics.setVelocityY(this.playerData.movementSpeed.y);
 
-	            //this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
-	            this.isMoving = true;
+	            if(!this.isHorizontallyMoving)
+	            {
+	            	this.playerGraphics.anims.play(this.playerData.spriteID + 'right', true); //hay que cambiar el right ese por el sprite que sea
+	            }
+	            this.isVerticallyMoving = true;
 	        }
 	        else
 	        {
 	            this.playerGraphics.setVelocityY(0);
 	        }
 
-	        if(!this.isMoving)
+	        if(!this.isHorizontallyMoving && !this.isVerticallyMoving)
 	        {
-	            //this.playerGraphics.anims.play('turn');
+	            this.playerGraphics.anims.play(this.playerData.spriteID + 'turn');
 	        }
 	    }
 
@@ -201,6 +211,6 @@ export class Player
 	{
 		this.playerGraphics.setVelocityX(0);
 		this.playerGraphics.setVelocityY(0);
-		//this.playerGraphics.anims.play('turn');
+		this.playerGraphics.anims.play(this.playerData.spriteID + 'turn');
 	}
 }

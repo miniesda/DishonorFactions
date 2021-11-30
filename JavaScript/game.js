@@ -51,10 +51,10 @@ export class Game extends Phaser.Scene
 
 	initializePlayers()
 	{
-		this.leftPlayer = new Player(this, 'humanPlayer', 300, 450, 100, 100, true, 40, 70);
+		this.leftPlayer = new Player(this, 300, 450, true, 40, 70, 'elfChampionData');
         this.leftPlayer.create();
 
-        this.rightPlayer = new Player(this, 'humanPlayer', 600, 450, 100, 100, false, 40, 70);
+        this.rightPlayer = new Player(this, 600, 450, false, 40, 70, 'humanChampionData');
         this.rightPlayer.create();
 
         this.cursors = this.input.keyboard.createCursorKeys();

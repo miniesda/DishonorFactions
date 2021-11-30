@@ -1,0 +1,30 @@
+{
+	"spriteID": "orcChampion",
+	"health": 100,
+	"movementSpeed":
+	{
+		"x": 200,
+		"y": 100
+	},
+	"animations":
+	{
+		"left":
+		{
+			"start": 11,
+			"end": 15
+		},
+		"right":
+		{
+			"start": 0,
+			"end": 4
+		},
+		"idle":
+		{
+			"start": 4
+		},
+		"attack":
+		{
+			"start": 4
+		}
+	}
+}
