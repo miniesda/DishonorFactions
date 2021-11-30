@@ -1,6 +1,8 @@
+import { HealthBar } from './HealthBar.js';
+
 export class Player
 {
-	constructor(gameScene, name, x, y, velocityX, velocityY, usingKeys)
+	constructor(gameScene, name, x, y, velocityX, velocityY, usingKeys, healthBarHorizontalDisp, healthBarVerticalDisp)
 	{
 		this.scene = gameScene;
 		this.spriteName = name;
@@ -18,6 +20,12 @@ export class Player
 		this.keyUp;
 		this.keyDown;
 
+		this.healthBarHorizontalDisplacement = healthBarHorizontalDisp;
+		this.healthBarVerticalDisplacement = healthBarVerticalDisp;
+		this.healthBarPositionX = this.initialPositionX - this.healthBarHorizontalDisplacement;
+		this.healthBarPositionY = this.initialPositionY - this.healthBarVerticalDisplacement;
+		this.healthBar;
+
 		this.isMoving = false;
 	}
 
@@ -28,8 +36,12 @@ export class Player
 
 	create()
 	{
+		this.healthBar = new HealthBar(this.scene, 100, this.healthBarPositionX, this.healthBarPositionY);
+		this.healthBar.create();
+		this.healthBar.scaleBar(0.4, 0.7);
+
 		this.playerGraphics = this.scene.physics.add.sprite(this.initialPositionX, this.initialPositionY, this.spriteName);
-		this.createAnimations();
+		//this.createAnimations();
 		this.createInputs();
 		this.playerGraphics.setCollideWorldBounds(true);
 	}
@@ -80,7 +92,7 @@ export class Player
 	        {
 	            this.playerGraphics.setVelocityX(-this.horizontalVelocity);
 
-	            this.playerGraphics.anims.play('left', true);
+	            //this.playerGraphics.anims.play('left', true);
 	            this.isMoving = true;
 	        }
 
@@ -88,7 +100,7 @@ export class Player
 	        {
 	            this.playerGraphics.setVelocityX(this.horizontalVelocity);
 
-	            this.playerGraphics.anims.play('right', true);
+	            //this.playerGraphics.anims.play('right', true);
 	            this.isMoving = true;
 	        }
 	        else
@@ -100,7 +112,7 @@ export class Player
 	        {
 	            this.playerGraphics.setVelocityY(-this.verticalVelocity);
 
-	            this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
+	            //this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
 	            this.isMoving = true;
 	        }
 
@@ -108,7 +120,7 @@ export class Player
 	        {
 	            this.playerGraphics.setVelocityY(this.verticalVelocity);
 
-	            this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
+	            //this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
 	            this.isMoving = true;
 	        }
 	        else
@@ -118,7 +130,7 @@ export class Player
 
 	        if(!this.isMoving)
 	        {
-	            this.playerGraphics.anims.play('turn');
+	            //this.playerGraphics.anims.play('turn');
 	            this.isMoving = false;
 	        }
 	    }
@@ -128,7 +140,7 @@ export class Player
 	        {
 	            this.playerGraphics.setVelocityX(-this.horizontalVelocity);
 
-	            this.playerGraphics.anims.play('left', true);
+	            //this.playerGraphics.anims.play('left', true);
 	            this.isMoving = true;
 	        }
 
@@ -136,7 +148,7 @@ export class Player
 	        {
 	            this.playerGraphics.setVelocityX(this.horizontalVelocity);
 
-	            this.playerGraphics.anims.play('right', true);
+	            //this.playerGraphics.anims.play('right', true);
 	            this.isMoving = true;
 	        }
 	        else
@@ -148,7 +160,7 @@ export class Player
 	        {
 	            this.playerGraphics.setVelocityY(-this.verticalVelocity);
 
-	            this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
+	            //this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
 	            this.isMoving = true;
 	        }
 
@@ -156,7 +168,7 @@ export class Player
 	        {
 	            this.playerGraphics.setVelocityY(this.verticalVelocity);
 
-	            this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
+	            //this.playerGraphics.anims.play('right', true); //hay que cambiar el right ese por el sprite que sea
 	            this.isMoving = true;
 	        }
 	        else
@@ -166,9 +178,29 @@ export class Player
 
 	        if(!this.isMoving)
 	        {
-	            this.playerGraphics.anims.play('turn');
-	            this.isMoving = false;
+	            //this.playerGraphics.anims.play('turn');
 	        }
 	    }
+
+	    this.updateHealthBarPosition();
+	}
+
+	updateHealthBarPosition()
+	{
+		this.calculateHealthBarPosition();
+	    this.healthBar.setPosition(this.healthBarPositionX, this.healthBarPositionY);
+	}
+
+	calculateHealthBarPosition()
+	{
+		this.healthBarPositionX = this.playerGraphics.x - this.healthBarHorizontalDisplacement;
+		this.healthBarPositionY = this.playerGraphics.y - this.healthBarVerticalDisplacement;
+	}
+
+	stopPlayerMovement()
+	{
+		this.playerGraphics.setVelocityX(0);
+		this.playerGraphics.setVelocityY(0);
+		//this.playerGraphics.anims.play('turn');
 	}
 }

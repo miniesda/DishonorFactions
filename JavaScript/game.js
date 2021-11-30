@@ -1,6 +1,7 @@
 import { Tower } from './tower.js';
 import { EnemySpawner } from './enemySpawner.js';
 import { Player } from './player.js';
+import { Button } from './button.js';
 
 export class Game extends Phaser.Scene
 {
@@ -13,12 +14,21 @@ export class Game extends Phaser.Scene
 		this.enemySpawner;
 		this.playerLeft;
 		this.playerRight;
+		this.leftNPCGroup;
+		this.rightNPCGroup;
+		this.leftPlayerVictoryOrDefeatText;
+		this.rightPlayerVictoryOrDefeatText;
+		this.gameHasAlreadyFinished = false;
+		this.backToMenuButton;
 	}
 
 	loadResources()
 	{
 		//Background		
-		this.load.image('background', './Art/fondo2.png');
+		this.load.image('background', './Art/fondo3.png');
+
+		//Particle effects
+		this.load.atlas('explosion', './Art/Particles/explosion.png', './Art/Particles/explosion.json');
 
 		//Towers
 		this.load.spritesheet('leftTower', './Art/leftTower.png', { frameWidth: 150, frameHeight: 550 });
@@ -26,24 +36,34 @@ export class Game extends Phaser.Scene
 		this.load.image('healthBar', './Art/healthBar.png');
 
 		//Players
-		this.load.spritesheet('humanPlayer', './Art/assetsPrueba/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+		//this.load.spritesheet('humanPlayer', './Art/Mike.png', { frameWidth: 32, frameHeight: 48 });
+		this.load.image('humanPlayer', './Art/Mike.png');
 
 		//NPC
-		//this.load.spritesheet('orcNPC', './Art/minion orco andando.png', { frameWidth: 32, frameHeight: 48 });
-		this.load.image('orcNPC', './Art/minion.png');
+		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 60, frameHeight: 80 });
+		this.load.spritesheet('elfoNPC', './Art/Minions/minionElfo.png', { frameWidth: 60, frameHeight: 80 });
+	}
+
+	loadAudios()
+	{
+		//Music in game
+		this.load.audio('music1', 'Sounds/play.mp3');
 	}
 
 	preload()
 	{
 		this.loadResources();
+		this.loadAudios();
 	}
 
 	initializeEnemySpawner()
-	{		
-		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1);
+	{
+		this.leftNPCGroup = this.physics.add.group();
+		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1, this.leftNPCGroup, 200);
 		this.leftEnemySpawner.create();
 
-		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'orcNPC', this, 125, -1);
+		this.rightNPCGroup = this.physics.add.group();
+		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'elfoNPC', this, 125, -1, this.rightNPCGroup, 200);
 		this.rightEnemySpawner.create();
 	}
 
@@ -59,10 +79,10 @@ export class Game extends Phaser.Scene
 
 	initializePlayers()
 	{
-		this.leftPlayer = new Player(this, 'humanPlayer', 300, 450, 100, 100, true);
+		this.leftPlayer = new Player(this, 'humanPlayer', 300, 450, 100, 100, true, 40, 70);
         this.leftPlayer.create();
 
-        this.rightPlayer = new Player(this, 'humanPlayer', 600, 450, 100, 100, false);
+        this.rightPlayer = new Player(this, 'humanPlayer', 600, 450, 100, 100, false, 40, 70);
         this.rightPlayer.create();
 
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -75,30 +95,115 @@ export class Game extends Phaser.Scene
 		this.physics.add.collider(this.leftPlayer.getPlayerGraphics(), this.rightTower.getTowerGraphics());
 		this.physics.add.collider(this.rightPlayer.getPlayerGraphics(), this.leftTower.getTowerGraphics());
 		this.physics.add.collider(this.rightPlayer.getPlayerGraphics(), this.rightTower.getTowerGraphics());
+
+		//NPC vs NPC
+		this.physics.add.overlap(this.leftNPCGroup, this.rightNPCGroup, this.onNPCsCollision, null, this);
+
+		//Left tower vs right NPC
+		this.physics.add.overlap(this.rightNPCGroup, this.leftTower.getTowerGraphics(), this.onCollisionWithLeftTower, null, this);
+
+		//Right tower vs left NPC
+		this.physics.add.overlap(this.leftNPCGroup, this.rightTower.getTowerGraphics(), this.onCollisionWithRightTower, null, this);
+	}
+
+	onNPCsCollision(leftNPC, rightNPC)
+	{
+		this.leftNPCGroup.remove(leftNPC, true, true);
+		leftNPC.destroy();
+		this.rightNPCGroup.remove(rightNPC, true, true);
+		rightNPC.destroy();
+	}
+
+	onCollisionWithLeftTower(rightNPC, towerSprite)
+	{
+		this.rightNPCGroup.remove(rightNPC, true, true);
+
+		this.leftTower.damageTower(30);
+	}
+
+	onCollisionWithRightTower(leftNPC, towerSprite)
+	{
+		this.leftNPCGroup.remove(leftNPC, true, true);
+
+		this.rightTower.damageTower(30);
 	}
 
 	create()
 	{
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
+		this.initializePlayers();
 		this.initializeEnemySpawner();
 		this.initializeTowers();
-		this.initializePlayers();
 		this.handleCollisions();
+		
+		//Creamos variable audio para poder usar el play, stop, etc.
+		var music = this.sound.add('music1');
+		music.play();
 	}
 
 	update()
 	{
+		if(this.gameHasAlreadyFinished) return;
+
 		this.leftPlayer.update();
 
 		this.rightPlayer.update();
 
-		if(this.cursors.left.isDown)
-		{			
-			this.leftTower.damageTower(2);
-		}
-		else if(this.cursors.right.isDown)
+		if(this.checkIfGameHasFinished())
 		{
-			this.rightTower.damageTower(2);
+			this.finishGame();
 		}
+	}
+
+	checkIfGameHasFinished()
+	{
+		if(this.leftTower.getHealth() == 0 || this.rightTower.getHealth() == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	finishGame()
+	{
+		this.gameHasAlreadyFinished = true;
+		console.log('El juego ha terminado');
+
+		//Stop spawning enemies and clear existing ones
+		this.leftEnemySpawner.stopSpawning();
+		this.leftNPCGroup.clear(true, true);
+		this.rightEnemySpawner.stopSpawning();
+		this.rightNPCGroup.clear(true, true);
+
+		//Stop players movement
+		this.leftPlayer.stopPlayerMovement();
+		this.rightPlayer.stopPlayerMovement();
+
+		//Print victory and defeat texts
+		this.showVictoryAndDefeatTexts();
+		
+		this.showBackToMenuButton();
+	}
+
+	showVictoryAndDefeatTexts()
+	{
+		if(this.leftTower.getHealth() == 0)
+		{
+			this.leftPlayerVictoryOrDefeatText = this.add.text(250, 300, 'Defeat', { fontSize: 80 });
+			this.rightPlayerVictoryOrDefeatText = this.add.text(750, 300, 'Victory', { fontSize: 80 });
+		}
+		else if(this.rightTower.getHealth() == 0)
+		{
+			this.leftPlayerVictoryOrDefeatText = this.add.text(250, 300, 'Victory', { fontSize: 80 });
+			this.rightPlayerVictoryOrDefeatText = this.add.text(750, 300, 'Defeat', { fontSize: 80 });
+		}
+	}
+
+	showBackToMenuButton()
+	{
+		this.backToMenuButton = new Button(630, 500, 'Back To Menu', this, () => console.log('Going to menu screen...'));
 	}
 }
