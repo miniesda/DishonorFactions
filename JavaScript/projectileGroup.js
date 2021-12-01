@@ -2,26 +2,19 @@ import { Projectile } from './projectile.js';
 
 export class ProjectileGroup extends Phaser.Physics.Arcade.Group
 {
-	constructor(scene)
+	constructor(gameScene)
 	{
-		super(scene.physics.world, scene);
-
-		this.createMultiple(
-			{
-				classType: Projectile,
-				frameQuantity: 30,
-				active: false,
-				visible: false,
-				key: 'projectile'
-			});
+		super(gameScene.physics.world, gameScene);
+		this.scene = gameScene;
 	}
 
 	fireProjectile(x, y, velocity)
 	{
-		var projectile = this.getFirstDead(false);
+		var projectile = new Projectile(this.scene, x, y);
 
 		if(projectile)
 		{
+			this.add(projectile);
 			projectile.fire(x, y, velocity);
 		}
 	}

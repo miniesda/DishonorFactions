@@ -1,5 +1,4 @@
 import { HealthBar } from './HealthBar.js';
-import { ProjectileGroup } from './projectileGroup.js';
 
 export class Player
 {
@@ -10,7 +9,6 @@ export class Player
 		this.initialPositionX = x;
 		this.initialPositionY = y;
 		this.playerGraphics;
-		this.projectileGroup;
 
 		this.isUsingKeys = usingKeys;
 		this.cursors;
@@ -31,11 +29,17 @@ export class Player
 		this.facingDirection; //TRUE = LEFT, FALSE = RIGHT
 		this.shootingRateTimer = 0;
 		this.canShoot = true;
+		this.projectilesGroup;
 	}
 
 	getPlayerGraphics()
 	{
 		return this.playerGraphics;
+	}
+
+	getPlayerProjectileGroup()
+	{
+		return this.projectilesGroup;
 	}
 
 	create()
@@ -49,8 +53,8 @@ export class Player
 		this.createInputs();
 		this.playerGraphics.setCollideWorldBounds(true);
 
-		this.projectileGroup = new ProjectileGroup(this.scene);
 		this.createShootingRateTimer();
+		this.projectilesGroup = this.scene.physics.add.group();
 		
 	}
 
@@ -58,19 +62,26 @@ export class Player
 	{
 		this.shootingRateTimer = this.scene.time.addEvent({
     		delay: 500,
-    		callback: this.enableCanShoot,
-    		loop: true
+    		callback: () => this.canShoot = true,
+    		repeat: 0
 		});
 	}
 
 	resetShootingTimer()
 	{
+		this.shootingRateTimer.reset(
+		{
+			delay: 500,
+    		callback: () => this.canShoot = true,
+    		repeat: 0
+		});
+
+		this.scene.time.addEvent(this.shootingRateTimer);
 	}
 
-	enableCanShoot()
+	enableCanShoot(canShoot)
 	{
-		this.canShoot = true;
-		console.log("timer updated");
+		canShoot = true;
 	}
 
 	createInputs()
@@ -127,7 +138,6 @@ export class Player
 		{
 			if(this.shootingKey.F.isDown)
 			{
-				console.log("disparo");
 				if(this.canShoot)
 				{
 					this.canShoot = false;
@@ -294,7 +304,9 @@ export class Player
 			velocityMultiplier = 1;
 		}
 
-		this.projectileGroup.fireProjectile(this.playerGraphics.x, this.playerGraphics.y, velocityMultiplier * 600);
+		var projectile = this.scene.physics.add.sprite(this.playerGraphics.x, this.playerGraphics.y, 'projectile');
+		this.projectilesGroup.add(projectile);
+		projectile.setVelocityX(velocityMultiplier * 900);
 	}
 
 	stopPlayerMovement()

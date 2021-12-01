@@ -68,6 +68,16 @@ export class Game extends Phaser.Scene
 		this.physics.add.collider(this.rightPlayer.getPlayerGraphics(), this.leftTower.getTowerGraphics());
 		this.physics.add.collider(this.rightPlayer.getPlayerGraphics(), this.rightTower.getTowerGraphics());
 
+		//Projectiles vs Towers
+		this.physics.add.overlap(this.rightPlayer.getPlayerProjectileGroup(), this.leftTower.getTowerGraphics(), this.onProjectileCollisionWithLeftTower, null, this);
+		this.physics.add.overlap(this.leftPlayer.getPlayerProjectileGroup(), this.rightTower.getTowerGraphics(), this.onProjectileCollisionWithRightTower, null, this);
+		this.physics.add.overlap(this.rightPlayer.getPlayerProjectileGroup(), this.rightTower.getTowerGraphics(), this.onRightProjectileCollisionWithSameTower, null, this);
+		this.physics.add.overlap(this.leftPlayer.getPlayerProjectileGroup(), this.leftTower.getTowerGraphics(), this.onLeftProjectileCollisionWithSameTower, null, this);
+
+		//Projectiles vs NPC
+		this.physics.add.overlap(this.leftNPCGroup, this.rightPlayer.getPlayerProjectileGroup(), this.onRightProjectileWithLeftNPCsCollision, null, this);
+		this.physics.add.overlap(this.rightNPCGroup, this.leftPlayer.getPlayerProjectileGroup(), this.onLeftProjectileWithRightNPCsCollision, null, this);
+
 		//NPC vs NPC
 		this.physics.add.overlap(this.leftNPCGroup, this.rightNPCGroup, this.onNPCsCollision, null, this);
 
@@ -76,6 +86,40 @@ export class Game extends Phaser.Scene
 
 		//Right tower vs left NPC
 		this.physics.add.overlap(this.leftNPCGroup, this.rightTower.getTowerGraphics(), this.onCollisionWithRightTower, null, this);
+	}
+
+	onRightProjectileWithLeftNPCsCollision(leftNPC, projectile)
+	{
+		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+		this.leftNPCGroup.remove(leftNPC, true, true);
+	}
+
+	onLeftProjectileWithRightNPCsCollision(rightNPC, projectile)
+	{
+		this.leftPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+		this.rightNPCGroup.remove(rightNPC, true, true);
+	}
+
+	onRightProjectileCollisionWithSameTower(projectile, tower)
+	{
+		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+	}
+
+	onLeftProjectileCollisionWithSameTower(projectile, tower)
+	{
+		this.leftPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+	}
+
+	onProjectileCollisionWithLeftTower(projectile, leftTower)
+	{
+		this.leftTower.damageTower(1);
+		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+	}
+
+	onProjectileCollisionWithRightTower(projectile, leftTower)
+	{
+		this.rightTower.damageTower(1);
+		this.leftPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
 	}
 
 	onNPCsCollision(leftNPC, rightNPC)

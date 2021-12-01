@@ -1,27 +1,14 @@
-export class Projectile extends Phaser.Physics.Arcade.Sprite
+export class Projectile
 {
-	constructor(scene, x, y)
+	constructor(gameScene)
 	{
-		super(scene, x, y, 'projectile');
+		this.scene = gameScene;
+		this.projectileGraphics;
 	}
 
 	fire(x, y, velocity)
 	{
-		this.body.reset(x, y);
-		this.setActive(true);
-		this.setVisible(true);
-
-		this.setVelocityX(velocity);
-	}
-
-	preUpdate(time, delta)
-	{
-		super.preUpdate(time, delta);
-
-		if(this.x > 1280 || this.x < 0)
-		{
-			this.setActive(false);
-			this.setVisible(false);
-		}
+		this.projectileGraphics = this.scene.physics.add.sprite(x, y, 'projectile');
+		this.projectileGraphics.setVelocityX(velocity);
 	}
 }
