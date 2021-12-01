@@ -40,6 +40,7 @@ export class Preload extends Phaser.Scene
 		//Music in game
 		this.load.audio('gameBackgroundMusic', './Sounds/play.mp3');
 		this.load.audio('menuBackgroundMusic', './Sounds/MainMenu.wav');
+		this.load.audio('towerDamageMusic', './Sounds/actions/destroy.mp3');
 	}
 
 	preload()
