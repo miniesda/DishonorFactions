@@ -100,7 +100,7 @@ export class Game extends Phaser.Scene
 
 	onProjectileWithLeftPlayerCollision(player, projectile)
 	{
-		this.leftPlayer.damagePlayer(10);
+		this.leftPlayer.damagePlayer(40);
 		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
 	}
 

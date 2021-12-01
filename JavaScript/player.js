@@ -23,6 +23,7 @@ export class Player
 		this.healthBarPositionX = this.initialPositionX - this.healthBarHorizontalDisplacement;
 		this.healthBarPositionY = this.initialPositionY - this.healthBarVerticalDisplacement;
 		this.healthBar;
+		this.currentHealth = this.playerData.health;
 
 		this.isHorizontallyMoving = false;
 		this.isVerticallyMoving = false;
@@ -44,7 +45,7 @@ export class Player
 
 	create()
 	{
-		this.healthBar = new HealthBar(this.scene, 100, this.healthBarPositionX, this.healthBarPositionY);
+		this.healthBar = new HealthBar(this.scene, this.currentHealth, this.healthBarPositionX, this.healthBarPositionY);
 		this.healthBar.create();
 		this.healthBar.scaleBar(0.4, 0.7);
 
@@ -326,6 +327,13 @@ export class Player
 
 	damagePlayer(damage)
 	{
+		this.currentHealth -= damage;
 
+		if(this.currentHealth < 0)
+		{
+			this.currentHealth = 0;
+		}
+
+		this.healthBar.setValue(this.currentHealth);
 	}
 }
