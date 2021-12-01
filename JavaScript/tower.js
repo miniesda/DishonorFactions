@@ -17,6 +17,7 @@ export class Tower
 		this.spriteName = name;
 		this.towerGraphics;
 		this.damageParticle;
+		this.damageSound;
 	}
 
 	getTowerGraphics()
@@ -89,6 +90,9 @@ export class Tower
 		
 		//Initialize Particle effects
 		this.createSmokeParticles();
+
+		this.damageSound = this.scene.sound.add('towerDamageMusic');
+		
 	}
 
 	flipTowerSprite()
@@ -136,6 +140,8 @@ export class Tower
 		this.handleAnimations();
 		this.emitDamageParticles();
 		this.applyCameraShake();
+
+		this.damageSound.play();
 	}
 
 	applyCameraShake()
