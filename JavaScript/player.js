@@ -1,4 +1,5 @@
 import { HealthBar } from './HealthBar.js';
+import { ProjectileGroup } from './projectileGroup.js';
 
 export class Player
 {
@@ -9,6 +10,7 @@ export class Player
 		this.initialPositionX = x;
 		this.initialPositionY = y;
 		this.playerGraphics;
+		this.projectileGroup;
 
 		this.isUsingKeys = usingKeys;
 		this.cursors;
@@ -16,6 +18,7 @@ export class Player
 		this.keyRight;
 		this.keyUp;
 		this.keyDown;
+		this.shootingKey;
 
 		this.healthBarHorizontalDisplacement = healthBarHorizontalDisp;
 		this.healthBarVerticalDisplacement = healthBarVerticalDisp;
@@ -26,6 +29,8 @@ export class Player
 		this.isHorizontallyMoving = false;
 		this.isVerticallyMoving = false;
 		this.facingDirection; //TRUE = LEFT, FALSE = RIGHT
+		this.shootingRateTimer = 0;
+		this.canShoot = true;
 	}
 
 	getPlayerGraphics()
@@ -43,6 +48,29 @@ export class Player
 		this.createAnimations();
 		this.createInputs();
 		this.playerGraphics.setCollideWorldBounds(true);
+
+		this.projectileGroup = new ProjectileGroup(this.scene);
+		this.createShootingRateTimer();
+		
+	}
+
+	createShootingRateTimer()
+	{
+		this.shootingRateTimer = this.scene.time.addEvent({
+    		delay: 500,
+    		callback: this.enableCanShoot,
+    		loop: true
+		});
+	}
+
+	resetShootingTimer()
+	{
+	}
+
+	enableCanShoot()
+	{
+		this.canShoot = true;
+		console.log("timer updated");
 	}
 
 	createInputs()
@@ -53,10 +81,12 @@ export class Player
         	this.keyRight = this.scene.input.keyboard.addKeys("D");
         	this.keyDown = this.scene.input.keyboard.addKeys("S");
         	this.keyUp = this.scene.input.keyboard.addKeys("W");
+        	this.shootingKey = this.scene.input.keyboard.addKeys("F");
     	}
     	else
     	{
     		this.cursors = this.scene.input.keyboard.createCursorKeys();
+    		this.shootingKey = this.scene.input.keyboard.addKeys("L");
     	}
 	}
 
@@ -95,6 +125,17 @@ export class Player
 		this.isVerticallyMoving = false;
 		if(this.isUsingKeys)
 		{
+			if(this.shootingKey.F.isDown)
+			{
+				console.log("disparo");
+				if(this.canShoot)
+				{
+					this.canShoot = false;
+					this.shootProjectile();
+					this.resetShootingTimer();
+				}
+			}
+
 			if (this.keyLeft.A.isDown)
 	        {
 	            this.playerGraphics.setVelocityX(-this.playerData.movementSpeed.x);
@@ -157,6 +198,13 @@ export class Player
 	    }
 	    else
 	    {
+	    	if(this.shootingKey.L.isDown && this.canShoot)
+			{
+				this.canShoot = false;
+				this.shootProjectile();
+				this.resetShootingTimer();
+			}
+
 	    	if (this.cursors.left.isDown)
 	        {
 	            this.playerGraphics.setVelocityX(-this.playerData.movementSpeed.x);
@@ -231,6 +279,22 @@ export class Player
 	{
 		this.healthBarPositionX = this.playerGraphics.x - this.healthBarHorizontalDisplacement;
 		this.healthBarPositionY = this.playerGraphics.y - this.healthBarVerticalDisplacement;
+	}
+
+	shootProjectile()
+	{
+		var velocityMultiplier = 1;
+
+		if(this.facingDirection)
+		{
+			velocityMultiplier = -1;
+		}
+		else
+		{
+			velocityMultiplier = 1;
+		}
+
+		this.projectileGroup.fireProjectile(this.playerGraphics.x, this.playerGraphics.y, velocityMultiplier * 600);
 	}
 
 	stopPlayerMovement()

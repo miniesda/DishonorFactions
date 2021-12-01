@@ -1,6 +1,7 @@
 {
 	"spriteID": "orcChampion",
 	"health": 100,
+	"shootingRate": 400,
 	"movementSpeed":
 	{
 		"x": 200,

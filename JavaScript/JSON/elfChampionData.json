@@ -1,6 +1,7 @@
 {
 	"spriteID": "elfChampion",
 	"health": 100,
+	"shootingRate": 400,
 	"movementSpeed":
 	{
 		"x": 100,

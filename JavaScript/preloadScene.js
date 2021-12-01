@@ -23,14 +23,16 @@ export class Preload extends Phaser.Scene
 		this.load.spritesheet('humanChampion', './Art/Champions/humanChampion.png', { frameWidth: 70, frameHeight: 100 });
 		this.load.spritesheet('orcChampion', './Art/Champions/orcChampion.png', { frameWidth: 70, frameHeight: 100 });
 		this.load.spritesheet('elfChampion', './Art/Champions/elfChampion.png', { frameWidth: 70, frameHeight: 100 });
-		this.load.image('humanPlayer', './Art/Mike.png');
+		this.load.json('humanChampionData', './JavaScript/JSON/humanChampionData.json');
+		this.load.json('orcChampionData', './JavaScript/JSON/orcChampionData.json');
+		this.load.json('elfChampionData', './JavaScript/JSON/elfChampionData.json');
 
 		//NPC
 		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 60, frameHeight: 80 });
 		this.load.spritesheet('elfoNPC', './Art/Minions/minionElfo.png', { frameWidth: 60, frameHeight: 80 });
-		this.load.json('humanChampionData', './JavaScript/JSON/humanChampionData.json');
-		this.load.json('orcChampionData', './JavaScript/JSON/orcChampionData.json');
-		this.load.json('elfChampionData', './JavaScript/JSON/elfChampionData.json');
+		
+		//Projectile
+		this.load.image('projectile', './Art/projectile.png');
 	}
 
 	loadAudios()
