@@ -323,4 +323,9 @@ export class Player
     		this.playerGraphics.anims.play(this.playerData.spriteID + 'turnRight');
     	}
 	}
+
+	damagePlayer(damage)
+	{
+
+	}
 }

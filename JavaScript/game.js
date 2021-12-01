@@ -78,6 +78,10 @@ export class Game extends Phaser.Scene
 		this.physics.add.overlap(this.leftNPCGroup, this.rightPlayer.getPlayerProjectileGroup(), this.onRightProjectileWithLeftNPCsCollision, null, this);
 		this.physics.add.overlap(this.rightNPCGroup, this.leftPlayer.getPlayerProjectileGroup(), this.onLeftProjectileWithRightNPCsCollision, null, this);
 
+		//Projectile vs Player
+		this.physics.add.overlap(this.leftPlayer.getPlayerGraphics(), this.rightPlayer.getPlayerProjectileGroup(), this.onProjectileWithLeftPlayerCollision, null, this);
+		this.physics.add.overlap(this.rightPlayer.getPlayerGraphics(), this.leftPlayer.getPlayerProjectileGroup(), this.onProjectileWithRightPlayerCollision, null, this);
+
 		//NPC vs NPC
 		this.physics.add.overlap(this.leftNPCGroup, this.rightNPCGroup, this.onNPCsCollision, null, this);
 
@@ -86,6 +90,18 @@ export class Game extends Phaser.Scene
 
 		//Right tower vs left NPC
 		this.physics.add.overlap(this.leftNPCGroup, this.rightTower.getTowerGraphics(), this.onCollisionWithRightTower, null, this);
+	}
+
+	onProjectileWithRightPlayerCollision(player, projectile)
+	{
+		this.rightPlayer.damagePlayer(10);
+		this.leftPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+	}
+
+	onProjectileWithLeftPlayerCollision(player, projectile)
+	{
+		this.leftPlayer.damagePlayer(10);
+		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
 	}
 
 	onRightProjectileWithLeftNPCsCollision(leftNPC, projectile)
