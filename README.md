@@ -73,7 +73,7 @@ La interfaz que se realizará será sencilla y sin muchos elementos para no ento
 El arte del videojuego tendrá un estilo Cartoon.
 A continuación se presentará un boceto de los campeones de las tres facciones:
 
-_Princesa Noveny  . / . Sir Thomas . / . General Kalapax
+_Princesa Noveny  . / . Sir Thomas . / . General Kalapax_
  
 <img src="./readMeMedia/noveny.png" alt="Noveny" width="120"  align="left"/>
 <img src="./readMeMedia/thomas.png" alt="Thomas" width="120" align="left"/>
