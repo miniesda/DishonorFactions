@@ -73,11 +73,10 @@ La interfaz que se realizará será sencilla y sin muchos elementos para no ento
 El arte del videojuego tendrá un estilo Cartoon.
 A continuación se presentará un boceto de los campeones de las tres facciones:
 
+ Princesa Noveny  / Sir Thomas  / General Kalapax
 <img src="./readMeMedia/noveny.png" alt="Noveny" width="120" align="left"/>
 <img src="./readMeMedia/thomas.png" alt="Thomas" width="120" align="left"/>
 <img src="./readMeMedia/kalapax.png" alt="Kalapax" width="120"/>
- Princesa Noveny  / Sir Thomas  / General Kalapax
-
 
 Se han tomado referencias del videojuego _"Brawlhalla"_ en la estética de los personajes además referencias culturales de los juegos de rol y películas de fantasía como _"War of Warcraft"_ o _"El Señor de los Anillos"_ al incorporar civilizaciones no humanas como en este caso los orcos y los elfos.
 
