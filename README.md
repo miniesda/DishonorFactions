@@ -76,7 +76,7 @@ A continuación se presentará un boceto de los campeones de las tres facciones:
 <img src="./readMeMedia/noveny.png" alt="Noveny" width="120" align="left"/>
 <img src="./readMeMedia/thomas.png" alt="Thomas" width="120" align="left"/>
 <img src="./readMeMedia/kalapax.png" alt="Kalapax" width="120"/>
-
+Princesa Noveny / General Kalapax / Sir Thomas
 Se han tomado referencias del videojuego _"Brawlhalla"_ en la estética de los personajes además referencias culturales de los juegos de rol y películas de fantasía como _"War of Warcraft"_ o _"El Señor de los Anillos"_ al incorporar civilizaciones no humanas como en este caso los orcos y los elfos.
 
 Ejemplos de referencias:
