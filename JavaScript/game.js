@@ -20,8 +20,14 @@ export class Game extends Phaser.Scene
 		this.rightPlayerVictoryOrDefeatText;
 		this.gameHasAlreadyFinished = false;
 		this.backToMenuButton;
+		this.gameConfigurationData;
 
 		this.backgroundMusic;
+	}
+
+	init(data)
+	{
+		this.gameConfigurationData = data;
 	}
 
 	//////////////////////////////////////////////////////////////////
@@ -51,10 +57,10 @@ export class Game extends Phaser.Scene
 
 	initializePlayers()
 	{
-		this.leftPlayer = new Player(this, 300, 450, true, 40, 70, 'elfChampionData');
+		this.leftPlayer = new Player(this, 300, 450, true, 40, 70, this.gameConfigurationData.leftPlayer);
         this.leftPlayer.create();
 
-        this.rightPlayer = new Player(this, 970, 450, false, 40, 70, 'humanChampionData');
+        this.rightPlayer = new Player(this, 970, 450, false, 40, 70, this.gameConfigurationData.rightPlayer);
         this.rightPlayer.create();
 
         this.cursors = this.input.keyboard.createCursorKeys();

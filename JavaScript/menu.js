@@ -30,11 +30,6 @@ export class Menu extends Phaser.Scene
 	switchToGameScene(currentScene)
 	{
 		currentScene.backgroundMusic.stop();
-		currentScene.scene.start('game');
-	}
-
-	update()
-	{
-
-	}    
+		currentScene.scene.start('seleccion');
+	}  
 }

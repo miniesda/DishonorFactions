@@ -26,6 +26,7 @@ export class Preload extends Phaser.Scene
 		this.load.json('humanChampionData', './JavaScript/JSON/humanChampionData.json');
 		this.load.json('orcChampionData', './JavaScript/JSON/orcChampionData.json');
 		this.load.json('elfChampionData', './JavaScript/JSON/elfChampionData.json');
+		this.load.json('gameConfiguration', './JavaScript/JSON/gameConfiguration.json');
 
 		//NPC
 		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 60, frameHeight: 80 });
@@ -33,6 +34,11 @@ export class Preload extends Phaser.Scene
 		
 		//Projectile
 		this.load.image('projectile', './Art/projectile.png');
+
+		this.load.image('pantalla', './Art/pantallaPersonajes.png');
+        this.load.image('boton', './Art/botonSeleccionarPersonaje.png');
+		this.load.image('boton2', './Art/botonSeleccionarPersonaje.png');
+		this.load.image('boton3', './Art/botonSeleccionarPersonaje.png');
 	}
 
 	loadAudios()
@@ -41,6 +47,7 @@ export class Preload extends Phaser.Scene
 		this.load.audio('gameBackgroundMusic', './Sounds/play.mp3');
 		this.load.audio('menuBackgroundMusic', './Sounds/MainMenu.wav');
 		this.load.audio('towerDamageMusic', './Sounds/actions/destroy.mp3');
+		this.load.audio('selectionBackgroundMusic', './Sounds/characterSelection.wav');
 	}
 
 	preload()
