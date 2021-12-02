@@ -5,7 +5,6 @@ export class Player
 	constructor(gameScene, x, y, usingKeys, healthBarHorizontalDisp, healthBarVerticalDisp, data)
 	{
 		this.scene = gameScene;
-		console.log(data);
 		this.playerData = this.scene.cache.json.get(data);
 		this.initialPositionX = x;
 		this.initialPositionY = y;

@@ -9,6 +9,7 @@ export class HealthBar
 		this.positionY = y;
 		this.maxWidth = 200;
 		this.maxHeight = 20;
+		this.maxScale = 1;
 		this.isFlipped = false;
 	}
 
@@ -41,11 +42,12 @@ export class HealthBar
 		{
 			newValue *= -1;
 		}
-		this.healthBarGraphics.scaleX = newValue / 100;
+		this.healthBarGraphics.scaleX = (this.maxScale * newValue) / 100;
 	}
 
 	scaleBar(x, y)
-	{
+	{		
+		this.maxScale = x;
 		this.healthBarGraphics.scaleX = x;
 		this.healthBarGraphics.scaleY = y;
 	}
