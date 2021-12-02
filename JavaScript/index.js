@@ -1,5 +1,6 @@
 import { Game } from './game.js'
 import { Menu } from './menu.js'
+import { Seleccion } from './seleccion.js';
 
 const config = 
 {
@@ -20,7 +21,7 @@ const config =
 			height: 720
 		}
 	},
-	scene: [Game, Menu],
+	scene: [Menu, Seleccion, Game ],
 	physics: 
 	{
 		default: 'arcade',
