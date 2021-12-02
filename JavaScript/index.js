@@ -1,6 +1,7 @@
 import { Game } from './game.js';
 import { Menu } from './menu.js';
 import { Preload } from './preloadScene.js';
+import { Seleccion } from './seleccion.js';
 
 const config = 
 {
@@ -21,7 +22,7 @@ const config =
 			height: 720
 		}
 	},
-	scene: [Preload, Menu, Game],
+	scene: [Preload, Menu, Seleccion, Game],
 	physics: 
 	{
 		default: 'arcade',
