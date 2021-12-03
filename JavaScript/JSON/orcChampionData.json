@@ -1,5 +1,6 @@
 {
 	"spriteID": "orcChampion",
+	"projectileSpriteID": "orcProjectile",
 	"health": 100,
 	"shootingRate": 400,
 	"movementSpeed":
