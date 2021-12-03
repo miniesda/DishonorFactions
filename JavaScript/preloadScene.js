@@ -10,6 +10,7 @@ export class Preload extends Phaser.Scene
 		//Background		
 		this.load.image('background', './Art/fondo3.png');
 		this.load.image('menu', './Art/menu.png');
+		this.load.image('creditsBackground', './Art/creditsScreen.png');
 
 		//Particle effects
 		this.load.atlas('explosion', './Art/Particles/explosion.png', './Art/Particles/explosion.json');
@@ -45,6 +46,7 @@ export class Preload extends Phaser.Scene
 		//UI
 		this.load.image('defeatText', './Art/derrota.png');
 		this.load.image('victoryText', './Art/victoria.png');
+		this.load.image('goBackButton', './Art/goBackButton.png');
 	}
 
 	loadAudios()
