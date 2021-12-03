@@ -41,6 +41,10 @@ export class Preload extends Phaser.Scene
         this.load.image('boton', './Art/botonSeleccionarPersonaje.png');
 		this.load.image('boton2', './Art/botonSeleccionarPersonaje.png');
 		this.load.image('boton3', './Art/botonSeleccionarPersonaje.png');
+
+		//UI
+		this.load.image('defeatText', './Art/derrota.png');
+		this.load.image('victoryText', './Art/victoria.png');
 	}
 
 	loadAudios()

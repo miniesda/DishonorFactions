@@ -232,13 +232,13 @@ export class Game extends Phaser.Scene
 	{
 		if(this.leftTower.getHealth() == 0)
 		{
-			this.leftPlayerVictoryOrDefeatText = this.add.text(250, 300, 'Defeat', { fontSize: 80 });
-			this.rightPlayerVictoryOrDefeatText = this.add.text(750, 300, 'Victory', { fontSize: 80 });
+			this.leftPlayerVictoryOrDefeatText = this.add.image(350, 300, 'defeatText');
+			this.rightPlayerVictoryOrDefeatText = this.add.image(850, 300, 'victoryText');
 		}
 		else if(this.rightTower.getHealth() == 0)
 		{
-			this.leftPlayerVictoryOrDefeatText = this.add.text(250, 300, 'Victory', { fontSize: 80 });
-			this.rightPlayerVictoryOrDefeatText = this.add.text(750, 300, 'Defeat', { fontSize: 80 });
+			this.leftPlayerVictoryOrDefeatText = this.add.image(350, 300, 'victoryText');
+			this.rightPlayerVictoryOrDefeatText = this.add.image(850, 300, 'defeatText');
 		}
 	}
 
