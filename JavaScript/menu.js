@@ -5,39 +5,31 @@ export class Menu extends Phaser.Scene
 	constructor()
 	{
 		super({ key: 'menu' });
-		
+		this.playButton;
+		this.creditsButton;
+		this.backgroundMusic;
+		this.settingsButton;
 	}
 	
-	loadResources()
-	{
-		this.load.image('menu', './Art/menu.png');
-	
-	}
-
-	preload()
-	{
-		this.loadResources();
-	}
+	//////////////////////////////////////////////////////////////////
+	//AQUÍ NO HACER PRELOAD, HACERLO EN EL ARCHIVO PRELOADSCENE.JS!!!!
+	//////////////////////////////////////////////////////////////////
 
 	create()
-	{
-		
-		this.add.image(0, 0, 'menu').setOrigin(0, 0);
-		
+	{		
+		this.add.image(0, 0, 'menu').setOrigin(0, 0);		
 
-		const button = new Button(640, 245, 'JUGAR', this, () => console.log('game is started'));
-		const button2 = new Button(640, 352, 'PERSONAJES', this, () => console.log('Entrando a personajes'));
-		const button3 = new Button(640, 455, 'AJUSTES', this, () => console.log('settings'));
-		const button4 = new Button(640, 565, 'SALIR', this, () => console.log('esc'));
+		this.playButton = new Button(640, 245, 'Jugar', this, this.switchToGameScene);
+		this.creditsButton = new Button(640, 455, 'CRÉDITOS', this, () => console.log('settings'));
+		this.settingsButton = new Button(640, 565, 'SALIR', this, () => console.log('esc'));
+
+		this.backgroundMusic = this.sound.add('menuBackgroundMusic');
+		this.backgroundMusic.play();
 	}
 
-	update()
+	switchToGameScene(currentScene)
 	{
-
-	}
-	prueba()
-	{
-
-	}
-    
+		currentScene.backgroundMusic.stop();
+		currentScene.scene.start('seleccion');
+	}  
 }

@@ -65,7 +65,6 @@ export class EnemySpawner
 	{
 		var randomIndex = Phaser.Math.Between(0, 2);
 
-		console.log("Spawn an enemy now!");
 		var nPC = gameScene.physics.add.sprite(spawnPositionX, spawnPositionY[randomIndex], enemyName);
 
 		nPC.anims.play(movementAnimationName, true);

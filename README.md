@@ -41,6 +41,8 @@ El juego irá destinado sobre todo a jóvenes de entre 10 y 25 años que jueguen
 
 1. **Planteamiento sencillo:** _“Dishonor Factions”_ no posee gran carga histórica, sino que se utiliza un simple argumento para el desarrollo del juego y que los jugadores tengan el objetivo del juego claro.
 
+Este argumento se centra en el personaje de Issabell II, difunta reina del reino de los elfos. Tras su muerte, las facciones de los humanos, orcos y elfos entraron en batalla para poder gobernar el territorio con sus tropas y campeones. 
+
 2. **Dinamismo:** _“Dishonor Factions”_ debe ser dinámico y crear una sensación de tensión y satisfacción al jugador.
 
 3. **Juego táctico:** En _“Dishonor Factions”_, los jugadores no tendrán  tropas infinitas, sino que deberán organizarse de forma inteligente para poder aguantar los ataques del enemigo y controlar su personaje como crean conveniente para ganar.
@@ -71,9 +73,11 @@ La interfaz que se realizará será sencilla y sin muchos elementos para no ento
 El arte del videojuego tendrá un estilo Cartoon.
 A continuación se presentará un boceto de los campeones de las tres facciones:
 
-<img src="./readMeMedia/noveny.png" alt="Noveny" width="120" align="left"/>
+_Princesa Noveny  . / . Sir Thomas . / . General Kalapax_
+ 
+<img src="./readMeMedia/noveny.png" alt="Noveny" width="120"  align="left"/>
 <img src="./readMeMedia/thomas.png" alt="Thomas" width="120" align="left"/>
-<img src="./readMeMedia/kalapax.png" alt="Kalapax" width="120"/>
+<img src="./readMeMedia/kalapax.png" alt="Kalapax" width="110"/>
 
 Se han tomado referencias del videojuego _"Brawlhalla"_ en la estética de los personajes además referencias culturales de los juegos de rol y películas de fantasía como _"War of Warcraft"_ o _"El Señor de los Anillos"_ al incorporar civilizaciones no humanas como en este caso los orcos y los elfos.
 

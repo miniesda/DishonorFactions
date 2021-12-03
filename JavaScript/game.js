@@ -20,41 +20,19 @@ export class Game extends Phaser.Scene
 		this.rightPlayerVictoryOrDefeatText;
 		this.gameHasAlreadyFinished = false;
 		this.backToMenuButton;
+		this.gameConfigurationData;
+
+		this.backgroundMusic;
 	}
 
-	loadResources()
+	init(data)
 	{
-		//Background		
-		this.load.image('background', './Art/fondo3.png');
-
-		//Particle effects
-		this.load.atlas('explosion', './Art/Particles/explosion.png', './Art/Particles/explosion.json');
-
-		//Towers
-		this.load.spritesheet('leftTower', './Art/leftTower.png', { frameWidth: 150, frameHeight: 550 });
-		this.load.spritesheet('rightTower', './Art/rightTower.png', { frameWidth: 150, frameHeight: 550 });
-		this.load.image('healthBar', './Art/healthBar.png');
-
-		//Players
-		//this.load.spritesheet('humanPlayer', './Art/Mike.png', { frameWidth: 32, frameHeight: 48 });
-		this.load.image('humanPlayer', './Art/Mike.png');
-
-		//NPC
-		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 60, frameHeight: 80 });
-		this.load.spritesheet('elfoNPC', './Art/Minions/minionElfo.png', { frameWidth: 60, frameHeight: 80 });
+		this.gameConfigurationData = data;
 	}
 
-	loadAudios()
-	{
-		//Music in game
-		this.load.audio('music1', 'Sounds/play.mp3');
-	}
-
-	preload()
-	{
-		this.loadResources();
-		this.loadAudios();
-	}
+	//////////////////////////////////////////////////////////////////
+	//AQUÍ NO HACER PRELOAD, HACERLO EN EL ARCHIVO PRELOADSCENE.JS!!!!
+	//////////////////////////////////////////////////////////////////
 
 	initializeEnemySpawner()
 	{
@@ -79,10 +57,10 @@ export class Game extends Phaser.Scene
 
 	initializePlayers()
 	{
-		this.leftPlayer = new Player(this, 'humanPlayer', 300, 450, 100, 100, true, 40, 70);
+		this.leftPlayer = new Player(this, 300, 450, true, 40, 70, this.gameConfigurationData.leftPlayer);
         this.leftPlayer.create();
 
-        this.rightPlayer = new Player(this, 'humanPlayer', 600, 450, 100, 100, false, 40, 70);
+        this.rightPlayer = new Player(this, 970, 450, false, 40, 70, this.gameConfigurationData.rightPlayer);
         this.rightPlayer.create();
 
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -96,6 +74,20 @@ export class Game extends Phaser.Scene
 		this.physics.add.collider(this.rightPlayer.getPlayerGraphics(), this.leftTower.getTowerGraphics());
 		this.physics.add.collider(this.rightPlayer.getPlayerGraphics(), this.rightTower.getTowerGraphics());
 
+		//Projectiles vs Towers
+		this.physics.add.overlap(this.rightPlayer.getPlayerProjectileGroup(), this.leftTower.getTowerGraphics(), this.onProjectileCollisionWithLeftTower, null, this);
+		this.physics.add.overlap(this.leftPlayer.getPlayerProjectileGroup(), this.rightTower.getTowerGraphics(), this.onProjectileCollisionWithRightTower, null, this);
+		this.physics.add.overlap(this.rightPlayer.getPlayerProjectileGroup(), this.rightTower.getTowerGraphics(), this.onRightProjectileCollisionWithSameTower, null, this);
+		this.physics.add.overlap(this.leftPlayer.getPlayerProjectileGroup(), this.leftTower.getTowerGraphics(), this.onLeftProjectileCollisionWithSameTower, null, this);
+
+		//Projectiles vs NPC
+		this.physics.add.overlap(this.leftNPCGroup, this.rightPlayer.getPlayerProjectileGroup(), this.onRightProjectileWithLeftNPCsCollision, null, this);
+		this.physics.add.overlap(this.rightNPCGroup, this.leftPlayer.getPlayerProjectileGroup(), this.onLeftProjectileWithRightNPCsCollision, null, this);
+
+		//Projectile vs Player
+		this.physics.add.overlap(this.leftPlayer.getPlayerGraphics(), this.rightPlayer.getPlayerProjectileGroup(), this.onProjectileWithLeftPlayerCollision, null, this);
+		this.physics.add.overlap(this.rightPlayer.getPlayerGraphics(), this.leftPlayer.getPlayerProjectileGroup(), this.onProjectileWithRightPlayerCollision, null, this);
+
 		//NPC vs NPC
 		this.physics.add.overlap(this.leftNPCGroup, this.rightNPCGroup, this.onNPCsCollision, null, this);
 
@@ -104,6 +96,52 @@ export class Game extends Phaser.Scene
 
 		//Right tower vs left NPC
 		this.physics.add.overlap(this.leftNPCGroup, this.rightTower.getTowerGraphics(), this.onCollisionWithRightTower, null, this);
+	}
+
+	onProjectileWithRightPlayerCollision(player, projectile)
+	{
+		this.rightPlayer.damagePlayer(10);
+		this.leftPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+	}
+
+	onProjectileWithLeftPlayerCollision(player, projectile)
+	{
+		this.leftPlayer.damagePlayer(40);
+		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+	}
+
+	onRightProjectileWithLeftNPCsCollision(leftNPC, projectile)
+	{
+		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+		this.leftNPCGroup.remove(leftNPC, true, true);
+	}
+
+	onLeftProjectileWithRightNPCsCollision(rightNPC, projectile)
+	{
+		this.leftPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+		this.rightNPCGroup.remove(rightNPC, true, true);
+	}
+
+	onRightProjectileCollisionWithSameTower(projectile, tower)
+	{
+		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+	}
+
+	onLeftProjectileCollisionWithSameTower(projectile, tower)
+	{
+		this.leftPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+	}
+
+	onProjectileCollisionWithLeftTower(projectile, leftTower)
+	{
+		this.leftTower.damageTower(1);
+		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
+	}
+
+	onProjectileCollisionWithRightTower(projectile, leftTower)
+	{
+		this.rightTower.damageTower(1);
+		this.leftPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
 	}
 
 	onNPCsCollision(leftNPC, rightNPC)
@@ -130,6 +168,8 @@ export class Game extends Phaser.Scene
 
 	create()
 	{
+		this.gameHasAlreadyFinished = false;
+
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		this.initializePlayers();
 		this.initializeEnemySpawner();
@@ -137,8 +177,8 @@ export class Game extends Phaser.Scene
 		this.handleCollisions();
 		
 		//Creamos variable audio para poder usar el play, stop, etc.
-		var music = this.sound.add('music1');
-		music.play();
+		this.backgroundMusic = this.sound.add('gameBackgroundMusic');
+		this.backgroundMusic.play();
 	}
 
 	update()
@@ -204,6 +244,12 @@ export class Game extends Phaser.Scene
 
 	showBackToMenuButton()
 	{
-		this.backToMenuButton = new Button(630, 500, 'Back To Menu', this, () => console.log('Going to menu screen...'));
+		this.backToMenuButton = new Button(630, 500, 'Back To Menu', this, this.switchToMenuScene);
+	}
+
+	switchToMenuScene(currentScene)
+	{
+		currentScene.backgroundMusic.stop();
+		currentScene.scene.start('menu');
 	}
 }
