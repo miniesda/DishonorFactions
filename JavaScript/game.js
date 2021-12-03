@@ -19,8 +19,14 @@ export class Game extends Phaser.Scene
 		this.leftPlayerVictoryOrDefeatText;
 		this.rightPlayerVictoryOrDefeatText;
 		this.gameHasAlreadyFinished = false;
+		this.gameHasStarted = false;
 		this.backToMenuButton;
 		this.gameConfigurationData;
+		this.initialTimer;
+		this.initialCountdownText;
+		this.initialCountdownSecondsLeft = 5;
+		this.queenElizabethGraphics;
+		this.queensPetGraphics;
 
 		this.backgroundMusic;
 	}
@@ -64,6 +70,45 @@ export class Game extends Phaser.Scene
         this.rightPlayer.create();
 
         this.cursors = this.input.keyboard.createCursorKeys();
+	}
+
+	initializeInitialCountdown()
+	{
+		this.initialCountdownText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, 
+			this.initialCountdownSecondsLeft, {fontSize: 100, strokeThickness: 2}).setOrigin(0.5, 0.5);
+
+		this.queenElizabethGraphics = this.add.image(this.cameras.main.width / 2, (this.cameras.main.height / 2) - 180, 'queen');
+		this.queensPetGraphics = this.add.image((this.cameras.main.width / 2) + 120, (this.cameras.main.height / 2) - 120, 'queensPet');
+
+		this.initialTimer = this.time.addEvent(
+			{
+				delay: 1000,
+				callback: ()=>
+				{
+					this.initialCountdownSecondsLeft -= 1;
+
+					if(this.initialCountdownSecondsLeft == 0)
+					{
+						this.initialCountdownText.setText('¡LUCHA!');
+					}
+					else if(this.initialCountdownSecondsLeft < 0)
+					{
+						this.gameHasStarted = true;
+						this.initialCountdownText.visible = false;
+						this.queenElizabethGraphics.visible = false;
+						this.queensPetGraphics.visible = false;
+
+						this.leftEnemySpawner.startSpawning();
+						this.rightEnemySpawner.startSpawning();
+					}
+					else
+					{
+						console.log(this.initialCountdownSecondsLeft);
+						this.initialCountdownText.setText(this.initialCountdownSecondsLeft);
+					}
+				},
+				repeat: 5
+			});
 	}
 
 	handleCollisions()
@@ -179,10 +224,12 @@ export class Game extends Phaser.Scene
 		//Creamos variable audio para poder usar el play, stop, etc.
 		this.backgroundMusic = this.sound.add('gameBackgroundMusic');
 		this.backgroundMusic.play();
+		this.initializeInitialCountdown();
 	}
 
 	update()
 	{
+		if(!this.gameHasStarted) return;
 		if(this.gameHasAlreadyFinished) return;
 
 		this.leftPlayer.update();
@@ -210,7 +257,6 @@ export class Game extends Phaser.Scene
 	finishGame()
 	{
 		this.gameHasAlreadyFinished = true;
-		console.log('El juego ha terminado');
 
 		//Stop spawning enemies and clear existing ones
 		this.leftEnemySpawner.stopSpawning();

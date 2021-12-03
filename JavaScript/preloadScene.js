@@ -29,6 +29,10 @@ export class Preload extends Phaser.Scene
 		this.load.json('elfChampionData', './JavaScript/JSON/elfChampionData.json');
 		this.load.json('gameConfiguration', './JavaScript/JSON/gameConfiguration.json');
 
+		//Queen
+		this.load.image('queen', './Art/reina.png');
+		this.load.image('queensPet', './Art/Mike.png');
+
 		//NPC
 		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 60, frameHeight: 80 });
 		this.load.spritesheet('elfoNPC', './Art/Minions/minionElfo.png', { frameWidth: 60, frameHeight: 80 });

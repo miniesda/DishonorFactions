@@ -45,7 +45,6 @@ export class EnemySpawner
 	create()
 	{
 		this.createAnimations();
-		this.startSpawning();
 	}
 
 	startSpawning()
