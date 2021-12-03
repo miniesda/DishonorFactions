@@ -56,7 +56,6 @@ export class Player
 
 		this.createShootingRateTimer();
 		this.projectilesGroup = this.scene.physics.add.group();
-		
 	}
 
 	createShootingRateTimer()
@@ -159,11 +158,11 @@ export class Player
 	        else if (this.keyRight.D.isDown)
 	        {
 	            this.playerGraphics.setVelocityX(this.playerData.movementSpeed.x);
-
 	            this.playerGraphics.anims.play(this.playerData.spriteID + 'right', true);
 	            this.isHorizontallyMoving = true;
 	            this.facingDirection = false;
 	        }
+
 	        else
 	        {	        	
 	            this.playerGraphics.setVelocityX(0);
@@ -305,7 +304,7 @@ export class Player
 			velocityMultiplier = 1;
 		}
 
-		var projectile = this.scene.physics.add.sprite(this.playerGraphics.x, this.playerGraphics.y, 'projectile');
+		var projectile = this.scene.physics.add.sprite(this.playerGraphics.x, this.playerGraphics.y, this.playerData.projectileSpriteID);
 		this.projectilesGroup.add(projectile);
 		projectile.setVelocityX(velocityMultiplier * 900);
 	}

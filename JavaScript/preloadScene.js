@@ -33,7 +33,9 @@ export class Preload extends Phaser.Scene
 		this.load.spritesheet('elfoNPC', './Art/Minions/minionElfo.png', { frameWidth: 60, frameHeight: 80 });
 		
 		//Projectile
-		this.load.image('projectile', './Art/projectile.png');
+		this.load.image('orcProjectile', './Art/orcProjectile.png');
+		this.load.image('elfProjectile', './Art/elfProjectile.png');
+		this.load.image('humanProjectile', './Art/humanProjectile.png');
 
 		this.load.image('pantalla', './Art/pantallaPersonajes.png');
         this.load.image('boton', './Art/botonSeleccionarPersonaje.png');

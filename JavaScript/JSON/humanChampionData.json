@@ -1,5 +1,6 @@
 {
 	"spriteID": "humanChampion",
+	"projectileSpriteID": "humanProjectile",
 	"health": 100,
 	"shootingRate": 400,
 	"movementSpeed":
