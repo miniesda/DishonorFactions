@@ -2,6 +2,7 @@ import { Tower } from './tower.js';
 import { EnemySpawner } from './enemySpawner.js';
 import { Player } from './player.js';
 import { Button } from './button.js';
+import { QueenElizabeth } from './queenElizabeth.js';
 
 export class Game extends Phaser.Scene
 {
@@ -10,6 +11,7 @@ export class Game extends Phaser.Scene
 		super({ key: 'game' });
 		this.leftTower;
 		this.rightTower;
+		this.queenElizabeth;
 		this.cursors;
 		this.enemySpawner;
 		this.playerLeft;
@@ -77,9 +79,9 @@ export class Game extends Phaser.Scene
 		this.initialCountdownText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, 
 			this.initialCountdownSecondsLeft, {fontSize: 100, strokeThickness: 2}).setOrigin(0.5, 0.5);
 
-		this.queenElizabethGraphics = this.add.image(this.cameras.main.width / 2, (this.cameras.main.height / 2) - 180, 'queen');
-		this.queensPetGraphics = this.add.image((this.cameras.main.width / 2) + 120, (this.cameras.main.height / 2) - 120, 'queensPet');
-
+		this.queenElizabeth = new QueenElizabeth(this, this.cameras.main.width / 2, (this.cameras.main.height / 2) - 180,
+		 90, 50);
+		
 		this.initialTimer = this.time.addEvent(
 			{
 				delay: 1000,
@@ -95,8 +97,7 @@ export class Game extends Phaser.Scene
 					{
 						this.gameHasStarted = true;
 						this.initialCountdownText.visible = false;
-						this.queenElizabethGraphics.visible = false;
-						this.queensPetGraphics.visible = false;
+						this.queenElizabeth.setVisibility(false);
 
 						this.leftEnemySpawner.startSpawning();
 						this.rightEnemySpawner.startSpawning();

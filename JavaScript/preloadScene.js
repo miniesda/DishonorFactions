@@ -30,8 +30,8 @@ export class Preload extends Phaser.Scene
 		this.load.json('gameConfiguration', './JavaScript/JSON/gameConfiguration.json');
 
 		//Queen
-		this.load.image('queen', './Art/reina.png');
-		this.load.image('queensPet', './Art/Mike.png');
+		this.load.spritesheet('queen', './Art/queenElizabeth.png', {frameWidth: 140, frameHeight: 200});
+		this.load.spritesheet('queensPet', './Art/queensPet.png', {frameWidth: 70, frameHeight: 100});
 
 		//NPC
 		this.load.spritesheet('orcNPC', './Art/Minions/minionOrco.png', { frameWidth: 60, frameHeight: 80 });
