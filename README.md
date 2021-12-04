@@ -50,18 +50,21 @@ Este argumento se centra en el personaje de Issabell II, difunta reina del reino
 
 ### FLUJO DEL JUEGO:
 
-En una partida ambas facciones comenzarán con la vida al máximo. Las tropas saldrán cada x tiempo de ambas bases dirección el bando contrario hasta que lleguen a la base enemiga o se encuentren con otras tropas enemigas y deban luchar. Mientras tanto, los jugadores controlarán a su campeón el cuál puede decidir entre atacar a las tropas enemigas, a la base enemiga o al campeón enemigo. Cuando un campeón muera, deberá esperar un tiempo de 10 segundos. Gana el primero que derribe la torre al contrario.
+En una partida ambas facciones comenzarán con la vida al máximo. Las tropas saldrán cada segundo de una posición aleatoria de ambas bases dirección el bando contrario hasta que lleguen a la base enemiga o se encuentren con otras tropas enemigas y deban luchar. Mientras tanto, los jugadores controlarán a su campeón el cuál puede decidir entre atacar a las tropas enemigas, a la base enemiga o al campeón enemigo. Cuando un campeón muera, deberá esperar un tiempo de 10 segundos. El primero que derribe la torre al contrario ganará la batalla.
 
 ### CONTROLES:
 
-El sistema de controles para el movimiento se basa en el sistema típico de todos los juegos: 
-- __W A S D:__ Movimiento horizontal y vertical.
-- __Click izquierdo:__ Ataque básico.
-- __E:__ Habilidad especial del campeón.
+El sistema de controles para el movimiento se basa en el sistema típico en los juegos pc: 
+-Primer jugador
+    - __W A S D:__ Movimiento horizontal y vertical.
+    - __F:__ Ataque básico.
+-Segundo jugador
+    - __Flechas de dirección:__ Movimiento horizontal y vertical.
+    - __L:__ Ataque básico.
 
 ### CONTROLADORES SOPORTADOS:
 
-1. Teclado y ratón.
+1. Teclado.
 
 ### INTERFAZ:
 
@@ -109,7 +112,7 @@ A continuación, se detallarán las características principales de cada una de 
                 1. Cuando acabas con una tropa recuperas x puntos de vida.
 
     - Tropas:
-        - Guerrero orco.
+        - Minion orco.
 
 3. __Elfos:__
     - Descripción: Las unidades élficas son las más rápidas y ágiles. Pero tanto su vida como su fuerza se ven reducidas.
@@ -119,10 +122,10 @@ A continuación, se detallarán las características principales de cada una de 
                 1. Ataque a distancia (arco).
 
             - Habilidades:
-                1. Cuando mata a una tropa invoca a un guerrero elfo aliado.
+                1. Cuando mata a una tropa invoca a un guerrero elfo aliado debilitado.
 
     - Tropas:
-        - Guerrero elfo.
+        - Minion elfo.
 
 
 5. __Humanos:__
@@ -130,18 +133,17 @@ A continuación, se detallarán las características principales de cada una de 
     - Campeones:
         - _Thomas_:
             - Ataques:
-                1. Ataque cuerpo a cuerpo.
-                2. Ataque a distancia.
+                1. Ataque cuerpo a cuerpo (espada).
 
             - Habilidades:
-                1. Posibilidad de cambiar de ataque _"a distancia"_ a _"cuerpo a cuerpo"_ o viceversa.
+                1. Posibilidad de lanzar su lanza en linea recta, haciendo daño a una oleada completa.
 
     - Tropas:
-        - Guerrero humano.
+        - Minion humano.
 
 ### ESCENARIOS:
 
-El escenario será una zona rectangular con una estética correspondiente a la temática del juego, como por ejemplo un bosque. En la parte izquierda está la base de un jugador, y en la parte derecha la base del jugador contrario. Las bases del escenario no ocuparán mucha zona física. Por último, cabe destacar que los personajes principales se podrán mover por todo el mapa. A continuación, vamos a presentar unas imágenes en las que el escenario de nuestro videojuego se podría parecer a estos.
+El escenario será una zona rectangular con una estética correspondiente a la temática del juego, como por ejemplo un bosque o un páramo. En la parte izquierda está la base de un jugador, y en la parte derecha la base del jugador contrario. Por último, cabe destacar que los personajes principales se podrán mover por todo el mapa. A continuación, vamos a presentar unas imágenes del escenario de nuestro videojuego.
 
 La cámara que se utilizará a lo largo de la partida será una cámara inclinada con un plano picado.
 
