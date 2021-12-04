@@ -20,7 +20,7 @@ export class Menu extends Phaser.Scene
 		this.add.image(0, 0, 'menu').setOrigin(0, 0);		
 
 		this.playButton = new Button(640, 245, 'Jugar', this, this.switchToGameScene);
-		this.creditsButton = new Button(640, 455, 'CRÉDITOS', this, () => console.log('settings'));
+		this.creditsButton = new Button(640, 455, 'CRÉDITOS', this, this.switchToCreditsScene);
 		this.settingsButton = new Button(640, 565, 'SALIR', this, () => console.log('esc'));
 
 		this.backgroundMusic = this.sound.add('menuBackgroundMusic');
@@ -31,5 +31,11 @@ export class Menu extends Phaser.Scene
 	{
 		currentScene.backgroundMusic.stop();
 		currentScene.scene.start('seleccion');
-	}  
+	}
+
+	switchToCreditsScene(currentScene)
+	{
+		currentScene.backgroundMusic.stop();
+		currentScene.scene.start('credits');
+	}
 }
