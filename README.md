@@ -41,8 +41,6 @@ El juego irá destinado sobre todo a jóvenes de entre 10 y 25 años que jueguen
 
 1. **Planteamiento sencillo:** _“Dishonor Factions”_ no posee gran carga histórica, sino que se utiliza un simple argumento para el desarrollo del juego y que los jugadores tengan el objetivo del juego claro.
 
-Este argumento se centra en el personaje de Issabell II, difunta reina del reino de los elfos. Tras su muerte, las facciones de los humanos, orcos y elfos entraron en batalla para poder gobernar el territorio con sus tropas y campeones. 
-
 2. **Dinamismo:** _“Dishonor Factions”_ debe ser dinámico y crear una sensación de tensión y satisfacción al jugador.
 
 3. **Juego táctico:** En _“Dishonor Factions”_, los jugadores no tendrán  tropas infinitas, sino que deberán organizarse de forma inteligente para poder aguantar los ataques del enemigo y controlar su personaje como crean conveniente para ganar.
@@ -149,7 +147,7 @@ La cámara que se utilizará a lo largo de la partida será una cámara inclinad
 
 ### HISTORIA:
 
-El juego no posee una historia como tal, sino que simplemente son tres facciones que se enfrentarán entre ellos por recuperar el honor.
+Este argumento se centra en el personaje de Issabell II, difunta reina del reino de los elfos. Tras su muerte, las facciones de los humanos, orcos y elfos entraron en batalla para poder gobernar el territorio con sus tropas y campeones. 
 
 ### AUDIO:
 
