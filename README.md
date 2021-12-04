@@ -145,6 +145,7 @@ El escenario será una zona rectangular con una estética correspondiente a la t
 
 La cámara que se utilizará a lo largo de la partida será una cámara inclinada con un plano picado.
 
+<img src="./readMeMedia/referencia fondo.png" alt="fondo" width="120"  align="left"/>
 ### HISTORIA:
 
 Este argumento se centra en el personaje de Issabell II, difunta reina del reino de los elfos. Tras su muerte, las facciones de los humanos, orcos y elfos entraron en batalla para poder gobernar el territorio con sus tropas y campeones. 
