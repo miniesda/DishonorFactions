@@ -21,18 +21,18 @@ export class Menu extends Phaser.Scene
 	{		
 		//añadir imagenes a la escena
 		this.add.image(0, 0, 'menu').setOrigin(0, 0);
-		this.playButtonShadow = this.add.image(650, 253, 'botonJugar');
+		this.playButtonShadow = this.add.image(650, 350, 'botonJugar');
 		this.playButtonShadow.tint = 0x000000;
 		this.playButtonShadow.alpha = 0.5;
 		this.playButtonShadow.visible = false;
 
-		this.creditsButtonShadow = this.add.image(650, 463, 'botonCreditos');
+		this.creditsButtonShadow = this.add.image(650, 460, 'botonCreditos');
 		this.creditsButtonShadow.tint = 0x000000;
 		this.creditsButtonShadow.alpha = 0.5;
 		this.creditsButtonShadow.visible = false;
 
-		this.playButton = this.add.image(640, 243, 'botonJugar');
-		this.creditsButton = this.add.image(640, 453, 'botonCreditos');
+		this.playButton = this.add.image(640, 340, 'botonJugar');
+		this.creditsButton = this.add.image(640, 450, 'botonCreditos');
 
 		//hacer las imagenes de los botones interactivas
 		this.playButton.setInteractive();
