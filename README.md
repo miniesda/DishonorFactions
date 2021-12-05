@@ -171,7 +171,7 @@ La comunicación en este juego debe ser fluida. Los jugadores pueden moverse y a
 
 Los jugadores tienen habilidades especiales que el enemigo debe poder observar en el momento de su ejecución.
 
-Por último, el objetivo principal del jugador es derruir la fortificación enemiga, por lo que habrá que informar de la vida que posee la misma en todo momento.
+Por último, el objetivo principal del jugador es derruir la fortificación enemiga, por lo que habrá que informar de la vida que posee la misma en todo momento. Además de esto, los juagdores deberán conocer en todo momento la vida restante de ambos campeones.
 
 ### JUEGOS SIMILARES:
 
