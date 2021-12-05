@@ -3,6 +3,7 @@
 	"projectileSpriteID": "orcProjectile",
 	"health": 100,
 	"shootingRate": 400,
+	"timeUntilReviving": 5000,
 	"movementSpeed":
 	{
 		"x": 200,
