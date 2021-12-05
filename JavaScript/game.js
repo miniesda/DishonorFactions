@@ -29,6 +29,7 @@ export class Game extends Phaser.Scene
 		this.initialCountdownSecondsLeft = 5;
 		this.queenElizabethGraphics;
 		this.queensPetGraphics;
+		this.tictacSound;
 
 		this.backgroundMusic;
 	}
@@ -81,6 +82,8 @@ export class Game extends Phaser.Scene
 
 		this.queenElizabeth = new QueenElizabeth(this, this.cameras.main.width / 2, (this.cameras.main.height / 2) - 180,
 		 90, 50);
+
+		this.tictacSound.play();
 		
 		this.initialTimer = this.time.addEvent(
 			{
@@ -101,6 +104,8 @@ export class Game extends Phaser.Scene
 
 						this.leftEnemySpawner.startSpawning();
 						this.rightEnemySpawner.startSpawning();
+
+						this.tictacSound.stop();
 					}
 					else
 					{
@@ -225,6 +230,7 @@ export class Game extends Phaser.Scene
 		//Creamos variable audio para poder usar el play, stop, etc.
 		this.backgroundMusic = this.sound.add('gameBackgroundMusic');
 		this.backgroundMusic.play();
+		this.tictacSound = this.sound.add('tictacMusic');
 		this.initializeInitialCountdown();
 	}
 
