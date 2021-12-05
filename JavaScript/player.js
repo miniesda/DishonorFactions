@@ -31,6 +31,9 @@ export class Player
 		this.shootingRateTimer = 0;
 		this.canShoot = true;
 		this.projectilesGroup;
+
+		this.isDead = false;
+		this.deadTimer;
 	}
 
 	getPlayerGraphics()
@@ -41,6 +44,11 @@ export class Player
 	getPlayerProjectileGroup()
 	{
 		return this.projectilesGroup;
+	}
+
+	getIsDead()
+	{
+		return this.isDead;
 	}
 
 	create()
@@ -131,6 +139,15 @@ export class Player
 	}
 
 	update()
+	{
+		if(!this.isDead)
+		{
+			this.updateMovementAndShooting();
+			this.updateHealthBarPosition();
+		}
+	}
+
+	updateMovementAndShooting()
 	{
 		this.isHorizontallyMoving = false;
 		this.isVerticallyMoving = false;
@@ -275,8 +292,6 @@ export class Player
 	        	}
 	        }
 	    }
-
-	    this.updateHealthBarPosition();
 	}
 
 	updateHealthBarPosition()
@@ -331,8 +346,34 @@ export class Player
 		if(this.currentHealth < 0)
 		{
 			this.currentHealth = 0;
+			this.killPlayer();
 		}
 
 		this.healthBar.setValue(this.currentHealth);
+	}
+
+	killPlayer()
+	{
+		this.isDead = true;
+		this.playerGraphics.visible = false;
+		this.playerGraphics.body.enable = false;
+		this.deadTimer = this.scene.time.addEvent(
+			{
+				delay: this.playerData.timeUntilReviving,
+				callback: ()=>
+				{
+					this.revivePlayer();
+				},
+				loop: false
+			});
+	}
+
+	revivePlayer()
+	{
+		this.isDead = true;
+		this.currentHealth = this.playerData.health;
+		this.healthBar.setValue(this.currentHealth);
+		this.playerGraphics.visible = true;
+		this.playerGraphics.body.enable = true;
 	}
 }
