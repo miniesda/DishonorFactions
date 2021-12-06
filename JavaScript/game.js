@@ -46,11 +46,11 @@ export class Game extends Phaser.Scene
 	initializeEnemySpawner()
 	{
 		this.leftNPCGroup = this.physics.add.group();
-		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1, this.leftNPCGroup, 200);
+		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1, this.leftNPCGroup, 125);
 		this.leftEnemySpawner.create();
 
 		this.rightNPCGroup = this.physics.add.group();
-		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'elfoNPC', this, 125, -1, this.rightNPCGroup, 200);
+		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'elfoNPC', this, 125, -1, this.rightNPCGroup, 125);
 		this.rightEnemySpawner.create();
 	}
 
@@ -151,13 +151,13 @@ export class Game extends Phaser.Scene
 
 	onProjectileWithRightPlayerCollision(player, projectile)
 	{
-		this.rightPlayer.damagePlayer(10);
+		this.rightPlayer.damagePlayer(15);
 		this.leftPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
 	}
 
 	onProjectileWithLeftPlayerCollision(player, projectile)
 	{
-		this.leftPlayer.damagePlayer(40);
+		this.leftPlayer.damagePlayer(15);
 		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
 	}
 
@@ -207,14 +207,14 @@ export class Game extends Phaser.Scene
 	{
 		this.rightNPCGroup.remove(rightNPC, true, true);
 
-		this.leftTower.damageTower(30);
+		this.leftTower.damageTower(15);
 	}
 
 	onCollisionWithRightTower(leftNPC, towerSprite)
 	{
 		this.leftNPCGroup.remove(leftNPC, true, true);
 
-		this.rightTower.damageTower(30);
+		this.rightTower.damageTower(15);
 	}
 
 	create()

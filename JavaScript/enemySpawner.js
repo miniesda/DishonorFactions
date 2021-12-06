@@ -6,7 +6,7 @@ export class EnemySpawner
 	{
 		this.scene = gameScene;
 		this.nPCSpeed = speed;
-		this.spawningRate = rate * 1000;
+		this.spawningRate = rate * 2000;
 		this.spawningPositionX = x;
 		this.enemySpriteName = enemyName;
 		this.timer;
