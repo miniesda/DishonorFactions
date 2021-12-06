@@ -34,6 +34,8 @@ export class Player
 
 		this.isDead = false;
 		this.deadTimer;
+
+		this.attackSounds;
 	}
 
 	getPlayerGraphics()
@@ -64,6 +66,8 @@ export class Player
 
 		this.createShootingRateTimer();
 		this.projectilesGroup = this.scene.physics.add.group();
+
+		this.attackSounds = this.scene.sound.add('attackSound');
 	}
 
 	createShootingRateTimer()
@@ -308,6 +312,7 @@ export class Player
 
 	shootProjectile()
 	{
+		this.attackSounds.play();
 		var velocityMultiplier = 1;
 
 		if(this.facingDirection)
