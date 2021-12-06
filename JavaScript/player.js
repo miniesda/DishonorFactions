@@ -380,5 +380,6 @@ export class Player
 		this.healthBar.setValue(this.currentHealth);
 		this.playerGraphics.visible = true;
 		this.playerGraphics.body.enable = true;
+		this.isDead = false;
 	}
 }
