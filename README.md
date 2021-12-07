@@ -67,8 +67,17 @@ El sistema de controles para el movimiento se basa en el sistema típico en los 
 ### INTERFAZ:
 
 La interfaz que se realizará será sencilla y sin muchos elementos para no entorpecer la experiencia del usuario. Además, el estilo visual que se emplea para la interfaz será cartoon, en cuanto a la disposición de los elementos en las interfaces será la siguiente:
+- Pantalla de carga: En esta pantalla, se cargarán todos los recursos necesarios para el correcto funcioamiento del videojuego. Para informar al jugador de cómo va progresando este proceso, se mostrará por pantalla una pequeña barra de progreso.
+<img src="./readMeMedia/preloadScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
+
 - Menú principal: En el menú principal estará el nombre del videojuego en la parte central arriba del todo, más abajo, también en la parte central vendrán tres botones uno debajo de otro, con forma de pergamino (acorde a la temática medieval) con las opciones de jugar, ajustes y salir del juego.
+<img src="./readMeMedia/mainMenuScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
+
+- Pantalla de créditos: Una simple pantalla de créditos con los nombres del equipo de desarrollo de Dishonor Factions.
+<img src="./readMeMedia/creditsScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
+
 - Pantalla del juego: En cuanto a la pantalla del juego cada jugador verá la disponibilidad de su habilidad en la parte inferior donde esté colocada su base, dicha habilidad será visible en un círculo con una imagen dentro que vaya acorde a la habilidad, arriba a la derecha habrá un botón que permita al jugador cambiar los ajustes como el sonido, y también poder salir del juego, dicho botón tendrá también una forma circular.
+<img src="./readMeMedia/inGameScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
 
 ### ARTE:
 El arte del videojuego tendrá un estilo Cartoon.
@@ -104,10 +113,7 @@ A continuación, se detallarán las características principales de cada una de 
     - Campeones:
         - _Kalapax_:
             - Ataques:
-                1. Ataque cuerpo a cuerpo en área.
-
-            - Habilidades:
-                1. Cuando acabas con una tropa recuperas x puntos de vida.
+                1. Ataque a distancia lanzando el hacha.
 
     - Tropas:
         - Minion orco.
@@ -117,10 +123,7 @@ A continuación, se detallarán las características principales de cada una de 
     - Campeones:
         - _Noveny_:
             - Ataques:
-                1. Ataque a distancia (arco).
-
-            - Habilidades:
-                1. Cuando mata a una tropa invoca a un guerrero elfo aliado debilitado.
+                1. Ataque a distancia usando su poderoso arco.
 
     - Tropas:
         - Minion elfo.
@@ -131,10 +134,7 @@ A continuación, se detallarán las características principales de cada una de 
     - Campeones:
         - _Thomas_:
             - Ataques:
-                1. Ataque cuerpo a cuerpo (espada).
-
-            - Habilidades:
-                1. Posibilidad de lanzar su lanza en linea recta, haciendo daño a una oleada completa.
+                1. Ataque a distancia lanzando una lanza.
 
     - Tropas:
         - Minion humano.
