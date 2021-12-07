@@ -1,13 +1,15 @@
 {
 	"spriteID": "orcChampion",
 	"projectileSpriteID": "orcProjectile",
+	"projectileDamageToPlayer": 25,
+	"projectileDamageToTower": 5,
 	"health": 100,
 	"shootingRate": 400,
 	"timeUntilReviving": 5000,
 	"movementSpeed":
 	{
-		"x": 200,
-		"y": 100
+		"x": 100,
+		"y": 80
 	},
 	"animations":
 	{

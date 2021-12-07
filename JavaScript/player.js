@@ -53,6 +53,16 @@ export class Player
 		return this.isDead;
 	}
 
+	getProjectileDamageToPlayer()
+	{
+		return this.playerData.projectileDamageToPlayer;
+	}
+
+	getProjectileDamageToTower()
+	{
+		return this.playerData.projectileDamageToTower;
+	}
+
 	create()
 	{
 		this.healthBar = new HealthBar(this.scene, this.currentHealth, this.healthBarPositionX, this.healthBarPositionY);
@@ -375,7 +385,6 @@ export class Player
 
 	revivePlayer()
 	{
-		this.isDead = true;
 		this.currentHealth = this.playerData.health;
 		this.healthBar.setValue(this.currentHealth);
 		this.playerGraphics.visible = true;

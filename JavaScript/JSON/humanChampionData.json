@@ -1,12 +1,14 @@
 {
 	"spriteID": "humanChampion",
 	"projectileSpriteID": "humanProjectile",
+	"projectileDamageToPlayer": 15,
+	"projectileDamageToTower": 3,
 	"health": 100,
-	"shootingRate": 400,
+	"shootingRate": 350,
 	"timeUntilReviving": 5000,
 	"movementSpeed":
 	{
-		"x": 100,
+		"x": 130,
 		"y": 100
 	},
 	"animations":

@@ -151,13 +151,13 @@ export class Game extends Phaser.Scene
 
 	onProjectileWithRightPlayerCollision(player, projectile)
 	{
-		this.rightPlayer.damagePlayer(15);
+		this.rightPlayer.damagePlayer(this.leftPlayer.getProjectileDamageToPlayer());
 		this.leftPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
 	}
 
 	onProjectileWithLeftPlayerCollision(player, projectile)
 	{
-		this.leftPlayer.damagePlayer(15);
+		this.leftPlayer.damagePlayer(this.rightPlayer.getProjectileDamageToPlayer());
 		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
 	}
 
@@ -185,13 +185,13 @@ export class Game extends Phaser.Scene
 
 	onProjectileCollisionWithLeftTower(projectile, leftTower)
 	{
-		this.leftTower.damageTower(1);
+		this.leftTower.damageTower(this.rightPlayer.getProjectileDamageToTower());
 		this.rightPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
 	}
 
 	onProjectileCollisionWithRightTower(projectile, leftTower)
 	{
-		this.rightTower.damageTower(1);
+		this.rightTower.damageTower(this.leftPlayer.getProjectileDamageToTower());
 		this.leftPlayer.getPlayerProjectileGroup().remove(projectile, true, true);
 	}
 
