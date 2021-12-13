@@ -17,12 +17,12 @@ public class PlayerRestController {
 	
 	
 	@RequestMapping (method=RequestMethod.GET)
-	public ArrayList<Integer> getPosPlayer() {
+	public int getPosPlayer() {
 		return player.getPos();
 	}
 	
 	@RequestMapping (method=RequestMethod.PUT)
-	public ResponseEntity<Boolean> setPosPlayer(@RequestBody ArrayList<Integer> newPos) {
+	public ResponseEntity<Boolean> setPosPlayer(@RequestBody int newPos) {
 		player.setPos(newPos);
 		return new ResponseEntity<>(true, HttpStatus.CREATED); 
 	}

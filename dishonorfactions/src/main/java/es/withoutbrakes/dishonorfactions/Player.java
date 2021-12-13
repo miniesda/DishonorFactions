@@ -4,18 +4,19 @@ import java.util.ArrayList;
 
 public class Player {
 	
-	private ArrayList<Integer> pos = new ArrayList<>(2);
+	//private ArrayList<Integer> pos = new ArrayList<>(2);
+	private int pos;
 	private boolean shoot;
 	
 	public Player() {
 		
 	}
 
-	public ArrayList<Integer> getPos() {
+	public int getPos() {
 		return pos;
 	}
 
-	public void setPos(ArrayList<Integer> pos) {
+	public void setPos(int pos) {
 		this.pos = pos;
 	}
 

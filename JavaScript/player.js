@@ -159,6 +159,21 @@ export class Player
 			this.updateMovementAndShooting();
 			this.updateHealthBarPosition();
 		}
+
+		$.ajax({
+			type: "PUT",
+			headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+            },
+			url: "http://localhost:8080/player",
+			data: JSON.stringify("{1}"),
+			dataType: "json"
+
+		}).done(function(data){
+			console.log("done");
+		});
+
 	}
 
 	updateMovementAndShooting()
