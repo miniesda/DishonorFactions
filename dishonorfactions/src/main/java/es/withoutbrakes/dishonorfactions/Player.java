@@ -1,7 +1,8 @@
 package es.withoutbrakes.dishonorfactions;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-
+//import java.util.ArrayList;
+@Component
 public class Player {
 	
 	//private ArrayList<Integer> pos = new ArrayList<>(2);

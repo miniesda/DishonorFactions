@@ -2,7 +2,7 @@ package es.withoutbrakes.dishonorfactions;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +27,8 @@ public class PlayerRestController {
 		return new ResponseEntity<>(true, HttpStatus.CREATED); 
 	}
 	
-	@RequestMapping (method=RequestMethod.GET)
-	public boolean getShoot() {
-		return player.isShoot();
-	}
+	//@RequestMapping (method=RequestMethod.GET)
+	//public boolean getShoot() {
+	//	return player.isShoot();
+	//}
 }
