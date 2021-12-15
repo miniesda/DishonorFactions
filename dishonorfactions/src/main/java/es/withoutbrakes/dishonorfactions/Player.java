@@ -1,24 +1,22 @@
 package es.withoutbrakes.dishonorfactions;
 import org.springframework.stereotype.Component;
 
-//import java.util.ArrayList;
 @Component
 public class Player {
 	
-	//private ArrayList<Integer> pos = new ArrayList<>(2);
-	private int pos;
+	private Position2D position;
 	private boolean shoot;
 	
 	public Player() {
 		
 	}
 
-	public int getPos() {
-		return pos;
+	public Position2D getPosition() {
+		return position;
 	}
 
-	public void setPos(int pos) {
-		this.pos = pos;
+	public void setPosition(Position2D pos) {
+		this.position = pos;
 	}
 
 	public boolean isShoot() {

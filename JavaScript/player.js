@@ -2,9 +2,10 @@ import { HealthBar } from './HealthBar.js';
 
 export class Player
 {
-	constructor(gameScene, x, y, usingKeys, healthBarHorizontalDisp, healthBarVerticalDisp, data)
+	constructor(gameScene, x, y, usingKeys, healthBarHorizontalDisp, healthBarVerticalDisp, data, side)
 	{
 		this.scene = gameScene;
+		this.playerSide = side;
 		this.playerData = this.scene.cache.json.get(data);
 		this.initialPositionX = x;
 		this.initialPositionY = y;
@@ -36,6 +37,13 @@ export class Player
 		this.deadTimer;
 
 		this.attackSounds;
+
+		//JSON Variables
+		this.currentPositionJSON = 
+		{
+			x: this.initialPositionX,
+			y: this.initialPositionY
+		}
 	}
 
 	getPlayerGraphics()
@@ -161,19 +169,17 @@ export class Player
 		}
 
 		$.ajax({
-			type: "PUT",
-			headers: { 
-                'Accept': 'application/json',
-                'Content-Type': 'application/json' 
-            },
-			url: "http://localhost:8080/player",
-			data: JSON.stringify("{1}"),
-			dataType: "json"
+            type: "GET",
+            url: "http://localhost:8080/player/" + this.playerSide,
+            dataType: "json"
 
-		}).done(function(data){
-			console.log("done");
-		});
-
+        }).done(function(data)
+        {
+            console.log(JSON.stringify("x = " + data.x + " y = " + data.y));
+        }).fail(function(data)
+        {
+            console.log(JSON.stringify(data));
+        });
 	}
 
 	updateMovementAndShooting()
@@ -321,6 +327,33 @@ export class Player
 	        	}
 	        }
 	    }
+
+	    this.updateMovementJSONVariable();
+	    this.updatePlayerMovementPositionAJAX();
+	}
+
+	updateMovementJSONVariable()
+	{
+		this.currentPositionJSON.x = this.playerGraphics.x;
+	    this.currentPositionJSON.y = this.playerGraphics.y;
+	}
+
+	updatePlayerMovementPositionAJAX()
+	{
+		$.ajax({
+            type: "PUT",
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+            },
+            url: "http://localhost:8080/player/" + this.playerSide,
+            data: JSON.stringify(this.currentPositionJSON),
+            processData: false,
+            dataType: "json"
+
+        }).done(function(data){
+            console.log("done");
+        });
 	}
 
 	updateHealthBarPosition()

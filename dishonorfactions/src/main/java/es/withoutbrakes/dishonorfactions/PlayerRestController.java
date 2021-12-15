@@ -13,22 +13,44 @@ import org.springframework.http.ResponseEntity;
 public class PlayerRestController {
 	
 	@Autowired
-	private Player player;
+	private Player rightPlayer;
+	
+	@Autowired
+	private Player leftPlayer;
 	
 	
-	@RequestMapping (method=RequestMethod.GET)
-	public int getPosPlayer() {
-		return player.getPos();
+	@RequestMapping (value= "/{playerID}", method=RequestMethod.GET)
+	public Position2D getPosPlayer(@PathVariable String playerID) {
+		if(playerID.compareTo("left") == 0)
+		{
+			return leftPlayer.getPosition();
+		}
+		else if(playerID.compareTo("right") == 0)
+		{
+			return rightPlayer.getPosition();
+		}
+		else
+		{
+			return new Position2D(-1000, -1000);
+		}
 	}
 	
-	@RequestMapping (method=RequestMethod.PUT)
-	public ResponseEntity<Boolean> setPosPlayer(@RequestBody int newPos) {
-		player.setPos(newPos);
-		return new ResponseEntity<>(true, HttpStatus.CREATED); 
+	@RequestMapping (value= "/{playerID}", method=RequestMethod.PUT)
+	public ResponseEntity<Boolean> setPosPlayer(@RequestBody Position2D newPos, @PathVariable String playerID) {
+		
+		if(playerID.compareTo("left") == 0)
+		{
+			leftPlayer.setPosition(newPos);
+			return new ResponseEntity<>(true, HttpStatus.CREATED);
+		}
+		else if(playerID.compareTo("right") == 0)
+		{
+			rightPlayer.setPosition(newPos);
+			return new ResponseEntity<>(true, HttpStatus.CREATED);
+		}
+		else
+		{
+			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+		}
 	}
-	
-	//@RequestMapping (method=RequestMethod.GET)
-	//public boolean getShoot() {
-	//	return player.isShoot();
-	//}
 }
