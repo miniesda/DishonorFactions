@@ -39,4 +39,7 @@ const config =
 	
 }
 
-var game = new Phaser.Game(config);
+$(document).ready(function()
+{
+	var game = new Phaser.Game(config);
+});
