@@ -31,8 +31,22 @@ export class UsernameScene extends Phaser.Scene
 	        let name = this.nameInput.getChildByName("name");
 	        if(name.value != "")
 	        {
-	            console.log("Hello, " + name.value);
-	            name.value = "";
+	            $.ajax(
+		        {
+		            type: "POST",
+		            headers: { 
+		                'Accept': 'application/json',
+		                'Content-Type': 'application/json' 
+		            },
+		            url: "http://localhost:8080/username/connect",
+		            data: JSON.stringify(name.value),
+		            dataType: "json"
+		        }).done(function(data)
+		        {
+		            console.log("Hello, " + name.value);
+		        });
+
+		        name.value = "";
 	            this.scene.start('menu');
 	        }
 	    });

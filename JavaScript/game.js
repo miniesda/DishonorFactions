@@ -52,6 +52,16 @@ export class Game extends Phaser.Scene
 		this.rightNPCGroup = this.physics.add.group();
 		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'elfoNPC', this, 125, -1, this.rightNPCGroup, 125);
 		this.rightEnemySpawner.create();
+
+		////BORRAR ESTOOO
+		///
+		////SUUUUUU
+		$.ajax(
+        {
+            type: "DELETE",
+            url: "http://localhost:8080/username/disconnect/Daniel",
+            success: function(){console.log("borraod");}
+        });
 	}
 
 	initializeTowers()
