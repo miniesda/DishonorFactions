@@ -7,6 +7,9 @@ export class Preload extends Phaser.Scene
 
 	loadResources()
 	{
+		//HTML Resources
+		this.load.html('usernameInputField', './HTML/usernameInputField.html');
+
 		//Background		
 		this.load.image('background', './Art/fondo3.png');
 		this.load.image('menu', './Art/menu.png');
@@ -100,7 +103,7 @@ export class Preload extends Phaser.Scene
 			progressBox.destroy();
 			loadingText.destroy();
 
-			this.scene.start('menu');
+			this.scene.start('username');
 		}
 
 		this.load.on('complete', complete, {scene: this.scene});

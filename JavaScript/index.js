@@ -1,5 +1,6 @@
 import { Game } from './game.js';
 import { Menu } from './menu.js';
+import { UsernameScene } from './usernameScreen.js';
 import { Preload } from './preloadScene.js';
 import { Seleccion } from './seleccion.js';
 import { Credits } from './credits.js';
@@ -23,7 +24,11 @@ const config =
 			height: 720
 		}
 	},
-	scene: [Preload, Menu, Credits, Seleccion, Game],
+	dom:
+	{
+        createContainer: true
+    },
+	scene: [Preload, UsernameScene, Menu, Credits, Seleccion, Game],
 	physics: 
 	{
 		default: 'arcade',
