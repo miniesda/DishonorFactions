@@ -27,10 +27,13 @@ export class Preload extends Phaser.Scene
 		this.load.spritesheet('humanChampion', './Art/Champions/humanChampion.png', { frameWidth: 70, frameHeight: 100 });
 		this.load.spritesheet('orcChampion', './Art/Champions/orcChampion.png', { frameWidth: 70, frameHeight: 100 });
 		this.load.spritesheet('elfChampion', './Art/Champions/elfChampion.png', { frameWidth: 70, frameHeight: 100 });
+		
+		//JSON
 		this.load.json('humanChampionData', './JavaScript/JSON/humanChampionData.json');
 		this.load.json('orcChampionData', './JavaScript/JSON/orcChampionData.json');
 		this.load.json('elfChampionData', './JavaScript/JSON/elfChampionData.json');
 		this.load.json('gameConfiguration', './JavaScript/JSON/gameConfiguration.json');
+		this.load.json('endOfTheGameConfiguration', './JavaScript/JSON/endOfTheGameConfigurations.json');
 
 		//Queen
 		this.load.spritesheet('queen', './Art/queenElizabeth.png', {frameWidth: 140, frameHeight: 200});
@@ -54,10 +57,13 @@ export class Preload extends Phaser.Scene
 		this.load.image('defeatText', './Art/derrota.png');
 		this.load.image('victoryText', './Art/victoria.png');
 		this.load.image('goBackButton', './Art/goBackButton.png');
-		this.load.image('botonJugar', './Art/botonJugar.png')
-		this.load.image('botonPersonajes', './Art/botonPersonajes.png')
-		this.load.image('botonCreditos', './Art/botonCreditos.png')
-		this.load.image('botonSalir', './Art/botonSalir.png')
+		this.load.image('botonJugar', './Art/botonJugar.png');
+		this.load.image('botonPersonajes', './Art/botonPersonajes.png');
+		this.load.image('botonCreditos', './Art/botonCreditos.png');
+		this.load.image('botonSalir', './Art/botonSalir.png');
+		this.load.image('humanVictoryScreen', './Art/humanVictoryScreen.png');
+		this.load.image('elfVictoryScreen', './Art/elfVictoryScreen.png');
+		this.load.image('orcVictoryScreen', './Art/orcVictoryScreen.png');
 	}
 
 	loadAudios()

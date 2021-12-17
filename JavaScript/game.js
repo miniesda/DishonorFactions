@@ -285,34 +285,18 @@ export class Game extends Phaser.Scene
 		this.leftPlayer.stopPlayerMovement();
 		this.rightPlayer.stopPlayerMovement();
 
-		//Print victory and defeat texts
-		this.showVictoryAndDefeatTexts();
-		
-		this.showBackToMenuButton();
-	}
+		var endOfTheGameConfiguration = this.cache.json.get('endOfTheGameConfiguration');
 
-	showVictoryAndDefeatTexts()
-	{
 		if(this.leftTower.getHealth() == 0)
 		{
-			this.leftPlayerVictoryOrDefeatText = this.add.image(350, 300, 'defeatText');
-			this.rightPlayerVictoryOrDefeatText = this.add.image(850, 300, 'victoryText');
+			endOfTheGameConfiguration.winningTeam = this.gameConfigurationData.rightPlayer;
 		}
-		else if(this.rightTower.getHealth() == 0)
+		else
 		{
-			this.leftPlayerVictoryOrDefeatText = this.add.image(350, 300, 'victoryText');
-			this.rightPlayerVictoryOrDefeatText = this.add.image(850, 300, 'defeatText');
+			endOfTheGameConfiguration.winningTeam = this.gameConfigurationData.leftPlayer;
 		}
-	}
-
-	showBackToMenuButton()
-	{
-		this.backToMenuButton = new Button(630, 500, 'Back To Menu', this, this.switchToMenuScene);
-	}
-
-	switchToMenuScene(currentScene)
-	{
-		currentScene.backgroundMusic.stop();
-		currentScene.scene.start('menu');
+		
+		this.backgroundMusic.stop();
+		this.scene.start('endOfTheGame', endOfTheGameConfiguration);
 	}
 }
