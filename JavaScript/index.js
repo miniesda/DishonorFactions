@@ -5,6 +5,7 @@ import { Preload } from './preloadScene.js';
 import { Seleccion } from './seleccion.js';
 import { Credits } from './credits.js';
 import { EndOfTheGameScene } from './endOfTheGameScene.js';
+import { Controls} from './controlsScene.js';
 
 const config = 
 {
@@ -29,7 +30,7 @@ const config =
 	{
         createContainer: true
     },
-	scene: [Preload, UsernameScene, Menu, Credits, Seleccion, Game, EndOfTheGameScene],
+	scene: [Preload, UsernameScene, Controls, Menu, Credits, Seleccion, Game, EndOfTheGameScene],
 	physics: 
 	{
 		default: 'arcade',
