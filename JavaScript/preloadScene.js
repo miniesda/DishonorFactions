@@ -11,6 +11,8 @@ export class Preload extends Phaser.Scene
 		this.load.image('background', './Art/fondo3.png');
 		this.load.image('menu', './Art/menu.png');
 		this.load.image('creditsBackground', './Art/creditsScreen.png');
+		this.load.image('pauseBackground','./Art/menuPausa.png');
+		this.load.image('controlsBackground','./Art/controls.png')
 
 		//Particle effects
 		this.load.atlas('explosion', './Art/Particles/explosion.png', './Art/Particles/explosion.json');
@@ -46,15 +48,16 @@ export class Preload extends Phaser.Scene
         this.load.image('boton', './Art/botonSeleccionarPersonaje.png');
 		this.load.image('boton2', './Art/botonSeleccionarPersonaje.png');
 		this.load.image('boton3', './Art/botonSeleccionarPersonaje.png');
-
+	
 		//UI
 		this.load.image('defeatText', './Art/derrota.png');
 		this.load.image('victoryText', './Art/victoria.png');
 		this.load.image('goBackButton', './Art/goBackButton.png');
-		this.load.image('botonJugar', './Art/botonJugar.png')
-		this.load.image('botonPersonajes', './Art/botonPersonajes.png')
-		this.load.image('botonCreditos', './Art/botonCreditos.png')
-		this.load.image('botonSalir', './Art/botonSalir.png')
+		this.load.image('botonJugar', './Art/botonJugar.png');
+		this.load.image('botonPersonajes', './Art/botonPersonajes.png');
+		this.load.image('botonCreditos', './Art/botonCreditos.png');
+		this.load.image('botonSalir', './Art/botonSalir.png');
+		this.load.image('botonControles','./Art/botonControles.png');
 	}
 
 	loadAudios()
