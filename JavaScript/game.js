@@ -227,9 +227,22 @@ export class Game extends Phaser.Scene
 		this.rightTower.damageTower(15);
 	}
 
+	pauseGame()
+	{
+		this.scene.pause();
+		this.switchToPauseScene(this);
+	}
+
+	switchToPauseScene(currentScene)
+	{
+		currentScene.scene.start('pause');
+	}
+
 	create()
 	{
 		this.gameHasAlreadyFinished = false;
+
+		this.input.keyboard.on('keydown_E', this.pauseGame, this);
 
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		this.initializePlayers();
