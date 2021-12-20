@@ -17,6 +17,7 @@ export class UsernameScene extends Phaser.Scene
 
 	create()
 	{
+		//Create a few variables like texts and buttons
 		this.nameInput = this.add.dom(640, 360).createFromCache('usernameInputField');
 		this.usernameValue = this.nameInput.getChildByName("name");
 	    this.passwordValue = this.nameInput.getChildByName("password");
@@ -45,8 +46,8 @@ export class UsernameScene extends Phaser.Scene
 		this.changeEnterModeButton.on('pointerover', () => this.changeEnterModeButton.setColor("#FC814A"));
         this.changeEnterModeButton.on('pointerout', () => this.changeEnterModeButton.setColor("#BFBFBF"));
 
+        //Add an event for pressing Enter key
 		this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-
 		this.returnKey.on("down", event =>
 		{
 	        if(this.usernameValue.value != "" && this.passwordValue.value != "")

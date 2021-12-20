@@ -18,7 +18,7 @@ public class UsernameRestController {
 	public ResponseEntity<Boolean> ConnectUser(@RequestBody String name)
 	{
 		Username newUsername = new Username(name);
-		activeUsersArray.AddUser(newUsername);
+		activeUsersArray.addUser(newUsername);
 		return new ResponseEntity<>(true, HttpStatus.CREATED);
 	}
 	
@@ -48,6 +48,7 @@ public class UsernameRestController {
 		Boolean addedSuccesfully = usernamesDataBase.addUsername(newUsername);
 		if(addedSuccesfully)
 		{
+			activeUsersArray.addUser(newUsername);
 			return new ResponseEntity<>(true, HttpStatus.CREATED);
 		}
 		else
@@ -62,6 +63,7 @@ public class UsernameRestController {
 		Boolean isUserAndPasswordCorrect = usernamesDataBase.isUserInDataBase(username);
 		if(isUserAndPasswordCorrect)
 		{
+			activeUsersArray.addUser(username);
 			return new ResponseEntity<>(true, HttpStatus.CREATED);
 		}
 		else

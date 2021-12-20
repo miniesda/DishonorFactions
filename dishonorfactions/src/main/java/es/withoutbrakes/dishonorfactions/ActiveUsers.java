@@ -20,7 +20,7 @@ public class ActiveUsers {
 		this.activeUsersArray = activeUsersArray;
 	}
 	
-	public void AddUser(Username newUsername)
+	public void addUser(Username newUsername)
 	{
 		activeUsersArray.add(newUsername);
 	}
