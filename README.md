@@ -20,6 +20,8 @@
         - Música.
         - Efectos de sonido.
     - Funcionamiento de la red en el juego.
+        - Funcionamiento del servidor
+        - Clases y métodos implementados
 - Juegos similares.
 
 Proyecto colaborativo de la asignatura de Juegos en Red
@@ -166,12 +168,19 @@ El juego tendrá distintos audios, en primer lugar habrá un audio para la inter
     - Sonidos de interfaz gráfica.
 
 ### FUNCIONAMIENTO DE LA RED EN EL JUEGO:
+** Funcionamiento del servidor del juego**
+Se ha hecho uso de el programa eclipse, con la extensión de java enterprise utilizando un lenguaje basado en java con herramientas Maven y Spring.
 
-La comunicación en este juego debe ser fluida. Los jugadores pueden moverse y atacar, por lo que esta información debe traspasarse en todo momento dentro del juego. Además, en las partidas hay unos pequeños jugadores controlados por la IA que también poseen la característica de atacar. 
+La comunicación de este juego se lleva a cabo a través de mensajes JSON con los datos necesarios. Los jugadores podrán moverse y atacar siendo esta información traspasada entre ambos. Esta información se deberá enviar a los usuarios según las acciones que estos realicen: moverse, atacar.
 
-Los jugadores tienen habilidades especiales que el enemigo debe poder observar en el momento de su ejecución.
+Nuestro videojuego cuenta con un sistema de Nicks los cuales serán unicos a cada jugador y permitirá que los jugadores puedan identificarse.
 
-Por último, el objetivo principal del jugador es derruir la fortificación enemiga, por lo que habrá que informar de la vida que posee la misma en todo momento. Además de esto, los juagdores deberán conocer en todo momento la vida restante de ambos campeones.
+En primer lugar, los jugadores deberán logearse y podrán buscar una partida en linea 
+
+** Funcionamiento del servidor del juego**
+
+
+
 
 ### JUEGOS SIMILARES:
 
