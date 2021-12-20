@@ -12,6 +12,7 @@ export class Menu extends Phaser.Scene
 		this.backgroundMusic;
 		this.settingsButton;
 		this.controlsButton;
+		this.exitButton;
 	}
 	
 	//////////////////////////////////////////////////////////////////
@@ -37,15 +38,21 @@ export class Menu extends Phaser.Scene
 		this.controlsButtonShadow.alpha = 0.5;
 		this.controlsButtonShadow.visible = false;
 
+		this.exitButtonShadow = this.add.image(650, 610, 'botonSalir');
+		this.exitButtonShadow.tint = 0x000000;
+		this.exitButtonShadow.alpha = 0.5;
+		this.exitButtonShadow.visible = false;
 
 		this.playButton = this.add.image(640, 300, 'botonJugar');
 		this.creditsButton = this.add.image(640, 400, 'botonCreditos');
 		this.controlsButton = this.add.image(640, 500, 'botonControles');
+		this.exitButton = this.add.image(640, 600, 'botonSalir');
 
 		//hacer las imagenes de los botones interactivas
 		this.playButton.setInteractive();
 		this.creditsButton.setInteractive();
 		this.controlsButton.setInteractive();
+		this.exitButton.setInteractive();
 
 		//funciones de cada botón
 		this.playButton.on('pointerup', () => this.switchToSelectionScene(this));
@@ -59,6 +66,10 @@ export class Menu extends Phaser.Scene
 		this.controlsButton.on('pointerup', () => this.switchToControlsScene(this));
 		this.controlsButton.on('pointerover', () => this.enableButtonShadow(this.controlsButtonShadow));
         this.controlsButton.on('pointerout', () => this.disableButtonShadow(this.controlsButtonShadow));
+
+		this.exitButton.on('pointerup', () => this.scene.stop());
+		this.exitButton.on('pointerover', () => this.enableButtonShadow(this.exitButtonShadow));
+        this.exitButton.on('pointerout', () => this.disableButtonShadow(this.exitButtonShadow));
 
 
 		this.backgroundMusic = this.sound.add('menuBackgroundMusic');
