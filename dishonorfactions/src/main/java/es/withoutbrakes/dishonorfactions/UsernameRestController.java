@@ -11,6 +11,8 @@ public class UsernameRestController {
 
 	@Autowired
 	private ActiveUsers activeUsersArray;
+	@Autowired
+	private UsernameDataBase usernamesDataBase;
 	
 	@RequestMapping(value = "/connect", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> ConnectUser(@RequestBody String name)
@@ -32,6 +34,25 @@ public class UsernameRestController {
 		else
 		{
 			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	public void signIn()
+	{
+		
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> register(@RequestBody Username newUsername)
+	{
+		Boolean addedSuccesfully = usernamesDataBase.addUsername(newUsername);
+		if(addedSuccesfully)
+		{
+			return new ResponseEntity<>(true, HttpStatus.CREATED);
+		}
+		else
+		{
+			return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
 		}
 	}
 }

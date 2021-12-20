@@ -29,8 +29,15 @@ export class UsernameScene extends Phaser.Scene
 		this.returnKey.on("down", event =>
 		{
 	        let name = this.nameInput.getChildByName("name");
-	        if(name.value != "")
+	        let password = this.nameInput.getChildByName("password");
+	        if(name.value != "" && password.value != "")
 	        {
+	        	var username = 
+	        	{
+	        		"username": name.value,
+	        		"password": password.value
+	        	}
+
 	            $.ajax(
 		        {
 		            type: "POST",
@@ -38,8 +45,8 @@ export class UsernameScene extends Phaser.Scene
 		                'Accept': 'application/json',
 		                'Content-Type': 'application/json' 
 		            },
-		            url: "http://localhost:8080/username/connect",
-		            data: JSON.stringify(name.value),
+		            url: "http://localhost:8080/username/register",
+		            data: JSON.stringify(username),
 		            dataType: "json"
 		        }).done(function(data)
 		        {
@@ -47,6 +54,7 @@ export class UsernameScene extends Phaser.Scene
 		        });
 
 		        name.value = "";
+		        password.value = "";
 	            this.scene.start('menu');
 	        }
 	    });
