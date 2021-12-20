@@ -70,7 +70,7 @@ El sistema de controles para el movimiento se basa en el sistema típico en los 
 
 La interfaz que se realizará será sencilla y sin muchos elementos para no entorpecer la experiencia del usuario. Además, el estilo visual que se emplea para la interfaz será cartoon, en cuanto a la disposición de los elementos en las interfaces será la siguiente:
 - Pantalla de carga: En esta pantalla, se cargarán todos los recursos necesarios para el correcto funcioamiento del videojuego. Para informar al jugador de cómo va progresando este proceso, se mostrará por pantalla una pequeña barra de progreso.
-<img src="./readMeMedia/preloadScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/preloadScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
 
 - Menú principal: En el menú principal estará el nombre del videojuego en la parte central arriba del todo, más abajo, también en la parte central vendrán tres botones uno debajo de otro, con forma de pergamino (acorde a la temática medieval) con las opciones de jugar, ajustes y salir del juego.
 <img src="./readMeMedia/mainMenuScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
