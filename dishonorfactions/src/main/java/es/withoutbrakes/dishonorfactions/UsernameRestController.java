@@ -52,6 +52,20 @@ public class UsernameRestController {
 		}
 		else
 		{
+			return new ResponseEntity<>(false, HttpStatus.CONFLICT);
+		}
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.PUT)
+	public ResponseEntity<Boolean> login(@RequestBody Username username)
+	{
+		Boolean isUserAndPasswordCorrect = usernamesDataBase.isUserInDataBase(username);
+		if(isUserAndPasswordCorrect)
+		{
+			return new ResponseEntity<>(true, HttpStatus.CREATED);
+		}
+		else
+		{
 			return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
 		}
 	}

@@ -112,4 +112,21 @@ public class UsernameDataBase
 			System.out.println(e);
 		}
 	}
+	
+	public Boolean isUserInDataBase(Username user)
+	{
+		int i = 0;
+		Boolean found = false;
+		while(!found && i < usernamesRegistered.size())
+		{
+			if(usernamesRegistered.get(i).getUsername().compareTo(user.getUsername()) == 0 &&
+					usernamesRegistered.get(i).getPassword().compareTo(user.getPassword()) == 0)
+			{
+				found = true;
+			}
+			i++;
+		}
+		
+		return found;
+	}
 }

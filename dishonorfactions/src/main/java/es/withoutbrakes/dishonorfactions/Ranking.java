@@ -56,7 +56,6 @@ public class Ranking {
 		                aux = rows.get(j + 1);
 		                rows.add(j + 1, rows.get(j));
 		                rows.add(j, aux);
-		                
 		            }
 		        }
 		    }

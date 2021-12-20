@@ -27,8 +27,6 @@ export class Game extends Phaser.Scene
 		this.initialTimer;
 		this.initialCountdownText;
 		this.initialCountdownSecondsLeft = 5;
-		this.queenElizabethGraphics;
-		this.queensPetGraphics;
 		this.tictacSound;
 
 		this.backgroundMusic;
