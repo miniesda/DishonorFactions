@@ -1,0 +1,39 @@
+{
+	"spriteID": "orcChampion",
+	"projectileSpriteID": "orcProjectile",
+	"projectileDamageToPlayer": 25,
+	"projectileDamageToTower": 5,
+	"health": 100,
+	"shootingRate": 400,
+	"timeUntilReviving": 5000,
+	"movementSpeed":
+	{
+		"x": 100,
+		"y": 80
+	},
+	"animations":
+	{
+		"left":
+		{
+			"start": 11,
+			"end": 15
+		},
+		"right":
+		{
+			"start": 0,
+			"end": 4
+		},
+		"leftIdle":
+		{
+			"start": 11
+		},
+		"rightIdle":
+		{
+			"start": 4
+		},
+		"attack":
+		{
+			"start": 4
+		}
+	}
+}

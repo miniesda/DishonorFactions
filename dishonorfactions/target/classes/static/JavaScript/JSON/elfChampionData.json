@@ -1,0 +1,39 @@
+{
+	"spriteID": "elfChampion",
+	"projectileSpriteID": "elfProjectile",
+	"projectileDamageToPlayer": 15,
+	"projectileDamageToTower": 3,
+	"health": 100,
+	"shootingRate": 300,
+	"timeUntilReviving": 5000,
+	"movementSpeed":
+	{
+		"x": 160,
+		"y": 120
+	},
+	"animations":
+	{
+		"left":
+		{
+			"start": 11,
+			"end": 15
+		},
+		"right":
+		{
+			"start": 0,
+			"end": 4
+		},
+		"leftIdle":
+		{
+			"start": 13
+		},
+		"rightIdle":
+		{
+			"start": 2
+		},
+		"attack":
+		{
+			"start": 4
+		}
+	}
+}
