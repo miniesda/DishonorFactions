@@ -73,13 +73,13 @@ La interfaz que se realizará será sencilla y sin muchos elementos para no ento
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/preloadScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
 
 - Menú principal: En el menú principal estará el nombre del videojuego en la parte central arriba del todo, más abajo, también en la parte central vendrán tres botones uno debajo de otro, con forma de pergamino (acorde a la temática medieval) con las opciones de jugar, ajustes y salir del juego.
-<img src="./readMeMedia/mainMenuScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/mainMenuScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
 
 - Pantalla de créditos: Una simple pantalla de créditos con los nombres del equipo de desarrollo de Dishonor Factions.
-<img src="./readMeMedia/creditsScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/creditsScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
 
 - Pantalla del juego: En cuanto a la pantalla del juego cada jugador verá la disponibilidad de su habilidad en la parte inferior donde esté colocada su base, dicha habilidad será visible en un círculo con una imagen dentro que vaya acorde a la habilidad, arriba a la derecha habrá un botón que permita al jugador cambiar los ajustes como el sonido, y también poder salir del juego, dicho botón tendrá también una forma circular.
-<img src="./readMeMedia/inGameScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/inGameScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
 
 ### ARTE:
 El arte del videojuego tendrá un estilo Cartoon.
@@ -87,21 +87,21 @@ A continuación se presentará un boceto de los campeones de las tres facciones:
 
 _Princesa Noveny  . / . Sir Thomas . / . General Kalapax_
  
-<img src="./readMeMedia/noveny.png" alt="Noveny" width="120"  align="left"/>
-<img src="./readMeMedia/thomas.png" alt="Thomas" width="120" align="left"/>
-<img src="./readMeMedia/kalapax.png" alt="Kalapax" width="110"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/noveny.png" alt="Noveny" width="120"  align="left"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/thomas.png" alt="Thomas" width="120" align="left"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/kalapax.png" alt="Kalapax" width="110"/>
 
 Se han tomado referencias del videojuego _"Brawlhalla"_ en la estética de los personajes además referencias culturales de los juegos de rol y películas de fantasía como _"War of Warcraft"_ o _"El Señor de los Anillos"_ al incorporar civilizaciones no humanas como en este caso los orcos y los elfos.
 
 Ejemplos de referencias:
 
-<img src="./readMeMedia/referenciaNoveny.png" alt="Referenca Noveny" height="150" align="left"/>
-<img src="./readMeMedia/referenciaThomas.png" alt="Referenca Thomas" height="150" align="left"/>
-<img src="./readMeMedia/referenciaKalapax.png" alt="Referenca Kalapax" height="150"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/referenciaNoveny.png" alt="Referenca Noveny" height="150" align="left"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/referenciaThomas.png" alt="Referenca Thomas" height="150" align="left"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/referenciaKalapax.png" alt="Referenca Kalapax" height="150"/>
 
 En cuanto a la elección de las distintas facciones es una clara referencia al videojuego _"For Honor"_:
 
-<img src="./readMeMedia/videojuegoReferencia4.PNG" alt="For Honor" width="400" align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/videojuegoReferencia4.PNG" alt="For Honor" width="400" align="center"/>
 _Fuente: "For Honor"_
 
 ### PERSONAJES:
@@ -147,7 +147,7 @@ El escenario será una zona rectangular con una estética correspondiente a la t
 
 La cámara que se utilizará a lo largo de la partida será una cámara inclinada con un plano picado.
 
-<img src="./readMeMedia/referencia fondo.png" alt="fondo" width="400"  align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/referencia fondo.png" alt="fondo" width="400"  align="center"/>
 ### HISTORIA:
 
 Este argumento se centra en el personaje de Issabell II, difunta reina del reino de los elfos. Tras su muerte, las facciones de los humanos, orcos y elfos entraron en batalla para poder gobernar el territorio con sus tropas y campeones. 
@@ -184,11 +184,11 @@ En primer lugar, los jugadores deberán logearse y podrán buscar una partida en
 
 A continuación, se añadirán una serie de videojuegos similares a Dishonored factions:
 
-<img src="./readMeMedia/videojuegoReferencia1.PNG" alt="Stickman War Legacy" width="400" align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/videojuegoReferencia1.PNG" alt="Stickman War Legacy" width="400" align="center"/>
 _Fuente: "Stickman War Legacy"_
 
-<img src="./readMeMedia/videojuegoReferencia2.PNG" alt="Plantas Vs Zombies" width="400" align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/videojuegoReferencia2.PNG" alt="Plantas Vs Zombies" width="400" align="center"/>
 _Fuente: "Plantas Vs Zombies"_
 
-<img src="./readMeMedia/videojuegoReferencia3.PNG" alt="Empire Defense" width="400" align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/videojuegoReferencia3.PNG" alt="Empire Defense" width="400" align="center"/>
 _Fuente: "Empire Defense"_
