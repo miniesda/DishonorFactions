@@ -168,7 +168,7 @@ El juego tendrá distintos audios, en primer lugar habrá un audio para la inter
     - Sonidos de interfaz gráfica.
 
 ### FUNCIONAMIENTO DE LA RED EN EL JUEGO:
-** Funcionamiento del servidor del juego**
+- Funcionamiento del servidor del juego
 Se ha hecho uso de el programa eclipse, con la extensión de java enterprise utilizando un lenguaje basado en java con herramientas Maven y Spring.
 
 La comunicación de este juego se lleva a cabo a través de mensajes JSON con los datos necesarios. Los jugadores podrán moverse y atacar siendo esta información traspasada entre ambos. Esta información se deberá enviar a los usuarios según las acciones que estos realicen: moverse, atacar.
