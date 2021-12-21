@@ -81,11 +81,17 @@ La interfaz que se realizará será sencilla y sin muchos elementos para no ento
 - Pantalla de controles: Esta pantalla mostrará al jugador los controles para poder mover su campeon y para poder atacar.
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/PantallaControles.PNG" alt="Main Menu" width="400" align="center"/>
 
-- Pantalla de créditos: Una simple pantalla de créditos con los nombres del equipo de desarrollo de Dishonor Factions.
+- Pantalla de créditos: Una simple pantalla de créditos con los nombres del equipo de desarrollo de Dishonor Factions y la fuente de la cual hemos importado los minions.
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/creditsScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
+
+- Pantalla de salir: En el caso de esta pantalla, hemos decidido incluir una pantalla oscura la cual simulará el cierre del juego.
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/salir.PNG" alt="Salir" width="400" align="center"/>
 
 - Pantalla del juego: En cuanto a la pantalla del juego cada jugador verá la disponibilidad de su habilidad en la parte inferior donde esté colocada su base, dicha habilidad será visible en un círculo con una imagen dentro que vaya acorde a la habilidad, arriba a la derecha habrá un botón que permita al jugador cambiar los ajustes como el sonido, y también poder salir del juego, dicho botón tendrá también una forma circular.
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/inGameScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
+
+- Pantalla de pausa: Esta pantalla permitirá a los jugadores pausar la partida mientras están jugando en caso de que lo deseen.
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/pausa.PNG" alt="Main Menu" width="400" align="center"/>
 
 ### ARTE:
 El arte del videojuego tendrá un estilo Cartoon.
