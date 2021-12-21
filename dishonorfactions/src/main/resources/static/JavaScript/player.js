@@ -37,13 +37,6 @@ export class Player
 		this.deadTimer;
 
 		this.attackSounds;
-
-		//JSON Variables
-		this.currentPositionJSON = 
-		{
-			x: this.initialPositionX,
-			y: this.initialPositionY
-		}
 	}
 
 	getPlayerGraphics()
@@ -167,19 +160,6 @@ export class Player
 			this.updateMovementAndShooting();
 			this.updateHealthBarPosition();
 		}
-
-		$.ajax({
-            type: "GET",
-            url: "http://localhost:8080/player/" + this.playerSide,
-            dataType: "json"
-
-        }).done(function(data)
-        {
-            console.log(JSON.stringify("x = " + data.x + " y = " + data.y));
-        }).fail(function(data)
-        {
-            console.log(JSON.stringify(data));
-        });
 	}
 
 	updateMovementAndShooting()
@@ -327,33 +307,6 @@ export class Player
 	        	}
 	        }
 	    }
-
-	    this.updateMovementJSONVariable();
-	    this.updatePlayerMovementPositionAJAX();
-	}
-
-	updateMovementJSONVariable()
-	{
-		this.currentPositionJSON.x = this.playerGraphics.x;
-	    this.currentPositionJSON.y = this.playerGraphics.y;
-	}
-
-	updatePlayerMovementPositionAJAX()
-	{
-		$.ajax({
-            type: "PUT",
-            headers: { 
-                'Accept': 'application/json',
-                'Content-Type': 'application/json' 
-            },
-            url: "http://localhost:8080/player/" + this.playerSide,
-            data: JSON.stringify(this.currentPositionJSON),
-            processData: false,
-            dataType: "json"
-
-        }).done(function(data){
-            console.log("done");
-        });
 	}
 
 	updateHealthBarPosition()
