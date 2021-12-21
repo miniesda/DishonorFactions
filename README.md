@@ -73,10 +73,13 @@ La interfaz que se realizará será sencilla y sin muchos elementos para no ento
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/preloadScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
 
 - Pantalla de inicio de sesión: En esta pantalla el jugador podrá iniciar sesión con su usuario y contraseña, esto permitirá que el jugador pueda jugar de forma online con otros usuarios.
-- <img src="./dishonorfactions/src/main/resources/static/readMeMedia/PantallaRegistro.PNG" alt="PantallaRegistro" width="400"  align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/PantallaRegistro.PNG" alt="PantallaRegistro" width="400"  align="center"/>
 
 - Menú principal: En el menú principal estará el nombre del videojuego en la parte central arriba del todo, más abajo, también en la parte central vendrán tres botones uno debajo de otro, con forma de pergamino (acorde a la temática medieval) con las opciones de jugar, ajustes y salir del juego.
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/mainMenuScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
+
+- Pantalla de controles: Esta pantalla mostrará al jugador los controles para poder mover su campeon y para poder atacar.
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/PantallaControles.PNG" alt="Main Menu" width="400" align="center"/>
 
 - Pantalla de créditos: Una simple pantalla de créditos con los nombres del equipo de desarrollo de Dishonor Factions.
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/creditsScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
