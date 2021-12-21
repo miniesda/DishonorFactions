@@ -81,7 +81,7 @@ export class EndOfTheGameScene extends Phaser.Scene
 		$.ajax(
 			{
 				type: "GET",
-				url: "http://localhost:8080/ranking",
+				url: "/ranking",
 				dataType: "json"
 			}).done((data)=>
 			{

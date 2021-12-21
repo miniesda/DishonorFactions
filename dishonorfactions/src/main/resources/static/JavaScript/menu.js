@@ -123,7 +123,7 @@ export class Menu extends Phaser.Scene
                 'Accept': 'application/json',
                 'Content-Type': 'application/json' 
             },
-            url: "http://localhost:8080/username/disconnect/[PONER AQUÍ EL ID]",
+            url: "/username/disconnect/" + this.username.username,
             dataType: "json"
         }).done((data)=>
         {

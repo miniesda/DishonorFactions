@@ -25,6 +25,8 @@ export class Game extends Phaser.Scene
 		this.backToMenuButton;
 		this.gameConfigurationData;
 		this.initialTimer;
+		this.gameTimer;
+		this.gameSeconds = 0;
 		this.initialCountdownText;
 		this.initialCountdownSecondsLeft = 5;
 		this.tictacSound;
@@ -102,6 +104,7 @@ export class Game extends Phaser.Scene
 
 						this.leftEnemySpawner.startSpawning();
 						this.rightEnemySpawner.startSpawning();
+						this.startGameTimer();
 
 						this.tictacSound.stop();
 					}
@@ -113,6 +116,24 @@ export class Game extends Phaser.Scene
 				},
 				repeat: 5
 			});
+	}
+
+	startGameTimer()
+	{
+		this.gameTimer = this.time.addEvent(
+			{
+				delay: 1000,
+				callback: ()=>
+				{
+					this.gameSeconds++;
+				},
+				repeat: -1
+			});
+	}
+
+	stopGameTimer()
+	{
+		this.gameTimer.remove();
 	}
 
 	handleCollisions()
@@ -275,6 +296,7 @@ export class Game extends Phaser.Scene
 	finishGame()
 	{
 		this.gameHasAlreadyFinished = true;
+		this.stopGameTimer();
 
 		//Stop spawning enemies and clear existing ones
 		this.leftEnemySpawner.stopSpawning();
@@ -306,7 +328,7 @@ export class Game extends Phaser.Scene
 		var rankingRow = 
 		{
 			"username": this.gameConfigurationData.username,
-			"points": 20
+			"points": this.gameSeconds
 		}
 
 		$.ajax(
@@ -316,7 +338,7 @@ export class Game extends Phaser.Scene
                 'Accept': 'application/json',
                 'Content-Type': 'application/json' 
             },
-            url: "http://localhost:8080/ranking",
+            url: "/ranking",
             data: JSON.stringify(rankingRow),
             dataType: "json"
         }).done((data)=>

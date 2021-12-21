@@ -14,12 +14,11 @@ public class UsernameRestController {
 	@Autowired
 	private UsernameDataBase usernamesDataBase;
 	
-	@RequestMapping(value = "/connect", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> ConnectUser(@RequestBody String name)
+	public Boolean ConnectUser(String name)
 	{
 		Username newUsername = new Username(name);
 		activeUsersArray.addUser(newUsername);
-		return new ResponseEntity<>(true, HttpStatus.CREATED);
+		return true;
 	}
 	
 	@RequestMapping(value = "/disconnect/{id}", method = RequestMethod.DELETE)
@@ -33,13 +32,9 @@ public class UsernameRestController {
 		}
 		else
 		{
+			System.out.println("Es por este");
 			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
 		}
-	}
-	
-	public void signIn()
-	{
-		
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -48,8 +43,15 @@ public class UsernameRestController {
 		Boolean addedSuccesfully = usernamesDataBase.addUsername(newUsername);
 		if(addedSuccesfully)
 		{
-			activeUsersArray.addUser(newUsername);
-			return new ResponseEntity<>(true, HttpStatus.CREATED);
+			Boolean hasBeenAddedToConected = ConnectUser(newUsername.getUsername());
+			if(hasBeenAddedToConected)
+			{
+				return new ResponseEntity<>(true, HttpStatus.CREATED);
+			}
+			else
+			{
+				return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+			}
 		}
 		else
 		{
@@ -63,8 +65,15 @@ public class UsernameRestController {
 		Boolean isUserAndPasswordCorrect = usernamesDataBase.isUserInDataBase(username);
 		if(isUserAndPasswordCorrect)
 		{
-			activeUsersArray.addUser(username);
-			return new ResponseEntity<>(true, HttpStatus.CREATED);
+			Boolean hasBeenAddedToConected = ConnectUser(username.getUsername());
+			if(hasBeenAddedToConected)
+			{
+				return new ResponseEntity<>(true, HttpStatus.CREATED);
+			}
+			else
+			{
+				return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+			}
 		}
 		else
 		{

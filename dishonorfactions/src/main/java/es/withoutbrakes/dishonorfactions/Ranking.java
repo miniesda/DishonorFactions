@@ -60,19 +60,6 @@ public class Ranking {
 		        return 0;
 		    }
 		});
-		/*RankingRow aux;
-		for(int i = 0; i < rows.size() - 1; i++)
-		{
-			for(int j = 0; j < rows.size() - i - 1; j++)
-			{
-				if(rows.get(j + 1).getPoints() < rows.get(j).getPoints())
-				{
-					aux = rows.get(j + 1);
-					rows.add(j + 1, rows.get(j));
-					rows.add(j, aux);
-				}
-			}
-		}*/
 	}
 	
 	public void checkIfRankingIsOverflowed()
@@ -137,11 +124,6 @@ public class Ranking {
 		catch(IOException e)
 		{
 			System.out.println(e);
-		}
-		
-		for(int i = 0; i < rows.size(); i++)
-		{
-			System.out.println(rows.get(i).getUsername());
 		}
 	}
 }

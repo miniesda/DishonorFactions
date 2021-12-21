@@ -121,7 +121,7 @@ export class UsernameScene extends Phaser.Scene
                 'Accept': 'application/json',
                 'Content-Type': 'application/json' 
             },
-            url: "http://localhost:8080/username/register",
+            url: "/username/register",
             data: JSON.stringify(username),
             dataType: "json"
         }).done((data)=>
@@ -149,7 +149,7 @@ export class UsernameScene extends Phaser.Scene
                 'Accept': 'application/json',
                 'Content-Type': 'application/json' 
             },
-            url: "http://localhost:8080/username/login",
+            url: "/username/login",
             data: JSON.stringify(username),
             dataType: "json"
         }).done((data)=>

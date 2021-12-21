@@ -16,14 +16,12 @@ public class RankingRestController {
 	@RequestMapping(method = RequestMethod.GET)
 	public List<RankingRow> getRankingRows()
 	{
-		System.out.println("me llamo bien");
 		return ranking.getRows();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Boolean> addRowToRanking(@RequestBody RankingRow newRow)
 	{
-		System.out.println(newRow.getUsername());
 		ranking.addRow(newRow);
 		return new ResponseEntity<>(true, HttpStatus.CREATED);
 	}
