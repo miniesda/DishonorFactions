@@ -93,6 +93,9 @@ La interfaz que se realizará será sencilla y sin muchos elementos para no ento
 - Pantalla de pausa: Esta pantalla permitirá a los jugadores pausar la partida mientras están jugando en caso de que lo deseen.
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/pausa.PNG" alt="PantallaPausa" width="400" align="center"/>
 
+- Pantallas de victoria: Estas pantallas serán únicas para cada personaje victorioso e incluirán un pequeño ranking cuando varios jugadores jueguen a la vez.
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/VictoriaRanking.PNG" alt="victoria" width="400"  align="center"/>
+
 ### ARTE:
 El arte del videojuego tendrá un estilo Cartoon.
 A continuación se presentará un boceto de los campeones de las tres facciones:
@@ -159,7 +162,7 @@ El escenario será una zona rectangular con una estética correspondiente a la t
 
 La cámara que se utilizará a lo largo de la partida será una cámara inclinada con un plano picado.
 
-<img src="./dishonorfactions/src/main/resources/static/readMeMedia/VictoriaRanking.PNG" alt="fondo" width="400"  align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/inGameScreenshot.PNG" alt="fondo" width="400"  align="center"/>
 ### HISTORIA:
 
 Este argumento se centra en el personaje de Issabell II, difunta reina del reino de los elfos. Tras su muerte, las facciones de los humanos, orcos y elfos entraron en batalla para poder gobernar el territorio con sus tropas y campeones. 
