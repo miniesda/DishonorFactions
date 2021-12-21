@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: minie
+Build-Jdk: 17.0.1
+Implementation-Title: dishonorfactions
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: es.withoutbrakes
+Implementation-URL: http://www.example.com
+Created-By: Maven Integration for Eclipse
+
