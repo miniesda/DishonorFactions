@@ -307,7 +307,35 @@ export class Game extends Phaser.Scene
 			endOfTheGameConfiguration.winningTeam = this.gameConfigurationData.leftPlayer;
 		}
 		
-		this.backgroundMusic.stop();
-		this.scene.start('endOfTheGame', endOfTheGameConfiguration);
+		this.sendWinnerPetition(endOfTheGameConfiguration);
+	}
+
+	sendWinnerPetition(endOfTheGameConfiguration)
+	{
+		console.log(this.gameConfigurationData.username);
+		var rankingRow = 
+		{
+			"username": this.gameConfigurationData.username,
+			"points": 20
+		}
+
+		$.ajax(
+        {
+            type: "POST",
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+            },
+            url: "http://localhost:8080/ranking",
+            data: JSON.stringify(rankingRow),
+            dataType: "json"
+        }).done((data)=>
+        {
+			this.backgroundMusic.stop();
+			this.scene.start('endOfTheGame', endOfTheGameConfiguration);
+        }).fail((data) =>
+        {
+        	console.log("fail");
+        });
 	}
 }

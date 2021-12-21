@@ -13,11 +13,17 @@ export class Menu extends Phaser.Scene
 		this.settingsButton;
 		this.controlsButton;
 		this.exitButton;
+		this.username
 	}
 	
 	//////////////////////////////////////////////////////////////////
 	//AQUÍ NO HACER PRELOAD, HACERLO EN EL ARCHIVO PRELOADSCENE.JS!!!!
 	//////////////////////////////////////////////////////////////////
+
+	init(data)
+	{
+		this.username = data;
+	}
 
 	create()
 	{		
@@ -89,7 +95,7 @@ export class Menu extends Phaser.Scene
 	switchToSelectionScene(currentScene)
 	{
 		currentScene.backgroundMusic.stop();
-		currentScene.scene.start('seleccion');
+		currentScene.scene.start('seleccion', this.username);
 	}
 
 	switchToControlsScene(currentScene)

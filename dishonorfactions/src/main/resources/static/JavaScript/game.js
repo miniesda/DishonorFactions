@@ -50,16 +50,6 @@ export class Game extends Phaser.Scene
 		this.rightNPCGroup = this.physics.add.group();
 		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'elfoNPC', this, 125, -1, this.rightNPCGroup, 125);
 		this.rightEnemySpawner.create();
-
-		////BORRAR ESTOOO
-		///
-		////SUUUUUU
-		$.ajax(
-        {
-            type: "DELETE",
-            url: "http://localhost:8080/username/disconnect/Daniel",
-            success: function(){console.log("borraod");}
-        });
 	}
 
 	initializeTowers()
@@ -307,7 +297,35 @@ export class Game extends Phaser.Scene
 			endOfTheGameConfiguration.winningTeam = this.gameConfigurationData.leftPlayer;
 		}
 		
-		this.backgroundMusic.stop();
-		this.scene.start('endOfTheGame', endOfTheGameConfiguration);
+		this.sendWinnerPetition(endOfTheGameConfiguration);
+	}
+
+	sendWinnerPetition(endOfTheGameConfiguration)
+	{
+		console.log(this.gameConfigurationData.username);
+		var rankingRow = 
+		{
+			"username": this.gameConfigurationData.username,
+			"points": 20
+		}
+
+		$.ajax(
+        {
+            type: "POST",
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+            },
+            url: "http://localhost:8080/ranking",
+            data: JSON.stringify(rankingRow),
+            dataType: "json"
+        }).done((data)=>
+        {
+			this.backgroundMusic.stop();
+			this.scene.start('endOfTheGame', endOfTheGameConfiguration);
+        }).fail((data) =>
+        {
+        	console.log("fail");
+        });
 	}
 }

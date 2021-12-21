@@ -13,11 +13,17 @@ export class Menu extends Phaser.Scene
 		this.settingsButton;
 		this.controlsButton;
 		this.exitButton;
+		this.username
 	}
 	
 	//////////////////////////////////////////////////////////////////
 	//AQUÍ NO HACER PRELOAD, HACERLO EN EL ARCHIVO PRELOADSCENE.JS!!!!
 	//////////////////////////////////////////////////////////////////
+
+	init(data)
+	{
+		this.username = data;
+	}
 
 	create()
 	{		
@@ -67,7 +73,11 @@ export class Menu extends Phaser.Scene
 		this.controlsButton.on('pointerover', () => this.enableButtonShadow(this.controlsButtonShadow));
         this.controlsButton.on('pointerout', () => this.disableButtonShadow(this.controlsButtonShadow));
 
-		this.exitButton.on('pointerup', () => this.scene.stop());
+		this.exitButton.on('pointerup', () => 
+			{
+				this.sendDisconnectUserPetition();
+				this.scene.stop()
+			});
 		this.exitButton.on('pointerover', () => this.enableButtonShadow(this.exitButtonShadow));
         this.exitButton.on('pointerout', () => this.disableButtonShadow(this.exitButtonShadow));
 
@@ -85,7 +95,7 @@ export class Menu extends Phaser.Scene
 	switchToSelectionScene(currentScene)
 	{
 		currentScene.backgroundMusic.stop();
-		currentScene.scene.start('seleccion');
+		currentScene.scene.start('seleccion', this.username);
 	}
 
 	switchToControlsScene(currentScene)
@@ -102,5 +112,25 @@ export class Menu extends Phaser.Scene
 	disableButtonShadow(buttonShadow)
 	{
 		buttonShadow.visible = false;
+	}
+
+	sendDisconnectUserPetition()
+	{
+		$.ajax(
+        {
+            type: "DELETE",
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+            },
+            url: "http://localhost:8080/username/disconnect/[PONER AQUÍ EL ID]",
+            dataType: "json"
+        }).done((data)=>
+        {
+
+        }).fail((data) =>
+        {
+
+        });
 	}
 }

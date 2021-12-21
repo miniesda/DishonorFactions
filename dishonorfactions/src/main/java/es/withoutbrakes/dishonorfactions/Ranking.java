@@ -42,7 +42,7 @@ public class Ranking {
 	public void addRow(RankingRow newRow)
 	{
 		rows.add(newRow);
-		sortRanking();
+		//sortRanking();
 		checkIfRankingIsOverflowed();
 		saveRankingInTXT();
 	}
@@ -104,7 +104,7 @@ public class Ranking {
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line = bufferedReader.readLine();
             
-            while(line != null && line == ";")
+            while(line != null && line.compareTo(";") == 0)
             {
             	RankingRow newRow = new RankingRow();
             	

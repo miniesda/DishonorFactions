@@ -22,6 +22,7 @@ public class RankingRestController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Boolean> addRowToRanking(@RequestBody RankingRow newRow)
 	{
+		System.out.println(newRow.getUsername());
 		ranking.addRow(newRow);
 		return new ResponseEntity<>(true, HttpStatus.CREATED);
 	}
