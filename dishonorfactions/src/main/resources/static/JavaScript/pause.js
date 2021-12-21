@@ -6,12 +6,14 @@ export class Pause extends Phaser.Scene{
 	}
     create(){
         this.add.image(0, 0, 'pauseBackground').setOrigin(0, 0);
-		this.goBackButton = this.add.image(640,600,'goBackButton');
+		this.goBackButton = this.add.image(640,580,'goBackButton');
 		this.goBackButton.setInteractive();
-		this.goBackButton.on('pointerup', () => this.switchBackToMenuScene(this));
+		this.goBackButton.on('pointerup', () => this.switchBackToMenuScene());
     }
-    switchBackToMenuScene(currentScene)
+    switchBackToMenuScene()
 	{
-		currentScene.scene.wake('game');
+		console.log('hola');
+		this.scene.resume('game');
+		this.scene.stop();
 	}
 }
