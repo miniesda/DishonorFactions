@@ -2,13 +2,14 @@ import { NPC } from './nPC.js';
 
 export class EnemySpawner
 {
-	constructor(rate, x, y, enemyName, gameScene, rowDisp, spawnDir, group, speed)
+	constructor(rate, x, y, champion, gameScene, rowDisp, spawnDir, group, speed)
 	{
 		this.scene = gameScene;
 		this.nPCSpeed = speed;
 		this.spawningRate = rate * 2000;
 		this.spawningPositionX = x;
-		this.enemySpriteName = enemyName;
+		this.championType = this.scene.cache.json.get(champion);
+		this.enemySpriteName;
 		this.timer;
 		this.posibleSpawnPositionY = [y - rowDisp, y, y + rowDisp];
 		this.spawningDirection = spawnDir;
@@ -44,7 +45,28 @@ export class EnemySpawner
 
 	create()
 	{
+		this.configureSprites();
 		this.createAnimations();
+	}
+
+	configureSprites()
+	{
+		if(this.championType.spriteID == 'humanChampion')
+		{
+			this.enemySpriteName = 'humanNPC';
+		}
+		else if(this.championType.spriteID == 'orcChampion')
+		{
+			this.enemySpriteName = 'orcNPC';
+		}
+		else if(this.championType.spriteID == 'elfChampion')
+		{
+			this.enemySpriteName = 'elfNPC';
+		}
+		else
+		{
+			console.log("ssjfiohrgpdkpsJAAAAA");
+		}
 	}
 
 	startSpawning()

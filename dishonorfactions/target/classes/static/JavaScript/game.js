@@ -46,11 +46,11 @@ export class Game extends Phaser.Scene
 	initializeEnemySpawner()
 	{
 		this.leftNPCGroup = this.physics.add.group();
-		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1, this.leftNPCGroup, 125);
+		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, this.gameConfigurationData.leftPlayer, this, 125, 1, this.leftNPCGroup, 125);
 		this.leftEnemySpawner.create();
 
 		this.rightNPCGroup = this.physics.add.group();
-		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'elfoNPC', this, 125, -1, this.rightNPCGroup, 125);
+		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, this.gameConfigurationData.rightPlayer, this, 125, -1, this.rightNPCGroup, 125);
 		this.rightEnemySpawner.create();
 	}
 
