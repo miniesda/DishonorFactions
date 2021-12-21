@@ -163,6 +163,7 @@ El escenario será una zona rectangular con una estética correspondiente a la t
 La cámara que se utilizará a lo largo de la partida será una cámara inclinada con un plano picado.
 
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/inGameScreenshot.PNG" alt="fondo" width="400"  align="center"/>
+
 ### HISTORIA:
 
 Este argumento se centra en el personaje de Issabell II, difunta reina del reino de los elfos. Tras su muerte, las facciones de los humanos, orcos y elfos entraron en batalla para poder gobernar el territorio con sus tropas y campeones. 
@@ -171,10 +172,8 @@ Este argumento se centra en el personaje de Issabell II, difunta reina del reino
 
 El juego tendrá distintos audios, en primer lugar habrá un audio para la interfaz del juego, antes de comenzarlo, otro mientras se está jugando y por último, un audio que se reproducirá en caso de que el jugador pierda la partida. Además, cabe añadir que ciertas acciones que se produzcan durante el juego tendrán su propio audio.
 1. __Música__:
-    - Ambientación del escenario.
-    - Música de victoria.
-    - Música de derrota.
-    - Música de menú principal.
+    - Música de menú principal
+    <audio class="Audio-1" src="./dishonorfactions/src/main/resources/static/Sounds/MainMenu.wav" controls=""></audio>
     - Música de fondo inGame
 
 3. __Efectos de sonido__:
