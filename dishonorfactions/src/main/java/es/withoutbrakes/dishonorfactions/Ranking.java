@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
+import java.util.Comparator;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -42,23 +43,36 @@ public class Ranking {
 	public void addRow(RankingRow newRow)
 	{
 		rows.add(newRow);
-		//sortRanking();
+		sortRanking();
 		checkIfRankingIsOverflowed();
 		saveRankingInTXT();
 	}
 	
 	public void sortRanking()
 	{
-		RankingRow aux;
-		 for (int i = 0; i < rows.size() - 1; i++) {
-		        for (int j = 0; j < rows.size() - i - 1; j++) {
-		            if (rows.get(j + 1).getPoints() < rows.get(j).getPoints()) {
-		                aux = rows.get(j + 1);
-		                rows.add(j + 1, rows.get(j));
-		                rows.add(j, aux);
-		            }
-		        }
+		Collections.sort(rows, new Comparator<RankingRow>() {
+		    @Override
+		    public int compare(RankingRow z1, RankingRow z2) {
+		        if (z1.getPoints() > z2.getPoints())
+		            return 1;
+		        if (z1.getPoints() < z2.getPoints())
+		            return -1;
+		        return 0;
 		    }
+		});
+		/*RankingRow aux;
+		for(int i = 0; i < rows.size() - 1; i++)
+		{
+			for(int j = 0; j < rows.size() - i - 1; j++)
+			{
+				if(rows.get(j + 1).getPoints() < rows.get(j).getPoints())
+				{
+					aux = rows.get(j + 1);
+					rows.add(j + 1, rows.get(j));
+					rows.add(j, aux);
+				}
+			}
+		}*/
 	}
 	
 	public void checkIfRankingIsOverflowed()
@@ -73,7 +87,7 @@ public class Ranking {
 	{
 		try
 		{
-			FileOutputStream fos = new FileOutputStream("usernames.txt", false);
+			FileOutputStream fos = new FileOutputStream("ranking.txt", false);
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 			
 			for(int i = 0; i < maxRows; i++)
@@ -84,7 +98,7 @@ public class Ranking {
 				bw.write(rows.get(i).getUsername());
 				bw.newLine();
 					
-				bw.write(rows.get(i).getPoints());
+				bw.write(String.valueOf(rows.get(i).getPoints()));
 				bw.newLine();
 			}
 			
@@ -123,6 +137,11 @@ public class Ranking {
 		catch(IOException e)
 		{
 			System.out.println(e);
+		}
+		
+		for(int i = 0; i < rows.size(); i++)
+		{
+			System.out.println(rows.get(i).getUsername());
 		}
 	}
 }

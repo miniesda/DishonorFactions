@@ -16,6 +16,7 @@ public class RankingRestController {
 	@RequestMapping(method = RequestMethod.GET)
 	public List<RankingRow> getRankingRows()
 	{
+		System.out.println("me llamo bien");
 		return ranking.getRows();
 	}
 	

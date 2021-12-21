@@ -1,5 +1,6 @@
 es\withoutbrakes\dishonorfactions\App.class
 es\withoutbrakes\dishonorfactions\RankingRestController.class
+es\withoutbrakes\dishonorfactions\Ranking$1.class
 es\withoutbrakes\dishonorfactions\Username.class
 es\withoutbrakes\dishonorfactions\UsernameRestController.class
 es\withoutbrakes\dishonorfactions\ActiveUsers.class
