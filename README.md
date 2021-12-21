@@ -72,6 +72,9 @@ La interfaz que se realizará será sencilla y sin muchos elementos para no ento
 - Pantalla de carga: En esta pantalla, se cargarán todos los recursos necesarios para el correcto funcioamiento del videojuego. Para informar al jugador de cómo va progresando este proceso, se mostrará por pantalla una pequeña barra de progreso.
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/preloadScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
 
+- Pantalla de inicio de sesión: En esta pantalla el jugador podrá iniciar sesión con su usuario y contraseña, esto permitirá que el jugador pueda jugar de forma online con otros usuarios.
+- <img src="./dishonorfactions/src/main/resources/static/readMeMedia/PantallaRegistro.png" alt="Noveny" width="400"  align="center"/>
+
 - Menú principal: En el menú principal estará el nombre del videojuego en la parte central arriba del todo, más abajo, también en la parte central vendrán tres botones uno debajo de otro, con forma de pergamino (acorde a la temática medieval) con las opciones de jugar, ajustes y salir del juego.
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/mainMenuScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
 
