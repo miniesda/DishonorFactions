@@ -91,7 +91,7 @@ La interfaz que se realizará será sencilla y sin muchos elementos para no ento
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/inGameScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
 
 - Pantalla de pausa: Esta pantalla permitirá a los jugadores pausar la partida mientras están jugando en caso de que lo deseen.
-<img src="./dishonorfactions/src/main/resources/static/readMeMedia/pausa.PNG" alt="Main Menu" width="400" align="center"/>
+<img src="./dishonorfactions/src/main/resources/static/readMeMedia/pausa.PNG" alt="PantallaPausa" width="400" align="center"/>
 
 ### ARTE:
 El arte del videojuego tendrá un estilo Cartoon.
