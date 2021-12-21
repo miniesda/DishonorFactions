@@ -90,7 +90,7 @@ La interfaz que se realizará será sencilla y sin muchos elementos para no ento
 - Pantalla del juego: En cuanto a la pantalla del juego cada jugador verá la disponibilidad de su habilidad en la parte inferior donde esté colocada su base, dicha habilidad será visible en un círculo con una imagen dentro que vaya acorde a la habilidad, arriba a la derecha habrá un botón que permita al jugador cambiar los ajustes como el sonido, y también poder salir del juego, dicho botón tendrá también una forma circular.
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/inGameScreenshot.PNG" alt="Main Menu" width="400" align="center"/>
 
-- Pantalla de pausa: Esta pantalla permitirá a los jugadores pausar la partida mientras están jugando en caso de que lo deseen.
+- Pantalla de pausa: Esta pantalla permitirá a los jugadores pausar la partida mientras están jugando en caso de que lo deseen. Esta pantalla será expuesta cuando un jugador pulse la tecla E.
 <img src="./dishonorfactions/src/main/resources/static/readMeMedia/menupausa.PNG" alt="PantallaPausa" width="400" align="center"/>
 
 - Pantallas de victoria: Estas pantallas serán únicas para cada personaje victorioso e incluirán un pequeño ranking cuando varios jugadores jueguen a la vez.
