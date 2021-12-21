@@ -25,6 +25,8 @@ export class Game extends Phaser.Scene
 		this.backToMenuButton;
 		this.gameConfigurationData;
 		this.initialTimer;
+		this.gameTimer;
+		this.gameSeconds = 0;
 		this.initialCountdownText;
 		this.initialCountdownSecondsLeft = 5;
 		this.tictacSound;
@@ -44,22 +46,12 @@ export class Game extends Phaser.Scene
 	initializeEnemySpawner()
 	{
 		this.leftNPCGroup = this.physics.add.group();
-		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, 'orcNPC', this, 125, 1, this.leftNPCGroup, 125);
+		this.leftEnemySpawner = new EnemySpawner(1, 180, 400, this.gameConfigurationData.leftPlayer, this, 125, 1, this.leftNPCGroup, 125);
 		this.leftEnemySpawner.create();
 
 		this.rightNPCGroup = this.physics.add.group();
-		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, 'elfoNPC', this, 125, -1, this.rightNPCGroup, 125);
+		this.rightEnemySpawner = new EnemySpawner(1, 1080, 400, this.gameConfigurationData.rightPlayer, this, 125, -1, this.rightNPCGroup, 125);
 		this.rightEnemySpawner.create();
-
-		////BORRAR ESTOOO
-		///
-		////SUUUUUU
-		$.ajax(
-        {
-            type: "DELETE",
-            url: "http://localhost:8080/username/disconnect/Daniel",
-            success: function(){console.log("borraod");}
-        });
 	}
 
 	initializeTowers()
@@ -112,6 +104,7 @@ export class Game extends Phaser.Scene
 
 						this.leftEnemySpawner.startSpawning();
 						this.rightEnemySpawner.startSpawning();
+						this.startGameTimer();
 
 						this.tictacSound.stop();
 					}
@@ -123,6 +116,24 @@ export class Game extends Phaser.Scene
 				},
 				repeat: 5
 			});
+	}
+
+	startGameTimer()
+	{
+		this.gameTimer = this.time.addEvent(
+			{
+				delay: 1000,
+				callback: ()=>
+				{
+					this.gameSeconds++;
+				},
+				repeat: -1
+			});
+	}
+
+	stopGameTimer()
+	{
+		this.gameTimer.remove();
 	}
 
 	handleCollisions()
@@ -227,9 +238,13 @@ export class Game extends Phaser.Scene
 
 	pauseGame()
 	{
-		console.log('se pauso');
-		this.scene.launch('pause');
 		this.scene.pause();
+		this.switchToPauseScene(this);
+	}
+
+	switchToPauseScene(currentScene)
+	{
+		currentScene.scene.start('pause');
 	}
 
 	create()
@@ -281,6 +296,7 @@ export class Game extends Phaser.Scene
 	finishGame()
 	{
 		this.gameHasAlreadyFinished = true;
+		this.stopGameTimer();
 
 		//Stop spawning enemies and clear existing ones
 		this.leftEnemySpawner.stopSpawning();
@@ -303,7 +319,35 @@ export class Game extends Phaser.Scene
 			endOfTheGameConfiguration.winningTeam = this.gameConfigurationData.leftPlayer;
 		}
 		
-		this.backgroundMusic.stop();
-		this.scene.start('endOfTheGame', endOfTheGameConfiguration);
+		this.sendWinnerPetition(endOfTheGameConfiguration);
+	}
+
+	sendWinnerPetition(endOfTheGameConfiguration)
+	{
+		console.log(this.gameConfigurationData.username);
+		var rankingRow = 
+		{
+			"username": this.gameConfigurationData.username,
+			"points": this.gameSeconds
+		}
+
+		$.ajax(
+        {
+            type: "POST",
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+            },
+            url: "/ranking",
+            data: JSON.stringify(rankingRow),
+            dataType: "json"
+        }).done((data)=>
+        {
+			this.backgroundMusic.stop();
+			this.scene.start('endOfTheGame', endOfTheGameConfiguration);
+        }).fail((data) =>
+        {
+        	console.log("fail");
+        });
 	}
 }

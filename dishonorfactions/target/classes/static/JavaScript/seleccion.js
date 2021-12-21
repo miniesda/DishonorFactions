@@ -12,11 +12,17 @@ export class Seleccion extends Phaser.Scene
 		this.humanButtonShadow;
 		this.elfButton;
 		this.elfButtonShadow;
+		this.username;
 	}
 
 	//////////////////////////////////////////////////////////////////
 	//AQUÍ NO HACER PRELOAD, HACERLO EN EL ARCHIVO PRELOADSCENE.JS!!!!
 	//////////////////////////////////////////////////////////////////
+
+	init(data)
+	{
+		this.username = data;
+	}
 
 	create()
 	{
@@ -44,6 +50,7 @@ export class Seleccion extends Phaser.Scene
 		this.humanButton = this.add.image(1050,630,'boton3');
 
 		this.preGameConfiguration = this.cache.json.get('gameConfiguration');
+		this.preGameConfiguration.username = this.username.username;
 
 		this.elfButton.setInteractive();
 		this.elfButton.on('pointerup', () => this.clickConfiguration('elfChampionData'));

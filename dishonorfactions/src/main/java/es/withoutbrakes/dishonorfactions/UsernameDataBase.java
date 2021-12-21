@@ -83,7 +83,6 @@ public class UsernameDataBase
 	
 	public void loadUsernamesFromTXT()
 	{
-		System.out.println("me llami");
 		try
 		{
 			FileReader reader = new FileReader("usernames.txt");

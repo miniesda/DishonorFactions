@@ -9,6 +9,7 @@ export class UsernameScene extends Phaser.Scene
 		this.errorText;
 		this.changeEnterModeButton;
 		this.enterMode;
+		this.dataForMenuScene;
 	}
 
 	//////////////////////////////////////////////////////////////////
@@ -57,6 +58,12 @@ export class UsernameScene extends Phaser.Scene
 	        		"username": this.usernameValue.value,
 	        		"password": this.passwordValue.value
 	        	}
+
+	        	this.dataForMenuScene = 
+	        	{
+	        		"username": this.usernameValue.value
+	        	}
+
 	        	if(this.enterMode == 'Register')
 	        	{
 	            	this.sendRegisterPetition(username);
@@ -71,7 +78,7 @@ export class UsernameScene extends Phaser.Scene
 
 	changeToMenu()
 	{
-		this.scene.start('menu');
+		this.scene.start('menu', this.dataForMenuScene);
 	}
 
 	showErrorMessage(error, errorBody)
@@ -114,7 +121,7 @@ export class UsernameScene extends Phaser.Scene
                 'Accept': 'application/json',
                 'Content-Type': 'application/json' 
             },
-            url: "http://localhost:8080/username/register",
+            url: "/username/register",
             data: JSON.stringify(username),
             dataType: "json"
         }).done((data)=>
@@ -142,7 +149,7 @@ export class UsernameScene extends Phaser.Scene
                 'Accept': 'application/json',
                 'Content-Type': 'application/json' 
             },
-            url: "http://localhost:8080/username/login",
+            url: "/username/login",
             data: JSON.stringify(username),
             dataType: "json"
         }).done((data)=>

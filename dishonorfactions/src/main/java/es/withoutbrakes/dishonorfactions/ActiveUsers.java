@@ -31,16 +31,14 @@ public class ActiveUsers {
 		Boolean hasFound = false;
 		while(index < activeUsersArray.size() && !hasFound)
 		{
-			if(usernameToDelete == activeUsersArray.get(index).getUsername())
+			if(usernameToDelete.compareTo(activeUsersArray.get(index).getUsername()) == 0)
 			{
-				activeUsersArray.remove(index);
+				Username d = activeUsersArray.remove(index);
+				
 				hasFound = true;
-				System.out.println("BOROOOOO");
 			}
 			index++;
 		}
-		
-		System.out.println(activeUsersArray.size());
 
 		return hasFound;
 	}
