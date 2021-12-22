@@ -1,3 +1,5 @@
+import { Button } from './button.js';
+
 export class EndOfTheGameScene extends Phaser.Scene
 {
 	constructor()
@@ -12,6 +14,7 @@ export class EndOfTheGameScene extends Phaser.Scene
 		this.secondRowPointsText;
 		this.thirdRowUsernameText;
 		this.thirdRowPointsText;
+		this.backToMenuButton;
 	}
 
 	//////////////////////////////////////////////////////////////////
@@ -37,6 +40,11 @@ export class EndOfTheGameScene extends Phaser.Scene
 		{
 			this.backgroundImage = this.add.image(0, 0, 'humanVictoryScreen').setOrigin(0, 0);
 		}
+
+		this.backToMenuButton = new Button(320, this.cameras.main.height - 70, 'Go back to menu', 'botonSalir', 0.8, 1, 30, 10, this, ()=>
+			{
+				this.scene.start('menu');
+			});
 
 		this.createRankingTexts();
 

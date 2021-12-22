@@ -26,7 +26,8 @@ export class UsernameScene extends Phaser.Scene
 		this.usernameValue = this.nameInput.getChildByName("name");
 	    this.passwordValue = this.nameInput.getChildByName("password");
 
-	    this.confirmButton = new Button(this.cameras.main.width / 2, this.cameras.main.height / 2 + 180, 'Register', 40, 15, this, () => {
+	    this.confirmButton = new Button(this.cameras.main.width / 2, this.cameras.main.height / 2 + 180,
+	    	'Register', 'botonSalir', 0.8, 0.7, 40, 15, this, () => {
 	        if(this.usernameValue.value != "" && this.passwordValue.value != "")
 	        {
 	        	var username = 
