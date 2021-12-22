@@ -76,7 +76,7 @@ export class Menu extends Phaser.Scene
 		this.exitButton.on('pointerup', () => 
 			{
 				this.sendDisconnectUserPetition();
-				this.scene.stop()
+				this.switchToLoginScreen();
 			});
 		this.exitButton.on('pointerover', () => this.enableButtonShadow(this.exitButtonShadow));
         this.exitButton.on('pointerout', () => this.disableButtonShadow(this.exitButtonShadow));
@@ -102,6 +102,11 @@ export class Menu extends Phaser.Scene
 	{
 		currentScene.backgroundMusic.stop();
 		currentScene.scene.start('controls');
+	}
+
+	switchToLoginScreen()
+	{
+		this.scene.start('username');
 	}
 
 	enableButtonShadow(buttonShadow)

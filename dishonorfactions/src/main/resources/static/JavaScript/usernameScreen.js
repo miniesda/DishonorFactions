@@ -1,3 +1,5 @@
+import { Button } from './button.js';
+
 export class UsernameScene extends Phaser.Scene
 {
 	constructor()
@@ -10,6 +12,7 @@ export class UsernameScene extends Phaser.Scene
 		this.changeEnterModeButton;
 		this.enterMode;
 		this.dataForMenuScene;
+		this.confirmButton;
 	}
 
 	//////////////////////////////////////////////////////////////////
@@ -23,34 +26,7 @@ export class UsernameScene extends Phaser.Scene
 		this.usernameValue = this.nameInput.getChildByName("name");
 	    this.passwordValue = this.nameInput.getChildByName("password");
 
-	    this.errorText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2 + 250, "", {fontSize: 20, strokeThickness: 1.5}).setOrigin(0.5, 0.5);
-		this.hideErrorMessage();
-
-		this.infoText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2 - 200, "", {fontSize: 100, strokeThickness: 1.5}).setOrigin(0.5, 0.5);
-
-		this.changeEnterModeButton = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2 + 150, "", {fontSize: 40, strokeThickness: 1.5}).setOrigin(0.5, 0.5);
-		this.changeToLogin();
-
-		this.changeEnterModeButton.setInteractive();
-		this.changeEnterModeButton.on('pointerup', () => 
-			{
-				if(this.changeEnterModeButton.text == 'Log in here')
-				{
-					this.changeToLogin();
-				}
-				else if(this.changeEnterModeButton.text == 'Register here')
-				{
-					this.changeToRegister();
-				}
-			});
-
-		this.changeEnterModeButton.on('pointerover', () => this.changeEnterModeButton.setColor("#FC814A"));
-        this.changeEnterModeButton.on('pointerout', () => this.changeEnterModeButton.setColor("#BFBFBF"));
-
-        //Add an event for pressing Enter key
-		this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-		this.returnKey.on("down", event =>
-		{
+	    this.confirmButton = new Button(this.cameras.main.width / 2, this.cameras.main.height / 2 + 180, 'Register', 40, 15, this, () => {
 	        if(this.usernameValue.value != "" && this.passwordValue.value != "")
 	        {
 	        	var username = 
@@ -74,7 +50,31 @@ export class UsernameScene extends Phaser.Scene
 	        	}
 	        }
 	    });
-	}
+
+	    this.errorText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2 + 250, "", {fontSize: 20, strokeThickness: 1.5}).setOrigin(0.5, 0.5);
+		this.hideErrorMessage();
+
+		this.infoText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2 - 160, "", {fontSize: 100, strokeThickness: 1.5}).setOrigin(0.5, 0.5);
+
+		this.changeEnterModeButton = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2 + 100, "", {fontSize: 20, strokeThickness: 1.5}).setOrigin(0.5, 0.5);
+		this.changeToLogin();
+
+		this.changeEnterModeButton.setInteractive();
+		this.changeEnterModeButton.on('pointerup', () => 
+			{
+				if(this.changeEnterModeButton.text == 'Log in here')
+				{
+					this.changeToLogin();
+				}
+				else if(this.changeEnterModeButton.text == 'Register here')
+				{
+					this.changeToRegister();
+				}
+			});
+
+		this.changeEnterModeButton.on('pointerover', () => this.changeEnterModeButton.setColor("#FC814A"));
+        this.changeEnterModeButton.on('pointerout', () => this.changeEnterModeButton.setColor("#BFBFBF"));
+    }
 
 	changeToMenu()
 	{
@@ -99,7 +99,8 @@ export class UsernameScene extends Phaser.Scene
 		this.changeEnterModeButton.setText("Register here");
 		this.usernameValue.value = "";
 		this.passwordValue.value = "";
-		this.hideErrorMessage();
+		this.hideErrorMessage();		
+	    this.confirmButton.setText('Log in');
 	}
 
 	changeToRegister()
@@ -110,6 +111,7 @@ export class UsernameScene extends Phaser.Scene
 		this.usernameValue.value = "";
 		this.passwordValue.value = "";
 		this.hideErrorMessage();
+	    this.confirmButton.setText('Register');
 	}
 
 	sendRegisterPetition(username)

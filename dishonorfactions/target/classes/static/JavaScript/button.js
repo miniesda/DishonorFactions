@@ -1,13 +1,18 @@
 export class Button {
-    constructor(x, y, label, scene, callback) {
-        const button = scene.add.text(x, y, label,{fontFamily:"fuenteMenu"})
+    constructor(x, y, label, textSize, paddingSize, scene, callback) {
+        this.button = scene.add.text(x, y, label, {})
             .setOrigin(0.5)
-            .setPadding(10) 
-            .setStyle({ fontSize: 65 })
+            .setPadding(paddingSize) 
+            .setStyle({ backgroundColor: '#9BC1BC', fill: '#100007', fontSize: textSize })
             .setInteractive({ useHandCursor: true })
-            .on('pointerdown', () => callback(scene))
-            .on('pointerover', () => button.setStyle({ fill: '#000000' }))
-            .on('pointerout', () => button.setStyle({ fill: '#000000' }));
+            .on('pointerdown', () => callback())
+            .on('pointerover', () => this.button.setStyle({ backgroundColor: '#808F87', fill: '#100007' }))
+            .on('pointerout', () => this.button.setStyle({ backgroundColor: '#9BC1BC', fill: '#100007' }));
+    }
+
+    setText(newText)
+    {
+        this.button.setText(newText);
     }
 }
 
